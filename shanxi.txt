@@ -1,4 +1,4 @@
-git ������ʾ
+git 基础知识总结
 
 git init //初始化
 git add fileName //将fileName从工作区添加到暂存区

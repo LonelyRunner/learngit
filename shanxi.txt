@@ -3,3 +3,6 @@ git 基础知识总结
 git init //初始化
 git add fileName //将fileName从工作区添加到暂存区
 git commit -m "comment"  //将修改后的文件提交到版本库
+
+git push orgin master //将master分支中的修改提交到github仓库
+git pull  //当git clone之后，直接git pull它会自动匹配一个正确的remote url

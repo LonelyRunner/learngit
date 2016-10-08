@@ -1,0 +1,50 @@
+git入门 (user:LonelyRunner password:legendary23 )
+
+一.
+1.创建一个文件夹  执行  $ git init 
+2.将文件添加到git仓库   $ git add readme.txt
+3.将文件提交到git仓库   $ git commit -m "comment about this commit"
+
+二.
+git是一个分布式版本控制系统。
+
+$ git status: 查看git仓库的状态，时刻掌握仓库的状态
+$ git diff changeFile.txt     changeFile.txt文件的修改内容（未提交的文件）
+
+三.
+$ git log : 查看整个git仓库的所有修改记录
+$ git reset --hard HEAD^  回退到上一个版本
+$ cat file  读取一个文件
+$ git reflog 用来记录你的每一条命令
+四：工作区和暂存区
+$ git add命令将修改的文件从工作区添加到暂存区
+$ git commit 将修改的文件从暂存区提交到master分支
+五.管理修改
+Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件
+
+可以通过$ git status命令查看文件是否提交  是否进行了修改
+
+六 撤销修改 
+$ git checkout -- fileName
+$ git reset HEAD fileName    //将暂存区的文件撤销会工作区
+七 删除文件
+     删除git仓库中的文件  $ git rm introduceMe.txt
+
+八.远程仓库
+     1、添加远程库
+     $ git push origin master  将本地提交到github仓库（服务器） 
+     2、从远程库克隆
+   $ git clone address   //从address地址（远程库）中克隆项目
+
+九.  分支管理
+1.创建与合并分支
+2.解决冲突
+     手动解决冲突  利用git log --graph查看 命令可以看到分支合并图
+3.分支管理策略
+4.如果要丢弃一个没有被合并过的分支，可以通过$ git branch -D branch_name 强行删除
+5.多人协作
+十 标签管理
+1.创建标签
+git show <tagName>   :  显示标签对应的说明
+
+2.操作标签

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js正则表达式</title>
+
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <style type="text/css">
+        body{
+            background: lightgrey;
+        }
+        input{
+            border: 1px solid orangered;
+            border-radius: 3px;
+        }
+        .form{
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        .span_disabled{
+            color: red;
+            font-style: oblique;
+            background-color: orange;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        userName: <input type="text" name="userName" id="userName" value="" onchange="detectUserName()">
+        <span class="span_disabled" id="span_false1">用户名格式不符合要求</span>
+        <span class="span_disabled" id="span_true1">用户名可用</span>
+        <br/>
+        password: <input type="password" name="password" id="password" onchange="detectPassword()">
+        <span class="span_disabled" id="span_false2">密码格式不符合要求</span>
+        <span class="span_disabled" id="span_true2">密码格式正确</span>
+        <br/>
+        e-mail: <input type="text" name="email" id="email" onchange="detectEmail()">
+        <span class="span_disabled" id="span_false3">Email格式不符合要求</span>
+        <span class="span_disabled" id="span_true3">Email格式正确</span>
+    </div>
+
+    <div>
+        <table border="1">
+            <tr>
+                <th>Modifier</th>
+                <th>描述</th>
+            </tr>
+            <tr><td>i</td>	 <td> 执行不区分大小写的匹配</td></tr>
+            <tr><td>m</td>	 <td>规定，如果字符串有换行或回车符，^和$运算符现在可以匹配，而不是一个字符串边界对一个换行符边界</tr>
+            <tr><td>g</td>	 <td>执行一个全局匹配就是找到所有匹配，而不是在第一个匹配项后停止。</tr>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+
+        /** userName的格式
+         * 1.英文字母开头
+         * 2.后面可以是数字也可以是字母或汉字、下划线...
+         * 3.长度限制 8-12 */
+        function detectUserName(){
+            var userName = document.getElementById("userName").value;
+            // userNameReg1 和 userNameReg 等价
+            // \w表示 任意一个字母或数字或下划线，也就是 A~Z,a~z,0~9,_ 中任意一个
+            // \d表示  任意一个数字 0-9
+            var userNameReg1 = /^[a-zA-Z_]/;
+            var userNameReg = new RegExp("^[a-zA-Z]");
+            if(userName!="" && userName.length>=8 && userName.length<=20 && userNameReg1.test(userName)){
+                $("#span_true1").show();
+                $("#span_false1").css("display","none");
+            }else{
+                $("#span_true1").css("display","none");
+                $("#span_false1").show();
+            }
+        }
+        /**
+         * password的格式
+         * 1.大写英文字母开头 必须包含一个小写字母
+         * 2.后面可跟任意英文或数字
+         * 3.长度限制 8-12 */
+        function detectPassword(){
+            var password = document.getElementById("password").value;
+            var passwordReg = new RegExp("^[A-Z]\w{0,}[a-z]+\w{0,}");
+            console.info(password+"========"+passwordReg.test(password));
+            if(password!="" && password.length>=8 && password.length<=12 && passwordReg.test(password)){
+                $("#span_true2").show();
+                $("#span_false2").css("display","none");
+            }else{
+                $("#span_true2").css("display","none");
+                $("#span_false2").show();
+            }
+        }
+        /**
+         * Email的格式
+         * 1.必须包含@和.
+         * 2.不能以@和.开头
+         * 3.@要在最后一个.之前
+         * 826270362@QQ.COM 或者 zjz_zh5319@163.com */
+        function detectEmail(){
+            var email = document.getElementById("email").value;
+            console.info(email);
+            var emailReg = /^[0-9a-zA-Z]\w*\.*@\w*\.[com|java|net]/;
+            console.info(emailReg.test(email));
+            if(email!="" && emailReg.test(email)){
+                $("#span_false3").css("display","none");
+                $("#span_true3").show();
+            }else{
+                $("#span_false3").show();
+                $("#span_true3").css("display","none");
+            }
+        }
+
+        /** test、exec的用法 */
+                var match = "";
+        var str = "ABCD1232abcd1234abcd";
+        var strReg = /abcd/;
+        var strReg1 = new RegExp("abcd","g");
+        // exec()	 执行搜索在其字符串参数匹配 返回一个数组
+        console.info(strReg1.exec(str));
+        // test()    测试其字符串参数匹配  返回一个boolean类型
+        console.info(strReg.test(str));
+
+        var exchange_str = "love=hate";
+        var exchange_reg = /(\w+)=(\w+)/;
+        var result_str = exchange_str.replace(exchange_reg,"$2=$1");
+        console.info(result_str);
+
+
+        var re = /[a-zA-Z]{2,}/;
+        var s = 'ABCSDdewe';
+        var a = '123212';
+        var b = '12as';
+        console.info(re.test(s)+"=========="+re.test(a)+"================"+re.test(b));
+
+        var i = /[a-z]+\d+/;
+        var st = "abcd123";
+        var iK = /[a-z]+(\d+)/;
+        var stk = "abcd";
+        console.info(i.test(st)+"==============="+iK.test(stk));
+    </script>
+</body>
+</html>

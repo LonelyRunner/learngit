@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ng-show测试</title>
+</head>
+<body  ng-app="myApp">
+    <div ng-controller="myController">
+        <input type="text" ng-model="a"/>
+        <input type="text" ng-model="b"/>
+        <div ng-class="select()">
+            <div ng-show="up">111</div>
+            <div ng-show="down">222</div>
+            <div ng-show="default">333</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/common/angular.js"></script>
+    <script type="text/javascript" src="../js/ngshow/ngshow.js"></script>
+</body>
+</html>

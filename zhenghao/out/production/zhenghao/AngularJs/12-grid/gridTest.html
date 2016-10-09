@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-grid</title>
+    <link rel="stylesheet" href="ng-grid.css">
+    <link rel="stylesheet" href="jquery-ui.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style type="text/css">
+        .gridStyle{
+            height:300px;
+        }
+    </style>
+</head>
+<body ng-app="gridApp">
+    <div ng-controller="gridController">
+        <div  class="gridStyle" ng-grid="gridOpts"></div>
+    </div>
+
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../angular-min.js"></script>
+    <script type="text/javascript" src="angular-ui.js"></script>
+    <script type="text/javascript" src="jquery-ui.js"></script>
+    <script type="text/javascript" src="ng-grid.min.js"></script>
+    <script type="text/javascript" src="bootstrap.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+</body>
+</html>

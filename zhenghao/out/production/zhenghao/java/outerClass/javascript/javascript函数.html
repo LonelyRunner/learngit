@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>---javascript---</title>
+    <script type="text/javascript">
+        /** 没有使用var声明的变量是全局变量*/
+        carName = "Volvo";
+        function myFunc(a,b){
+            var x;
+            /* 如果a>b 则跳出该函数 不会计算x=a+b */
+            if(a>b){
+                return;
+            }
+            x = a+b;
+            console.info("全局变量:"+carName);
+            return x;
+        }
+
+        var $_ni_$ = myFunc(1,2);
+    </script>
+</head>
+<body>
+    <!-- javascript变量的生命周期 -->
+    <font color="#adff2f">JavaScript 变量生命周期在它声明时初始化。</font><br>
+    <font color="#adff2f">局部变量在函数执行完毕后销毁。</font><br>
+    <font color="#adff2f">全局变量在页面关闭后销毁。</font>
+</body>
+</html>

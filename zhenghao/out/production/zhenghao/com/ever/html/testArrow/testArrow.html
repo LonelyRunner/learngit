@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>箭头指向测试</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="testArrowController">
+        <input type="text" ng-model="a"/>{{a}}
+        <br>
+        <input type="text" ng-model="b"/>{{b}}
+        <div ng-class="{true: 'glyphicon-arrow-up', false: 'glyphicon-arrow-down'}[isActive]">{{a*b}}</div>
+        <div class="glyphicon-circle-arrow-down"></div>
+        <div class="icon-arrow-up"></div>
+        <input type="text" ng-model="data.one">{{data.one}}
+        <input type="text" ng-model="data.two">{{data.two}}
+        <input type="text" ng-model="data.three">{{data.three}}
+        <span ng-model="data.one">{{data.one}}</span>
+    </div>
+    <script type="text/javascript" src="../../js/common/angular.js"></script>
+    <script type="text/javascript" src="../../js/common/jquery.js"></script>
+    <script type="text/javascript" src="../../js/common/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/common/angular.js"></script>
+    <script type="text/javascript" src="../../js/testArrow/testArrow.js"></script>
+</body>
+</html>

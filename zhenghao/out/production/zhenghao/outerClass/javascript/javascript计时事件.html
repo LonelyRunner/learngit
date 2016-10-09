@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>---javascript---</title>
+    <script type="text/javascript">
+        /** setInterval() && setTimeout() */
+        //setInterval()   - 间隔指定的毫秒数不停地执行指定的代码
+        //setTimeout()    - 暂停指定的毫秒数后执行指定的代码
+        //clearInterval() - 方法用于停止 setInterval() 方法执行的函数代码
+        var x = setInterval(printInt,1000);
+        function printInt(){
+            var date = new Date();
+            document.getElementById("currencyDate").innerHTML = date;
+            console.info(date);
+        }
+
+        function change(){
+            setTimeout(setYou,2000);
+        }
+
+        function setYou(){
+            document.getElementById("span1").innerHTML = "2s后我就变成这吊样了！";
+            clearInterval(x);
+        }
+
+
+    </script>
+</head>
+<body>
+    当前时间:<span id="currencyDate"></span>
+    我长这样:<span id="span1">花儿一样</span>
+    <button onclick="change()">点我变样子！</button>
+</body>
+</html>

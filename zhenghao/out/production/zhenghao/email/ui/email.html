@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>e-mail</title>
+    <link rel="stylesheet" href="../style/common/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../style/common/angular-ui.min.css"/>
+    <link rel="stylesheet" href="../style/common/jquery-ui.css"/>
+    <style type="text/css">
+        .head{
+            margin-top: 30px;
+        }
+        .head-title{
+            margin-left:1000px;
+        }
+        .title{
+            width:1200px;
+            margin-left:200px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="panel-heading">
+            <p><span class="head-title" align="right">欢迎,<a>{{userName}}</a>登录5319邮箱</span></p>
+            <div class="title" align="center">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="">收件箱</a></li>
+                    <li role="presentation" class=""><a href="">新建邮件</a></li>
+                    <li role="presentation"><a href="">垃圾箱</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="center">
+        <div ui-view></div>
+    </div>
+    <footer>
+        <p align="center">请联系我们的服务热线QQ:826270362</p>
+    </footer>
+
+    <script type="text/javascript" src="../javascript/common/angular.js"></script>
+    <script type="text/javascript" src="../javascript/common/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../javascript/common/angular-route.min.js"></script>
+    <script type="text/javascript" src="../javascript/common/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="../javascript/common/angular-ui.js"></script>
+    <script type="text/javascript" src="../javascript/email/email.js"></script>
+</body>
+</html>

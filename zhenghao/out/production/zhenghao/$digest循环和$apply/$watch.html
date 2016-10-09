@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>$watch</title>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("myController",["$scope",function($scope){
+            $scope.full_name = "";
+            $scope.length = 0;
+            $scope.$watch("full_name",function(newValue,oldValue,scope){
+                console.info(newValue);
+                console.info(oldValue);
+                if(newValue){
+                    $scope.length = $scope.full_name.length;
+                }
+            });
+        }]);
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <input type="text" ng-model="full_name" placeholder="Write your full_name"/>
+        {{length}}
+    </div>
+</body>
+</html>

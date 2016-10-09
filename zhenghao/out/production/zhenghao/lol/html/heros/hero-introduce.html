@@ -1,0 +1,26 @@
+<div ng-controller="heroController">
+    <p><h3 class="hero-detail-title" align="center">英雄详细介绍</h3></p>
+    <div class="hero-detail-table">
+        <table class="hero_table" border="1">
+            <tr>
+                <th>hero_name</th>
+                <th>hero_Q</th>
+                <th>hero_W</th>
+                <th>hero_E</th>
+                <th>hero_R</th>
+                <th>hero_Passive</th>
+                <th>hero_img</th>
+            </tr>
+            <tr>
+                <td>{{hero.hero_name}}</td>
+                <td>{{hero.hero_Q}}</td>
+                <td>{{hero.hero_W}}</td>
+                <td>{{hero.hero_E}}</td>
+                <td>{{hero.hero_R}}</td>
+                <td>{{hero.hero_Passive}}</td>
+                <td><img src="{{hero.hero_img}}" alt="{{hero.hero_name}}"></td>
+            </tr>
+        </table>
+    </div>
+    <a href="#/home">返回首页</a>
+</div>

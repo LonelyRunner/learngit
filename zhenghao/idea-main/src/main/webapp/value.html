@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery中text() val() html()的区别</title>
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <!-- text -->
+    <div id="text">如何取到div中的内容</div>
+    <!-- value -->
+    <input type="text" id="value" value="郑豪" placeholder="请输入你的姓名">
+    <!-- html -->
+    <select name="" id="fruit">
+        <option value="banana">香蕉</option>
+        <option value="apple">苹果</option>
+        <option value="orange">橘子</option>
+    </select>
+    <script type="text/javascript">
+        $(function(){
+            console.info($("#text").text());
+            console.info($("#value").val());
+            console.info($("#fruit").html());
+            alert("zhangsan \n\n\n lisi");
+        });
+    </script>
+</body>
+</html>

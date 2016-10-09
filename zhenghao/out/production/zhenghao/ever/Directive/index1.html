@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>directive</title>
+</head>
+<body ng-app="myApp">
+    <hello>
+        <span>原始的内容</span><br>
+        <span>还会在这里(如果是用templateUrl的话就不会在这里了)</span>
+    </hello>
+    <div ng-controller="myController">
+        <div ng-repeat="thing in things">
+            {{thing}}<hi></hi>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="javascript/angular.js"></script>
+    <script type="text/javascript" src="javascript/index1.js"></script>
+</body>
+</html>

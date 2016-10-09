@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>&directive</title>
+</head>
+<body ng-controller="myController">
+<div>
+    <h1>bing.com</h1>
+    <div my-directive link="bingSearch(keyword)"></div>
+    <h1>baidu.com</h1>
+    <my-directive link="baiduSearch(keyword)"></my-directive>
+    <h1>so.com</h1>
+    <div class="my-directive" link="_360Search(keyword)"></div>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("myController",function($scope){
+                $scope.bingSearch=function (keyword){
+                    window.open("http://cn.bing.com/search?q="+keyword+"&go=%E6%8F%90%E4%BA%A4&qs=n&form=QBLH&pq=123&sc=8-3&sp=-1&sk=&cvid=7101C4BD60EF4647BFAC9AA2D4374A8C");
+                };
+                $scope.baiduSearch = function (keyword) {
+                    window.open("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd="+keyword+"&rsv_pq=9ab5cecf001d7301&rsv_t=897aSDBktemvsQZDFL1j%2F7%2Ff6ptWMrwT6Juql%2BNqhD3cxi9Ybfv9YTwP7VY&rsv_enter=1&rsv_sug3=12&rsv_sug1=12&rsv_sug7=100&rsv_sug2=0&inputT=11038&rsv_sug4=11038&rsv_sug=1");
+                };
+                $scope._360Search=function (keyword){
+                    window.open("https://www.so.com/s?ie=utf-8&shb=1&src=360sou_newhome&q="+keyword);
+                }
+            })
+            .directive("myDirective", function () {
+                return {
+                    restrict: 'AEC',
+                    scope: {
+                        link: '&'
+                    },
+                    template: '<input type="text" ng-model="url" placeholder="keyword"/><button ng-click="link({keyword:url})">搜索</button>'
+                };
+            })
+</script>
+</body>
+</html>
+

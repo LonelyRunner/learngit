@@ -1,0 +1,37 @@
+/****************************practice-index********************************/
+h1{
+    cursor: pointer;
+}
+.practice-index .template-group{
+    border: 3px solid grey;
+}
+
+
+/****************************modal-index****************************/
+.modal{
+    width: 500px;
+}
+
+/****************************table-index****************************/
+.table-index .hr-table-content-div{
+    height: 200px;
+    width: 100%;
+    overflow-y: scroll;
+}
+.table-index .first-td{
+    width: 25%;
+}
+.table-index .second-td{
+    width: 25%;
+}
+.table-index .third-td{
+    width: 25%;
+}
+.table-index .fourth-td{
+    width: 25%;
+}
+/****************************enter-loop-index****************************/
+.enter-loop-index .span{
+    display: inline-block;
+    margin-right: 20px;
+}

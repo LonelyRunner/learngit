@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>征服css选择器------下</title>
+    <style type="text/css">
+        /** :enable和:disabled 用法相同 */
+        div{
+            margin: 20px;
+        }
+        input[type="text"]:enabled{
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+        }
+        /** :checked */
+        form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: 30px auto;
+        }
+        .wrapper {
+            margin-bottom: 10px;
+        }
+        .box {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            position: relative;
+            background: orange;
+            vertical-align: middle;
+            border-radius: 100%;
+        }
+        .box input {
+            opacity: 0;
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height:100%;
+            z-index:100;/*使input按钮在span的上一层，不加点击区域会出现不灵敏*/
+        }
+
+        .box span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            position: absolute;
+            background: #fff;
+            top: 50%;
+            left:50%;
+            margin: -5px 0  0 -5px;
+            z-index:1;
+        }
+
+        input[type="radio"] + span {
+            opacity: 0;
+
+        }
+        input[type="radio"]:checked + span {
+            opacity: 1;
+        }
+        /** ::selection :read-only :read-write ::before ::after */
+        /** :read-write”选择器刚好与“:read-only”选择器相反，主要用来指定当元素处于非只读状态时的样式。*/
+        .box h3{
+            text-align:center;
+            position:relative;
+            top:80px;
+        }
+        .box {
+            width:70%;
+            height:200px;
+            background:#FFF;
+            margin:40px auto;
+        }
+
+        .effect{
+            position:relative;
+            -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        }
+        .effect::before, .effect::after{
+            content:"";
+            position:absolute;
+            z-index:-1;
+            -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+            -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+            box-shadow:0 0 20px rgba(0,0,0,0.8);
+            top:50%;
+            bottom:0;
+            left:10px;
+            right:10px;
+            -moz-border-radius:100px / 10px;
+            border-radius:100px / 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div>
+            <label for="name">Text Input:</label>
+            <input type="text" name="name" id="name" placeholder="可用输入框"/>
+        </div>
+        <div>
+            <label for="pass">Text Input:</label>
+            <input type="text" name="name" id="pass" placeholder="禁用输入框" disabled="disabled">
+        </div>
+    </form>
+
+    <form action="#">
+        <div class="wrapper">
+            <div class="box">
+                <input type="radio" checked="checked"  id="boy" name="1" /><span></span>
+            </div>
+            <label for="boy">男</label>
+        </div>
+
+        <div class="wrapper">
+            <div class="box">
+                <input type="radio"  id="girl" name="1"  /><span></span>
+            </div>
+            <label for="girl">女</label>
+        </div>
+    </form>
+
+    <div class="box effect">
+        <h3>Shadow Effect </h3>
+    </div>
+</body>
+</html>

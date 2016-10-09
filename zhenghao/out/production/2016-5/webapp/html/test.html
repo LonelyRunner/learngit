@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function getLastDay(year,month){
+            if(month===1 || month===3 || month===5 || month===7 || month===8 || month===10 || month===12){
+                return 31;
+            }else if(month===4 || month===6 || month===9 || month===11){
+                return 30;
+            }else if(month===2){
+                if((year%4===0 && year%100!=0) || (year%400===0)){
+                    return 29;
+                }else{
+                    return 28;
+                }
+            }else{
+                return -1;
+            }
+        }
+
+        var a = getLastDay(2000,2);
+        var b = getLastDay(2011,2);
+        var c = getLastDay(2012,2);
+        var d = getLastDay(2011,3);
+        var e = getLastDay(2011,11);
+        console.info(a);
+        console.info(b);
+        console.info(c);
+        console.info(d);
+        console.info(e);
+
+        function getLastDay1(year,month) {
+            var new_year = year;    //取当前的年份
+            var new_month = month++;//取下一个月的第一天，方便计算（最后一天不固定）
+            if(month>12) {
+                new_month -=12;        //月份减
+                new_year++;            //年份增
+            }
+            var new_date = new Date(new_year,new_month,1);                //取当年当月中的第一天
+            return (new Date(new_date.getTime()-1000*60*60*24)).getDate();//获取当月最后一天日期
+        }
+
+        var a1 = getLastDay1(2000,2);
+        var b1 = getLastDay1(2011,2);
+        var c1 = getLastDay1(2012,2);
+        var d1 = getLastDay1(2011,3);
+        var e1 = getLastDay1(2011,11);
+        console.info(a1);
+        console.info(b1);
+        console.info(c1);
+        console.info(d1);
+        console.info(e1);
+        
+        var date1 = new Date(2016,2,0).getDate();
+        console.info(date1);
+        
+    </script>
+</body>
+</html>

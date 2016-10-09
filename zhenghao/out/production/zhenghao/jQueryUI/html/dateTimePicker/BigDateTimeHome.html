@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery UI 日期选择器大集结</title>
+    <link rel="stylesheet" href="../../css/jquery-ui-1.10.4.custom.min.css"/>
+    <style type="text/css">
+
+    </style>
+    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            /** 默认功能 */
+            $("#datepicker").datepicker();
+            /** 动画 */
+            $("#datepicker2").datepicker();
+            $("#anim").change(function(){
+                $("#datepicker2").datepicker("option","showAnim",$(this).val());
+            });
+            /** 显示其他月份的日期 */
+            $("#datepicker3").datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                showButtonPanel: true
+            });
+            /** 内联显示 */
+            $("#datepicker4").datepicker();
+
+            /** 显示年份月份菜单 */
+            $("#datepicker5").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+            /** 显示多个月份 */
+            $("#datepicker6").datepicker({numberOfMonths:3,showButtonPanel:true});
+
+            /** 格式化日期 */
+            $( "#datepicker7" ).datepicker();
+            $( "#format" ).change(function() {
+                $( "#datepicker7" ).datepicker( "option", "dateFormat", $( this ).val() );
+            });
+
+            $("#datepicker8").datepicker({
+                showOn:'button',
+                buttonImage:'one.png',
+                buttonImageOnly:true
+            });
+
+            /** 填充另一个输入框  */
+            $("#datepicker9").datepicker({
+                altField:"#alternate",
+                altFormat:'DD, d MM, yy'
+            });
+
+            /** 限制日期范围 */
+            $("#datepicker10").datepicker({
+                minDate:-20,
+                maxDate:'+1M +10D'
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>日期: <input type="text" id="datepicker"/></p>
+    <p>日期：<input type="text" id="datepicker2" size="30"/></p>
+    <p>动画: <br/>
+        <select id="anim">
+            <option value="show">Show(默认)</option>
+            <option value="slideDown">滑下</option>
+            <option value="fadeIn">淡入</option>
+            <option value="blind">Blind(UI百叶窗特效)</option>
+            <option value="bounce">Bounce(UI 反弹特效)</option>
+            <option value="clip">Clip (UI 剪辑特效)</option>
+            <option value="drop">Drop (UI 降落特效)</option>
+            <option value="fold">Fold (UI 折叠特效)</option>
+            <option value="slide">Slide (UI 滑动特效)</option>
+            <option value="">无</option>
+        </select>
+    </p>
+
+    <p>日期：<input type="text" id="datepicker3"/></p>
+
+    <!-- 内联显示 -->
+    日期：<div id="datepicker4"></div>
+
+    <p>日期: <input type="text" id="datepicker5"/></p>
+
+    <p>日期：<input type="text" id="datepicker6"></p>
+
+
+    <p>日期：<input type="text" id="datepicker7" size="30"></p>
+
+    <p>格式选项：<br>
+        <select id="format">
+            <option value="mm/dd/yy">Default - mm/dd/yy</option>
+            <option value="yy-mm-dd">ISO 8601 - yy-mm-dd</option>
+            <option value="d M, y">Short - d M, y</option>
+            <option value="d MM, y">Medium - d MM, y</option>
+            <option value="DD, d MM, yy">Full - DD, d MM, yy</option>
+            <option value="&apos;day&apos; d &apos;of&apos; MM &apos;in the year&apos; yy">With text - 'day' d 'of' MM 'in the year' yy</option>
+        </select>
+    </p>
+
+    <p>日期：<input type="text" id="datepicker8"></p>
+
+    <p>日期：<input type="text" id="datepicker9">&nbsp;<input type="text" id="alternate" size="30"></p>
+
+    <p>日期：<input type="text" id="datepicker10"></p>
+</body>
+</html>

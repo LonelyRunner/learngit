@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Warranty Concern</title>
+    <link rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />
+    <script type="text/javascript" src="../js/common/jquery.js"></script>
+    <script type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.highlighter.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var line1 = [['Cup Holder Pinion Bob', 7], ['Generic Fog Lamp Marketing Gimmick', 9],
+                ['HDTV Receiver', 15], ['8 Track Control Module', 12],
+                ['SSPFM (Sealed Sludge Pump Fourier Modulator)', 3],
+                ['Transcender/Spice Rack', 6], ['Hair Spray Rear View Mirror Danger Indicator', 18]];
+            $.jqplot('chart1',[line1],{
+                series:[{renderer: $.jqplot.BarRenderer}],
+                axes:{
+                    xaxis:{
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        label:'Warranty Corcern',
+                        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                        tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                        tickOptions:{
+                            angle:30,
+                            fontFamily:'Courier New',
+                            fontSize:'9pt'
+                        }
+                    },
+                    yaxis:{
+                        lable:'Occurance',
+                        labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="chart1" style="height: 600px;width:800px"></div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div>
+    <table class="table">
+        <tr>
+            <th>id</th>
+            <th>sender</th>
+            <th>information</th>
+            <th>receiver</th>
+        </tr>
+        <tr ng-repeat="email in emails">
+            <td>{{email.id}}</td>
+            <td>{{email.sender}}</td>
+            <td><a href="#/detail/{{email.id}}">{{email.information}}</a></td>
+            <td>{{email.receiver}}</td>
+        </tr>
+    </table>
+
+</div>

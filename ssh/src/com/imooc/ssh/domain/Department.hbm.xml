@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.imooc.ssh.domain">
+    <class name="Department" table="department">
+        <id name="did" column="dno">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="dname" column="dname" length="20"></property>
+        <property name="ddesc" column="ddesc" length="100"></property>
+
+        <!-- 想要在删除部门的同时删除部门里面的所有员工  需要在set里面添加属性  cascade="delete" 起到级联删除的作用-->
+        <!-- 当部门信息修改后 员工信息中部门相关信息出现问题 这是因为双方都进行了关系维护。想要不出问题 在一方配置inverse="true"(相当于放弃管理的依稀)-->
+        <set name="employees">
+            <key column="dno"></key>
+            <one-to-many class="com.imooc.ssh.domain.Employee"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

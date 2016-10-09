@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angularjs内置指令</title>
+    <script type="text/javascript" src="../angular-min.js"></script>
+    <script type="text/javascript">
+        var innerDirectiveApp = angular.module("innerDirectiveApp",[]);
+        innerDirectiveApp.controller("innerDirectiveController",["$scope",function($scope){
+            $scope.name = "egg";
+            $scope.niu = "sb";
+            $scope.myHtml = "<button>电死你</button>";
+            $scope.con = function(){
+                console.info($scope.name);
+            }
+        }]);
+    </script>
+</head>
+<body ng-app="innerDirectiveApp">
+    <div ng-controller="innerDirectiveController">
+        <div ng-init="customer={name:'Jimi',address:'12-13-283/A1',email:'jimi@yaho.com' }">
+            {{customer}}
+        </div>
+        <div>
+            <input type="text" ng-model="name">
+            <span ng-bind="name"></span>
+            <p ng-bind-template="{{egg}} {{niu}}"></p>
+        </div>
+
+        <div>
+            <span>{{1+2}}</span>
+            <span ng-non-bindable>Ignore:{{1+2}}</span>
+            <p ng-bind-html="myHtml"></p>
+        </div>
+
+        <div>
+            <input type="text" ng-model="name" ng-change="con()">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>向元素添加圆角边框</title>
+    <style type="text/css">
+        /**
+            border-radius: 向元素添加圆角边框
+                四个值的顺序: 左上  右上  右下  左下
+        */
+        .circle{
+            height: 100px;
+            width: 100px;
+            background: #9da;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+        }
+        .circle1{
+            height: 100px;
+            width: 100px;
+            background: #9da;
+            border-radius: 50px 0 0 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="circle"></div>
+    <div class="circle1"></div>
+</body>
+</html>

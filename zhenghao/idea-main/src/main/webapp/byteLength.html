@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        var students = [
+            {
+                name : '张3',
+                age : 12,
+                gender : '男'
+            },
+            {
+                name : '李4',
+                age : 12,
+                gender : '女'
+            },
+            {
+                name : '王5',
+                age : 12,
+                gender : '男'
+            }
+        ];
+
+        students.forEach(function(item){
+            console.info(item);
+        });
+
+//        var i,j,k;
+//        for(i=0,j=0;i<10,j<6;i++,j++) {
+//            k = i+j;
+//        }
+//        alert(k);  //10
+
+//        var i,j,k;
+//        for(i=0,j=0;j<6,i<10;i++,j++) {
+//            k = i+j;
+//        }
+//        alert(k);    //18
+
+
+        (function(){
+            'use strict';
+            var a = window.b = 5;
+        })();
+        alert(b);
+
+//        alert(null == undefined); //true
+    </script>
+</body>
+</html>

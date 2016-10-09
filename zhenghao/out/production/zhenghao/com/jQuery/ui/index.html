@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jquery学习</title>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("tr:even").css("background-color","grey");
+            $("tr:odd").css("background-color","pink");
+            $(".lastP").html($("p:first").html());
+            $("#selectOne>option:odd").css("background-color","red");
+            console.info("第一个select框下面option的value:"+$("#selectOne>option:first").html());
+            console.info("html is "+$("p:first").html());
+            console.info("text is "+$("p:first").text());
+            console.info("val is "+$("input").val());
+
+            console.log($("#selectOne>option").val());
+            $(".clickMe").click(function(){
+                setTimeout(function(){alert("给爹等着1");$(".one").html("有种你试试？");},1000);
+                setTimeout(function(){alert("给爹站着2");$(".two").html("试试就试试");},1000);
+                setTimeout(function(){alert("给爹跪着3");$(".three").html("有种你再动动？");},1000);
+                setTimeout(function(){alert("给爹躺着4");$(".four").html("动动就动动");},1000);
+            });
+            var student = {
+                name:'张三',
+                age:11,
+                gender:'男'
+            };
+            console.info(student.name);
+            console.info($(".R"));
+            $(".R").val(student.name);
+        });
+
+    </script>
+</head>
+<body>
+    <p align="center"><strong>NBA MVP</strong></p>
+    <p align="center"><strong>部分球员信息表格</strong></p>
+    <table align="center" border="1">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>球队</th>
+            <th>图标</th>
+            <th>otherPlayer</th>
+        </tr>
+        <tr>
+            <td>James</td>
+            <td>30</td>
+            <td>骑士</td>
+            <td><img src="" alt="骑士队标"/></td>
+            <td>
+                <select id="selectOne">
+                    <option value="love">love</option>
+                    <option value="Iven">Iven</option>
+                    <option value="JR">JR</option>
+                    <option value="TT">TT</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Rose</td>
+            <td>25</td>
+            <td>公牛</td>
+            <td><img src="" alt="公牛队标"/></td>
+            <td>
+                <select id="selectTwo">
+                    <option value="love">love</option>
+                    <option value="Iven">Iven</option>
+                    <option value="JR">JR</option>
+                    <option value="TT">TT</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>WestBrook</td>
+            <td>24</td>
+            <td>雷霆</td>
+            <td><img src="" alt="雷霆队标"/></td>
+            <td>
+                <select id="selectThree">
+                    <option value="love">love</option>
+                    <option value="Iven">Iven</option>
+                    <option value="JR">JR</option>
+                    <option value="TT">TT</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Kobe</td>
+            <td>38</td>
+            <td>湖人</td>
+            <td><img src="" alt="湖人队标"/></td>
+            <td>
+                <select id="selectFour">
+                    <option value="love">love</option>
+                    <option value="Iven">Iven</option>
+                    <option value="JR">JR</option>
+                    <option value="TT">TT</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Wade</td>
+            <td>31</td>
+            <td>热火</td>
+            <td><img src="" alt="热火队标"/></td>
+            <td>
+                <select id="selectFive">
+                    <option value="love">love</option>
+                    <option value="Iven">Iven</option>
+                    <option value="JR">JR</option>
+                    <option value="TT">TT</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <p class="lastP" align="center"></p>
+    <input type="text" placeholder="SB" value="you  are a da sb!">
+    <button class="clickMe">试试就试试</button>
+    <br/>
+    <span class="one"></span>
+    <br/>
+    <span class="two"></span>
+    <br/>
+    <span class="three"></span>
+    <br/>
+    <span class="four"></span>
+
+    <input class="R" type="text" value=""/>
+</body>
+</html>

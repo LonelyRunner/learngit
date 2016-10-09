@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="ssh" extends="struts-default" namespace="/">
+        <action name="product_*" class="productAction" method="{1}"></action>
+
+        <action name="employee_*" class="employeeAction" method="{1}">
+            <!-- 登录失败后 跳转到登录页面 并提示错误 -->
+            <result name="input">login.html</result>
+            <!-- 登录成功  重定向到系统首页 -->
+            <result name="success" type="redirect">index.jsp</result>
+            <!-- 查找所有员工信息成功 -->
+            <result name="findAllSuccess">frame/list.html</result>
+            <!-- 跳转至添加员工信息页面 -->
+            <result name="skipSaveJsp">frame/addEmployee.html</result>
+            <!-- 添加成功后重定向值员工信息首页 -->
+            <result name="saveSuccess" type="redirectAction">employee_findAll.action</result>
+            <!-- 跳转至编辑员工信息页面 -->
+            <result name="editSuccess">editEmployee.jsp</result>
+            <!-- 更新成功后重定向值员工信息首页 -->
+            <result name="updateSuccess" type="redirectAction">employee_findAll.action</result>
+            <!-- 删除成功后重定向值员工信息首页 -->
+            <result name="deleteSuccess" type="redirectAction">employee_findAll.action</result>
+        </action>
+
+        <action name="department_*" class="departmentAction" method="{1}">
+            <result name="findAll">addProduct.jsp</result>
+            <!-- 跳转到保存页面 -->
+            <result name="skipAddSuccess">addDepartment.jsp</result>
+            <!-- 执行保存操作后重定向到查询首页 -->
+            <result name="saveSuccess" type="redirectAction">department_findAll.action</result>
+            <!-- 跳转到编辑页面 -->
+            <result name="skipEditSuccess">editDepartment.jsp</result>
+            <!-- 编辑操作完成后冲顶想到查询首页 -->
+            <result name="updateSuccess" type="redirectAction">department_findAll.action</result>
+            <!-- 执行删除操作后页面重定向到查询首页 -->
+            <result name="deleteSuccess" type="redirectAction">department_findAll.action</result>
+        </action>
+    </package>
+</struts>

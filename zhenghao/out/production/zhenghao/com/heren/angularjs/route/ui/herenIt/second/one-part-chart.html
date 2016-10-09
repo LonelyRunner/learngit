@@ -1,0 +1,24 @@
+    <hr/>
+    <h5 align="center">
+        <span>homeTitle:{{homeTitle}}</span>
+        <strong>This is the first blood webPage!</strong>
+    </h5>
+    <hr/>
+        <div align="center">
+            <table class="table table-bordered">
+                <tr>
+                    <th>name</th>
+                    <th>aggressive</th>
+                    <th>spell</th>
+                    <th>armor</th>
+                    <th>magic</th>
+                </tr>
+                <tr ng-repeat="lolhero in LOLHeros">
+                    <td><a href="#/one-detail/{{lolhero.name}}">{{lolhero.name}}</a></td>
+                    <td>{{ lolhero.aggressive}}</td>
+                    <td>{{ lolhero.spell}}</td>
+                    <td>{{ lolhero.armor}}</td>
+                    <td>{{ lolhero.magic}}</td>
+                </tr>
+            </table>
+        </div>

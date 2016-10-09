@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>prototype的用法</title>
+    <script type="text/javascript">
+        /** 数字相加 */
+        Number.prototype.add = function(num){
+            return this+num;
+        };
+        console.info((3).add(5));
+        /** 布尔类型取反 */
+        Boolean.prototype.reverseB = function(){
+            return !this;
+        };
+        console.info((true).reverseB());
+        /** 数组添加新元素 */
+        Array.prototype.push = function(new_element){
+            this[this.length] = new_element;
+            return this.length;
+        };
+        var a = [1,2,3,4];
+        console.info(a.push(5));
+
+        /** 将一个数组添加到另一个数组中 */
+        var oldArray = ["张三","李四","王五","赵六"];
+        Array.prototype.pushArray = function(){
+            var currentLength = this.length;
+            for(var i=0;i<oldArray.length;i++){
+                this[currentLength+i] = oldArray[i];
+            }
+            return this;
+        };
+        var newArray = ["郑一","李二"];
+        console.log(newArray.pushArray());
+
+        /** 实现某一数字的阶乘 */
+        Number.prototype.fact = function(){
+            var result = 1;
+            if(this === 1){
+                return result;
+            }
+            for(var a=this;a>1;a--){
+                result = result*a;
+            }
+            return result;
+        };
+        console.info("5的阶乘："+(5).fact());
+        console.info("1的阶乘："+(1).fact());
+
+        /** 让一个类型继承另一个类型 */
+        function AClass(){
+            this.Property1 = 1;
+            this.Method1 = function(){console.log("我是父类型");};
+        }
+        function BClass(){
+            this.Property = 2;
+            this.Method = function(){console.info("我是子类型");};
+        }
+
+        BClass.prototype = new AClass();
+
+        var obj = new BClass();
+        console.info(obj.Property1);
+        console.info(obj.Property);
+
+
+        /** JSON.parse方法 */
+        var str = '{"you":"you","I":"I"}';
+        console.info("JSON.parse:");
+        console.info(JSON.parse(str));
+        /** JSON.stringify方法 */
+        var obj = {
+            one:1,
+            two:2,
+            three:3
+        };
+        console.info("JSON.stringify:"+JSON.stringify(obj));
+    </script>
+</head>
+<body>
+    <hr/>
+    prototype的定义与用法：给一个原生对象添加一个公共方法<br/>
+    例如给Array添加一个方法:Array.<font color="#d2691e">prototype</font>.pushArray = function(){ //your code ! };
+    <hr/>
+</body>
+</html>

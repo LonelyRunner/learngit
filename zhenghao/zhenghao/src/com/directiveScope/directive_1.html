@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>directive_1</title>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("myCtrl1",["$scope",function($scope){
+              $scope.loader = function(){
+                  console.info("The lock1 is Locked!");
+              }
+        }]);
+        myApp.controller("myCtrl2",["$scope",function($scope){
+            $scope.loader = function(){
+                console.info("The lock2 is Locked!");
+            }
+        }]);
+
+        myApp.directive("loader",function(){
+            return {
+              restrict : 'E',
+              /** link函数里面有四个参数  function(scope,element,attr,fatherCtrl){} */
+              link : function(scope,element,attr){
+                    element.bind("mouseenter",function(){
+                        /** The scope.loader is $scope.loader(); */
+                        //scope.loader();
+                        //Those are same ways
+                        //-- scope.$apply("loader()");
+
+                        /** WARNING  howToLoad convert howtoload
+                         * attr'way implements directive's reuse */
+                        scope.$apply(attr.howtoload);
+
+                    });
+              }
+            };
+        });
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl1">
+        <loader howToLoad="loader()">slider1 to unlock</loader>
+    </div>
+    <div ng-controller="myCtrl2">
+        <loader howToLoad="loader()">slider2 to unlock</loader>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../jquery.jqplot.min.css"/>
+    <title>堆积的像山一样</title>
+    <script type="text/javascript" src="../../js/common/jquery.js"></script>
+    <script type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.highlighter.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            /**
+             * plot1 ---  chart1
+             * @type {number[]}
+             */
+            var l1 = [11, 9, 5, 12, 14];
+            var l2 = [4, 8, 5, 3, 6];
+            var l3 = [12, 6, 13, 11, 2];
+
+            var plot1 = $.jqplot('chart1',[l1,l2,l3],{
+                stackSeries:true,
+                showMarker:false,
+                seriesDefaults:{
+                    fill:true
+                },
+                axes:{
+                    xaxis:{
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks:['Mon','Tue','Wed','Thr','Fri']
+                    }
+                }
+            });
+
+            $("#chart1").bind('jqplotDataHighlight',
+                function(ev,seriesIndex,pointIndex,data){
+                    console.log(ev);
+                    $("#info1b").html('series:'+seriesIndex+',point:'+pointIndex+',data:'+data);
+                }
+            );
+            $("#chart1").bind('jqplotDataUnhighlight',function(ev){
+                $('#info1b').html('Nothing');
+            });
+
+            /**
+             * plot2 --- chart2
+             * @type {*[]}
+             */
+            var l5=[4, -3, 3, 6, 2, -2];
+            var plot2 = $.jqplot('chart2',[l5],{
+                stackSeries: true,
+                showMarker: false,
+                seriesDefaults: {
+                    fill: true,
+                    fillToZero: true,
+                    rendererOptions: {
+                        highlightMouseDown: true
+                    }
+                }
+            });
+            $("#chart2").bind('jqplotDataClick',function(ev,seriesIndex, pointIndex, data){
+                $('#info2b').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+            });
+
+            /**
+             * plot3 --- chart3
+             */
+            var l6 = [11, 9, 5, 12, 14, 8, 7, 9, 6, 11, 9, 3, 4];
+            var l7 = [4, 8, 5, 3, 6, 5, 3, 2, 6, 7, 4, 3, 2];
+            var l8 = [12, 6, 13, 11, 2, 3, 4, 2, 1, 5, 7, 4, 8];
+
+            var ticks = [[1,'Dec 10'], [2,'Jan 11'], [3,'Feb 11'], [4,'Mar 11'], [5,'Apr 11'], [6,'May 11'], [7,'Jun 11'], [8,'Jul 11'], [9,'Aug 11'], [10,'Sep 11'], [11,'Oct 11'], [12,'Nov 11'], [13,'Dec 11']];
+
+            var plot3 = $.jqplot('chart3',[l6,l7,l8],{
+                stackSeries:true,
+                showMarker:false,
+                highlighter:{
+                    show:true,
+                    showTooltip:false
+                },
+                seriesDefaults:{
+                    fill:true
+                },
+                series:[
+                    {label:'Beans'},
+                    {label:'Oranges'},
+                    {label:'Crackers'}
+                ],
+                legend:{
+                    show:true,
+                    placement:'outsideGrid'
+                },
+                grid:{
+                    drawBorder:false,
+                    shadow:false
+                },
+                axes:{
+                    axais:{
+                        ticks:ticks,
+                        tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                        tickOptions:{
+                            angle:-90
+                        },
+                        drawMajorGridlines:false
+                    }
+                }
+            });
+            $("#chart3").bind('jqplotHighlighterHighlight',function(ev,seriesIndex,pointIndex,data,plot){
+                var content = plot.series[seriesIndex].label+','+plot.series[seriesIndex]._xaxis.ticks[pointIndex][1]+','+data[1];
+                var elem = $("#customTooltipDiv");
+                elem.html(content);
+                var h = elem.outerHeight();
+                var w = elem.outerWidth();
+                var left = ev.pageX-w-10;
+                var right = ev.pageY-h-10;
+                elem.stop(true,true).css({left:left,top:top}).fadeIn(200);
+            });
+            $("#chart3").bind('jqplotHighlighterUnhighlight',function(ev){
+                $('#customTooltipDiv').fadeOut(300);
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="chart1" style="height: 400px;width: 600px;"></div>
+    <div id="info1b"></div>
+    <div id="chart2" style="height: 400px;width: 600px;"></div>
+    <div id="info2b"></div>
+    <div id="chart3" style="height: 400px;width: 600px;"></div>
+    <div id="customTooltipDiv"></div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/echart/echarts.min.js"></script>
+
+</head>
+<body>
+    <div id="main" style="width:50%;height:200px;"></div>
+    <script type="text/javascript">
+        var myOption = document.getElementById("main");
+        var myChart = echarts.init(myOption);
+        var option = {
+            //设置标题
+            title:{
+                text:'销量图',
+                subtext:'纯属捏造，如有雷同，人品爆发。'
+            },
+            //设置提示
+            tooltip: {
+                show: true
+            },
+            //设置图例
+            legend: {
+                data:['销量']
+            },
+            //设置坐标轴
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","帽子","围巾"]
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            //设置数据
+            series : [
+                //条形图
+                {
+                    "name":"销量",
+                    "type":"bar",
+                    "data":[5, 20, 38, 10, 24, 20,24,32]
+                },
+                //折线图
+                {
+                    "name":"销量",
+                    "type":"line",
+                    "data":[5, 20, 38, 10, 24, 20,24,32],
+                    //绘制平均线
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均值'}
+                        ]
+                    },
+                    //绘制最高最低点
+                    markPoint : {
+                        data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                        ]
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

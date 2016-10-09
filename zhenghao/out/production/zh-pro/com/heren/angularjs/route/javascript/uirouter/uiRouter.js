@@ -1,0 +1,20 @@
+var uiRouterApp = angular.module("uiRouterApp",['ui.router']);
+uiRouterApp.config(function($stateProvider,$urlRouterProvider){
+    $stateProvider
+        .state('home',{
+            url:'/home',
+            templateUrl:'first.html'
+        })
+        .state('first',{
+            url:'/first',
+            templateUrl:'first.html'
+        })
+        .state('second',{
+            url:'/second',
+            templateUrl:'second.html'
+        })
+        .state('son',{
+            url:'/son',
+            templateUrl:'son.html'
+        })
+});

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结构性伪类选择器</title>
+    <style type="text/css">
+        /** 否定选择器 */
+        form{
+            width: 400px;
+            height: 300px;
+        }
+        input:not([type='submit']){
+            border: 1px red solid ;
+        }
+        /** empty选择器 */
+        p{
+            background: gray;
+        }
+
+        p:empty{
+            display: none;
+        }
+        /** target选择器 :target选择器称为目标选择器，用来匹配文档(页面)的url的某个标志符的目标元素。*/
+        :target,.abc{/*这里的:target就是指id="brand"的div对象*/
+            display:block;
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        name:<input type="text" value="">
+        <br>
+        password: <input type="password" value="">
+        <br>
+        <input type="submit" value="提交">
+    </form>
+
+    <p>我是有内容的</p><br>
+    <p>&nbsp;</p><!-- 有一个空格 -->
+    <br>
+    <p></p><!-- 什么都没有 -->
+
+    <div class="menuSection" id="brand">
+        <h2><a href="#brand">Brand</a></h2>
+        <p class="abc">content for Brand</p>
+    </div>
+</body>
+</html>

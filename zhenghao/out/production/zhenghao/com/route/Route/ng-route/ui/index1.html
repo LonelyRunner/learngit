@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件首页</title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src="../js/angular-route.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="TextController">
+        <p>{{someText}}</p>
+    </div>
+    <div ng-view></div>
+</body>
+<script>
+
+    messages = [{
+        id: 0, sender: "one@qq.com", subject: "你好，这是一封邮件", date: "2015年4月13日", recipients: ['wifei@163.com'], message: "你好，我是xxx，这是发送给您的邮件。"
+    }, {
+        id: 1, sender: "two@qq.com", subject: "你好，这是一封邮件", date: "2015年4月14日", recipients: ['wifei@163.com'], message: "你好，我是xxx，这是发送给您的邮件。"
+    }, {
+        id: 2, sender: "three@qq.com", subject: "你好，这是一封邮件", date: "2015年4月15日", recipients: ['wifei@163.com'], message: "你好，我是xxx，这是发送给您的邮件。"
+    }];
+
+    var myApp = angular.module('myApp', ['ngRoute']);
+    myApp.controller('TextController', function ($scope) {
+        $scope.someText = '测试显示内容';
+    });
+
+    //路由
+    myApp.config(["$routeProvider",function($routeProvider) {
+        $routeProvider.
+        when('/', {
+            controller: ListController,
+            templateUrl: 'list.html'
+        }).
+        when('/view/:id', { //在id前面加一个冒号，从而制订了一个参数化URL
+            controller: DetailController,
+            templateUrl: 'detail.html'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
+    }]);
+
+    function ListController($scope) {
+        $scope.messages = messages;
+    }
+
+    function DetailController($scope,$routeParams) {
+        $scope.message = messages[$routeParams.id];
+    }
+</script>
+</html>

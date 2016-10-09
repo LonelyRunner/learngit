@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>内部插入节点</title>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        /**　appendTo() 在页面中动态创建元素需要执行节点的插入或追加操作 */
+
+
+        /** 先看append(function(index,html){})
+         * 其功能是讲一个function函数作为append方法的参数，该函数的功能必须返回一个字符串，作为append方法插入的内退内容
+         * 其中index参数为对象在这个集合中的索引值，html参数为该对象原有的html值
+         * */
+        $(function(){
+            $("#div1").append(relHtml);
+            function relHtml(){
+                var html1 = "<b>write less do more!</b>";
+                return html1;
+            }
+        });
+
+        /** 看appendTo */
+        $(function(){
+            $("span").appendTo($("#div1"));
+        })
+     </script>
+</head>
+<body>
+    <div id="div1">jQuery</div>
+
+    <span>你好!</span>
+</body>
+</html>

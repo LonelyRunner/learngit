@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="routeApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>路由测试1</title>
+    <script type="text/javascript"  src="../../javascript/common/angular.js"></script>
+    <script type="text/javascript"  src="../../javascript/common/angular-route.min.js"></script>
+    <script type="text/javascript"  src="../../javascript/route/routeTest1.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Header</h1>
+        <a href="#/route1">路由1</a>
+        <a href="#/route2">路由2</a>
+    </header>
+    <div class="content">
+        <!--
+             ng-view是由ngRoute提供的一个特殊的指令，独特作用是在HTML中给$route对应的视图占位
+            它会创建自己的作用域并将模板嵌套在内部
+        -->
+        <div ng-view></div>
+    </div>
+    <footer>
+        <h1>Footer</h1>
+    </footer>
+</body>
+</html>

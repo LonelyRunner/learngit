@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>饼图</title>
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="FilledAreaChart/jqplot/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="FilledAreaChart/jqplot/plugins/jqplot.pieRenderer.js"></script>
+    <script type="text/javascript" src="FilledAreaChart/jqplot/plugins/jqplot.donutRenderer.js"></script>
+    <script type="text/javascript" src="FilledAreaChart/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="FilledAreaChart/jqplot/plugins/jqplot.barRenderer.js"></script>
+    <script type="text/javascript" src="FilledAreaChart/jqplot/plugins/jqplot.pointLabels.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var data = [
+                ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14],
+                ['Out of home', 16],['Commuting', 7]
+            ];
+
+            $.jqplot('chart4', [data], {
+                //jqplot饼图
+
+                seriesDefaults: {
+                    // make this a donut chart.
+                    renderer:$.jqplot.DonutRenderer,
+                    rendererOptions:{
+                        // Donut's can be cut into slices like pies.
+                        sliceMargin: 0,
+                        // Pies and donuts can start at any arbitrary angle.
+                        startAngle: -90,
+                        showDataLabels: true,
+                        // By default, data labels show the percentage of the donut/pie.
+                        // You can show the data 'value' or data 'label' instead.
+                        //显示值还是显示label ==== [key,value]  默认情况将显示每一份占总数的百分比
+                        dataLabels: 'value',
+                        // "totalLabel=true" uses the centre of the donut for the total amount
+                        totalLabel: false
+
+                    }
+                },
+                //标签
+                legend: {
+                    //是否显示
+                    show: true,
+                    //位置
+                    location: 'se'
+                },
+                //设置每个模块的颜色
+                seriesColors:['#7bb53c', '#2da5e3', '#ff8f10', '#2cb998', '#949fb2'],
+            });
+        });
+
+        $(document).ready(function() {
+            var s1 = [2, 6, 7, 10];
+            var s2 = [7, 5, 3, 4];
+            var s3 = [14, 9, 3, 8];
+            plot3 = $.jqplot('chart5', [s1, s2, s3], {
+                // Tell the plot to stack the bars.
+//                stackSeries: true,
+                captureRightClick: true,
+                seriesDefaults: {
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions: {
+                        // Put a 30 pixel margin between bars.
+                        barMargin: 30,
+                        // Highlight bars when mouse button pressed.
+                        // Disables default highlighting on mouse over.
+                        highlightMouseDown: true
+                    },
+                    pointLabels: {show: true}
+                },
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer
+                    },
+                    yaxis: {
+                        // Don't pad out the bottom of the data range.  By default,
+                        // axes scaled as if data extended 10% above and below the
+                        // actual range to prevent data points right on grid boundaries.
+                        // Don't want to do that here.
+                        padMin: 0
+                    }
+                },
+                legend: {
+                    show: true,
+                    location: 'ne',
+                    placement: 'inside'
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="chart4" style="width:400px;height:400px"></div>
+
+    <div id="chart5" style="width:400px;height:400px"></div>
+</body>
+</html>

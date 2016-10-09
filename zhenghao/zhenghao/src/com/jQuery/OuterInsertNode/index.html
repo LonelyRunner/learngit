@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>外部插入节点</title>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+//            $("span").after(outHtml);
+//            function outHtml(){
+//                var html1 = "<span>do more!</span>";
+//                return html1;
+//            }
+            $(".niuniu").click(function(){
+                $(this).clone(true).appendTo($(".niuniu"));
+            });
+        })
+    </script>
+</head>
+<body>
+    <span>write less</span>
+    <span class="niuniu">点击复制</span>
+</body>
+</html>

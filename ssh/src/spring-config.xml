@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 将hibernate整合到spring中 -->
+    <!-- 引入外部配置文件jdbc.properties-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+    <!-- 配置连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+    <!-- 配置hibernate相关属性 -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <!-- 注入连接池 -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- 配置hibernate的属性 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!-- 加载类的映射文件-->
+        <property name="mappingResources">
+            <list>
+                <value>com/imooc/ssh/domain/Product.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 将struts2整合到spring中 -->
+    <!-- 配置productAction -->
+    <bean id="productAction" class="com.imooc.ssh.action.ProductAction" scope="prototype">
+        <property name="productService" ref="productService"></property>
+    </bean>
+
+    <bean id="employeeAction" class="com.imooc.ssh.action.EmployeeAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"></property>
+    </bean>
+
+    <bean id="departmentAction" class="com.imooc.ssh.action.DepartmentAction" scope="prototype">
+        <property name="departmentService" ref="departmentService"></property>
+    </bean>
+
+    <!-- 配置productService -->
+    <bean id="productService" class="com.imooc.ssh.service.ProductService">
+        <property name="productDao" ref="productDao"></property>
+    </bean>
+
+    <bean id="employeeService" class="com.imooc.ssh.service.impl.EmployeeServiceImpl">
+        <property name="employeeDao" ref="employeeDao"></property>
+    </bean>
+
+    <bean id="departmentService" class="com.imooc.ssh.service.impl.DepartmentServiceImpl">
+        <property name="departmentDao" ref="departmentDao"></property>
+    </bean>
+
+    <!-- 配置productDao -->
+    <bean id="productDao" class="com.imooc.ssh.dao.ProductDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="employeeDao" class="com.imooc.ssh.dao.impl.EmployeeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="departmentDao" class="com.imooc.ssh.dao.impl.DepartmentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- 配置事务管理 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- 开启事务管理 -->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+</beans>

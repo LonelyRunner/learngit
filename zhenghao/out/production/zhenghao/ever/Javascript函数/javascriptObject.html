@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>javascript对象</title>
+    <script type="text/javascript">
+        document.write("真是 RLGL !");
+        var student = {
+            name: '张三',
+            age: 12
+        };
+        <!-- 通过下面方法给student对象添加属性 -->
+        student.gender = '男';
+        console.info("student = ");
+        console.log(student);
+        /** 对象可以是嵌套的 */
+        var teacher = {
+          'name':'Mr.Li',
+            'student':[
+                {name:'li',gender:'男'},
+                {name:'wu',gender:'女'}
+            ],
+            hobby:'playing basketball'
+        };
+        console.info("teacher = ");
+        console.log(teacher);
+        console.info("-------------------For Test----------------------");
+        console.info("teacher 的 name = "+teacher['name']);
+        console.info("teacher 的 student = ");
+        console.info(teacher.student);
+        console.info("teacher 的 hobby = "+teacher['hobby']);
+        var touch = function(value){
+            if(value===undefined){
+                alert("你赢了");
+            }else{
+                alert("不，是你的"+value);
+            }
+        }
+        var thanks = function(){
+            alert("thank you to change me! ");
+        }
+    </script>
+    <style type="text/css">
+        .div1{
+            width:100px;
+            height: 100px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="touch(this.value)" value="Hello">click</button>
+    <button onclick="touch()">kcilc</button>
+    <input type="text" onkeyup="thanks()"/>
+    <div class="div1">你好啊</div>
+</body>
+</html>

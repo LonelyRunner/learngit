@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>{{expression}}</title>
+</head>
+<body>
+<p>算数运算: {{ 5 + 5 }}</p>
+<div ng-init="quantity=1;cost=5">
+    <p>总价： {{ quantity * cost }}</p>
+</div>
+<div ng-init="firstName='John';lastName='Doe'">
+    <p>姓名： {{ firstName + " " + lastName }}</p>
+</div>
+<div ng-init="person={firstName:'John',lastName:'Doe'}">
+    <p>姓为 {{ person.lastName }}</p>
+</div>
+<div ng-init="points=[1,15,19,2,40]">
+    <p><span ng-bind="points[2] "></span></p>
+</div>
+<!--<div>-->
+    <!--<p>{{undefined.length}}</p>-->
+<!--</div>-->
+
+<script src="../angular-min.js"></script>
+</body>
+</html>

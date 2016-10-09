@@ -1,0 +1,16 @@
+<div ng-controller="MusicGivenController" class="music">
+    <table class="table">
+        <tr>
+            <th>序号</th>
+            <th>歌名</th>
+            <th>歌手</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="music in musicList">
+            <td>{{music.musicId}}</td>
+            <td>{{music.musicName}}</td>
+            <td>{{music.musician}}</td>
+            <td><a href="#/musicGiven/{{music.musicId}}">查看歌词</a></td>
+        </tr>
+    </table>
+</div>

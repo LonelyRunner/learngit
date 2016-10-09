@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试正则表达式</title>
+</head>
+<body>
+    <div>
+        username : <input type="text" name="username" id="name" placeholder="please input your name" onchange="changed()">
+        password : <input type="text" name="password" id="pass" placeholder="please input your pass">
+    </div>
+
+    <script type="text/javascript">
+        /**
+            var username = document.getElementById("name").value;
+            var password = document.getElementById("pass").value;
+         */
+
+        var pattern = new RegExp("\d{0,5}");
+        var pattern1 = /[a-zA-Z0-9]{0,5}/;
+
+        function changed(){
+            console.info(document.getElementById("name").value);
+            console.info(pattern1.test(document.getElementById("name").value));
+           if(pattern1.test(document.getElementById("name").value)){
+               alert("输入的username不符合要求!");
+           }else{
+               alert("不正确吧！！！");
+           }
+        }
+
+        var re = /^[a-zA-Z_]+(\d+)[a-zA-Z_]*(\d+)/;
+        var str = "w123a123";
+        var result_arr = re.exec(str);
+        console.info(result_arr);
+    </script>
+</body>
+</html>

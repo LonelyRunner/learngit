@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本中的省略号</title>
+    <style type="text/css">
+        .test_demo{
+            width: 200px;
+            /** word-wrap也可以用来设置文本行为，当前行超过指定容器的边界时是否断开转行。 */
+            word-wrap: normal;
+            /** 设置文字必须显示在同一行 */
+            white-space: nowrap;
+            /** 超出部分隐藏 */
+            overflow: hidden;
+            /** 超出部分省略号代替 */
+            text-overflow: ellipsis;
+            /**
+                text-overflow:ellipsis/clip  省略号/剪切
+                text-overflow只是用来说明文字溢出时用什么方式显示，
+                要实现溢出时产生省略号的效果，还须定义强制文本在一行内显示
+                white-space:nowrap及溢出内容为隐藏overflow:hidden，
+                只有这样才能实现溢出文本显示省略号的效果
+            */
+        }
+    </style>
+</head>
+<body>
+    <p class="test_demo">
+        css3很炫的文字哦(我是省略号)
+    </p>
+</body>
+</html>

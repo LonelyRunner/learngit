@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>$watch</title>
+</head>
+<body>
+<div ng-controller="MyController">
+    <input type="text" ng-model="inputCode"/>
+    <div>
+        <p>drugNameList</p>
+        <p>{{drugNameList}}</p>
+    </div>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module('myApp', [])
+            .controller("MyController", ["$scope", "$http","$q", function ($scope, $http,$q) {
+                var url = "http://192.168.1.76:8051/heren/api/drug-info-list/drug-name";
+                var param = {
+                    "inputCode": ""
+                    , "prescAttr": "普通"
+                    , "prescType": 0
+                    , "searchType": "M"
+                };
+                $scope.inputCode = "";
+                $scope.drugNameList = [];
+                $scope.getDrugNameList = function (callback) {
+                    var deferred = $q.defer();    //define
+                    $http.post(url, param).success(function (data) {
+                        deferred.notify("请求成功！");
+                        $scope.drugNameList = data;
+                        deferred.resolve(data);      //resolve
+                    }).error(function (error) {
+                        deferred.reject(error);     //reject
+                        console.log(error);
+                    });
+                    return deferred.promise;        //return promise
+                };
+                $scope.$watch("inputCode", function (newval, oldval) {
+                    if (newval) {
+                        param.inputCode = newval;
+                        $scope.getDrugNameList().then(function (data){
+                            getFirstResult(data);
+                        },function (error){
+                            alert(error);
+                        },function (info){
+                            alert(info);
+                        });
+                    }
+                });
+
+                function getFirstResult(drugNameList) {
+                    console.log(drugNameList[0])
+                }
+            }]);
+</script>
+</body>
+</html>
+
+
+

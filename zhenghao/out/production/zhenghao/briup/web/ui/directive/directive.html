@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>指令</title>
+    <link rel="stylesheet" href="../../css/common/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/common/angular-ui.min.css"/>
+    <link rel="stylesheet" href="../../css/common/jquery-ui.css"/>
+    <script type="text/javascript" src="../../javascript/common/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../../javascript/common/angular.js"></script>
+    <script type="text/javascript" src="../../javascript/common/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../javascript/directive/ngChange.js"></script>
+    <script type="text/javascript">
+        document.write("<div align='center'>");
+        document.write("<h3>");
+        document.write("失败的一天---程序员");
+        document.write("</h3>");
+        document.write("</div>");
+    </script>
+</head>
+<body ng-controller="myController">
+<embed src="../../music/雨一直下.mp3" loop=true height='100px' width='400px' aling="middle"/>
+<div class="container" align="center">
+    <div class="form form-horizontal">
+        <div class="control-group">
+            <label class="control-label">
+                <span>请选择你认为最强的东部球队:</span>
+                <select ng-model="eastTeam">
+                    <option ng-repeat="east in eastValue" value="{{east}}">{{east}}</option>
+                </select>
+            </label>
+            <label class="control-label">
+                <span>请选择你认为最强的西部球队:</span>
+                <select ng-model="westTeam">
+                    <option ng-repeat="west in westValue" value="{{west}}">{{west}}</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <button ng-click="showCompareDiv()" class="btn btn-primary">球队对比</button>
+    <button ng-click="hiddenCompareDiv()" class="btn btn-primary">隐藏</button>
+    <div class="progress">
+        <div class="bar bar-success" style="width:35%"></div>
+    </div>
+    <div ng-show="showDiv" compare-data></div>
+    
+    <div style="border: 1px solid lemonchiffon">
+        <hr/>
+        <h5 align="center">html5</h5>
+        <hr/>
+        <table>
+            <tr><td>datetime-local:</td><td><input type="datetime-local" ng-model="value"/></td></tr>
+            <tr><td>time:</td><td><input type="time"/></td></tr>
+            <tr><td>datetime:</td><td><input type="datetime"/></td></tr>
+            <tr><td>email:</td><td><input type="email"/></td></tr>
+            <tr><td>month:</td><td><input type="month"/></td></tr>
+            <tr><td>number:</td><td><input type="number"/></td></tr>
+            <tr><td>radio:</td><td><input type="radio"/></td></tr>
+            <tr><td>url:</td><td><input type="url"/></td></tr>
+            <tr><td>week:</td><td><input type="week"/></td></tr>
+        </table>
+    </div>
+    <!--<p ng-bind-html="myHtml"></p>        不安全  不推荐使用-->
+    <div>
+        <input Type="checkbox" ng-model="confirmed" ng-change="change()" id="ng-change-example1" />
+        <input Type="checkbox" ng-model="confirmed" id="ng-change-example2" />
+        <label for="ng-change-example2">Confirmed</label><br />
+        <tt>debug = {{confirmed}}</tt><br/>
+        <tt>counter = {{counter}}</tt><br/>
+    </div>
+    <span ng-dblclick="sb()" ng-click="bs()">烦</span>
+    <div terrible></div>
+    <br/>
+    ng-init:<span ng-init="name='张三'">{{name}}</span>
+   </div>
+    <div>
+        <hr/>
+        <h5 align="center">ng-filter</h5>
+        <hr/>
+        <table class="table table-bordered">
+            <tr>
+                <td>货币:</td>
+                <td><input type="text" ng-model="money"/>&nbsp;
+                    <span>{{money | currency:'USD$'}}</span>&nbsp;
+                    <span>{{money | currency}}</span>&nbsp;
+                    <span>{{money | currency:'RMB'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>日期:</td>
+                <td>
+                    <span>{{1288323623006 | date:'medium'}}</span>&nbsp;
+                    <span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>&nbsp;
+                    <span>{{'1288323623006' | date:'MM/dd/yyyy @ h:mma'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>大写:</td>
+                <td>
+                    <span ng-init="value='sb is a sb'">{{value | uppercase}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>json:</td>
+                <td>
+                    <span ng-model="student">{{student | json}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>限制:</td>
+                <td>
+                    <span ng-model="westValue">{{westValue | limitTo:11}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>小写:</td>
+                <td>
+                    <span ng-init="value='SB IS A SB'">{{value | lowercase}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="width:100px;height:200px;border:1px solid" ng-click="YJ()">他大舅他二舅都是他舅</div>
+</body>
+</html>

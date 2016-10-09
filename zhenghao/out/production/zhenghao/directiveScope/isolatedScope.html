@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>独立作用域</title>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.directive("hello",function(){
+            return {
+                restrict : 'E',
+                template : '<input type="text" ng-model="username">{{username}}<br>'
+            }
+        });
+        myApp.directive("helloWorld",function(){
+            return {
+                restrict : 'E',
+                // 独立的作用域
+                scope : {},
+                template : '<input type="text" ng-model="username1">{{username1}}<br>'
+            }
+        });
+        myApp.controller("myController",function($scope){
+            $scope.str = "Hello World";
+            $scope.ctrlStr = "you jump ; I jump";
+            $scope.sayHello = function(name){
+                alert("Hello "+name);
+            }
+        });
+        myApp.directive("strBind",function(){
+            return {
+                restrict : 'EA',
+                scope : {
+                    fromstr : '@'
+                },
+                template : '<input type="text" ng-model="fromstr">{{fromstr}}'
+//                link : function(scope,ele,attr){
+//                    scope.str = attr.fromstr;
+//                }
+            };
+        });
+
+        myApp.directive("equalBind",function(){
+            return {
+                restrict : 'AE',
+                scope : {
+                    falvor : '='
+                },
+                template : '<input type="text" ng-model="falvor">'
+            }
+        });
+
+        myApp.directive("methodBind",function(){
+            return {
+                restrict : 'AE',
+                scope : {
+                    fav : '&'
+                },
+                template : '<input type="text" ng-model="username"><button ng-click="fav({name:username})">click me!</button>'
+            };
+        });
+    </script>
+</head>
+<body ng-app="myApp">
+    <div>
+        <hello></hello>
+        <hello></hello>
+        <hello></hello>
+        <hello></hello>
+    </div>
+    <div>
+        <hello-world></hello-world>
+        <hello-world></hello-world>
+        <hello-world></hello-world>
+        <hello-world></hello-world>
+    </div>
+    <hr>
+    <div ng-controller="myController">
+
+        <str-bind fromstr="{{str}}"></str-bind>
+        <br>
+
+        ctrl:
+        <br>
+        <input type="text" ng-model="ctrlStr">
+        <br>
+        directive:
+        <br>
+        <equal-bind falvor="ctrlStr"></equal-bind>
+
+        <br>
+        <method-bind fav="sayHello(name)"></method-bind>
+    </div>
+</body>
+</html>

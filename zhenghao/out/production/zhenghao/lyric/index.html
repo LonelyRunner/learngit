@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-grid分页</title>
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript" src="ng-grid.min.js"></script>
+    <script type="text/javascript">
+        var str = "dsaoidja";
+        console.info(str.length);
+    </script>
+    <link rel="stylesheet" href="ng-grid.css">
+</head>
+<body ng-controller="gridController">
+    <section class="row-fluid" id="ng-grid">
+        <div class="page-header">
+            <h1>ngGrid</h1>
+        </div>
+        <div class="row-fluid">
+            <div class="grid-style-one" ng-grid="gridOneOpts"></div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",["ngGrid"]);
+        myApp.controller("gridController",function($scope){
+            $scope.pagingOptions = {
+                pageSizes: [5, 10, 15],
+                pageSize: 5,
+                totalServerItems: "0",
+                currentPage: 1
+            };
+
+            $scope.GridData = [
+                {staffId: "101", staffName: "小才", sex: "男", position: "经理", birthday: "1988-08-08", regTime: new Date()},
+                {staffId: "102", staffName: "小张", sex: "男", position: "主管", birthday: "1989-09-09", regTime: 1372646606000},
+                {staffId: "103", staffName: "小李", sex: "女", position: "职员", birthday: "1988-08-08", regTime: "2013-09-09 09:09:09"},
+                {staffId: "104", staffName: "小王", sex: "女", position: "职员", birthday: "1988-08-08", regTime: "2013-09-09 09:09:09"},
+                {staffId: "105", staffName: "小赵", sex: "女", position: "职员", birthday: "1988-08-08", regTime: "2013-09-09 09:09:09"},
+                {staffId: "106", staffName: "小孙", sex: "女", position: "职员", birthday: "1988-08-08", regTime: "2013-09-09 09:09:09"},
+                {staffId: "107", staffName: "小孙", sex: "女", position: "职员", birthday: "1988-08-08", regTime: "2013-09-09 09:09:09"}
+            ];
+
+            $scope.oneGridData = [];
+
+            $scope.$watch("pagingOptions", function(newValue) {
+                var page = newValue.currentPage;
+                var pageSize = newValue.pageSize;
+                $scope.oneGridData = $scope.GridData.slice((page - 1) * pageSize, page * pageSize);
+                $scope.pagingOptions.totalServerItems = $scope.GridData.length + "";
+            }, true);
+
+            $scope.gridOneOpts = {
+                data: "oneGridData",//数据源
+                enablePaging: true,//是否允许分页按钮
+                showFooter: true,//是否显示底部工具栏
+                pagingOptions: $scope.pagingOptions,//分页参数
+                i18n: 'zh-cn',//国际化
+                columnDefs: [
+                    {field: 'staffId', displayName: '员工ID'},
+                    {field: 'staffName', displayName: '员工姓名'},
+                    {field: 'sex', displayName: '性别'},
+                    {field: 'position', displayName: '职位'},
+                    {field: 'birthday', displayName: '生日'},
+                    {field: 'regTime', displayName: '注册时间'}
+                ]
+            };
+        });
+    </script>
+</body>
+</html>

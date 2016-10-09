@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ajax小例子</title>
+    <script type="text/javascript">
+        function loadXMLDoc(){
+            console.info("触发事件");
+            var xmlhttp="";
+            if (window.XMLHttpRequest){
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }else{
+            // code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function(){
+                if(xmlhttp.readyState==4 && xmlhttp.status == 200){
+                    document.getElementById('myDiv').innerHTML = xmlhttp.responseText;
+                }
+            };
+            xmlhttp.open("GET","a.txt",true);
+            xmlhttp.send();
+            console.info("事件结束");
+        }
+    </script>
+</head>
+<body>
+    <div id="myDiv">使用AJAX修改此内容</div>
+    <button onclick="loadXMLDoc()">点击修改内容</button>
+</body>
+</html>

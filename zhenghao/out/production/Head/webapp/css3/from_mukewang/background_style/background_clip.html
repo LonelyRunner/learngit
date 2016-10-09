@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>background_clip</title>
+    <style type="text/css">
+        /**
+            用来将背景图片做适当的裁剪以适应实际需要。
+
+            语法：
+            background-clip ： border-box | padding-box | content-box | no-clip
+                参数分别表示从边框、或内填充，或者内容区域向外裁剪背景。
+                no-clip表示不裁切，和参数border-box显示同样的效果。
+                backgroud-clip默认值为border-box。
+        */
+        .wrap{
+            width: 220px;
+            border: 20px dashed #000;
+            padding: 20px;
+            font-weight: bold;
+            color: #000;
+            background: #ccc url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;
+            background-origin: border-box;
+            background-clip: border-box;
+            position: relative;
+        }
+        .wrap span{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .content{
+            height: 80px;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <span>padding</span>
+        <div class="content">content</div>
+    </div>
+</body>
+</html>

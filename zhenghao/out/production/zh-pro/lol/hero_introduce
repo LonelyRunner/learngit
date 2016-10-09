@@ -1,0 +1,47 @@
+create table hero_introduce(
+  id NUMBER(5),
+  hero_name VARCHAR(10),
+  hero_Q VARCHAR(10),
+  hero_W VARCHAR(10),
+  hero_E VARCHAR(10),
+  hero_R VARCHAR(10),
+  hero_Passive VARCHAR(200),
+  hero_img VARCHAR(30)
+);
+
+INSERT INTO hero_introduce VALUES (1,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (2,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (3,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (4,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (5,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (6,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (7,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (8,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (9,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (10,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (11,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (12,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (13,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (14,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (15,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (16,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (17,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (18,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (19,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (20,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (21,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (22,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (23,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (24,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (25,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (26,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (27,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (28,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (29,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (30,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (31,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (32,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (33,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (34,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (35,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');
+INSERT INTO hero_introduce VALUES (36,'卡特琳娜','弹射之刃','不祥之刃','瞬步','死亡莲华','贪婪','../../images/1.jpg');

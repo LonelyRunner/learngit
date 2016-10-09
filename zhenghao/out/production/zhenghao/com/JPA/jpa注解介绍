@@ -1,0 +1,22 @@
+@Entity:将领域对象标注为一个实体。表示需要保存到数据库中。默认情况下类名即为表名，通过name属性显示指定表名。
+@Id:对应属性是表的主键。
+@GeneratedValue:主键的产生策略，通过strategy属性指定。默认情况下，JPA自动选择一个最合适底层数据库的主键生成策略.
+    主键增长策略：
+        1.IDENTITY:表自增键字段。oracle不支持。
+        2.auto:JPA自动选择合适的策略，是默认选项。
+        3.SEQUENCE:通过序列产生主键,通过@SequenceGenerator朱姐指定序列名。MySql不支持。
+        4.TABLE:通过表产生主键，框架借由表模拟序列产生主键，使用该策略可以使英语更易于数据库移植。
+@Column(name="TOPIC_ID"):属性对应的表字段。
+    我们并不需要指定表字段的类型，因为JPA会根据反射从实体属性中获取类型；
+    如果是字符串类型，我们可以指定字段长度，以便可以自动生成DDL语句
+@Temporal(TemporalType.DATE):如果属性是时间类型，因为数据表对时间类型有更严格的划分，所以必须制定具体时间类型。
+    javax.persistence.TemporalType枚举中定义了3种时间类型：
+    1) DATE ：等于java.sql.Date
+    2) TIME ：等于java.sql.Time
+    3) TIMESTAMP ：等于java.sql.Timestamp
+
+/** 除了使用注解提供元数据信息外，JPA也允许我们通过XML提供元数据信息 */
+对象关系映射.xml   --->   orm.xml
+
+
+/** JPA的编程结构及重要的API */

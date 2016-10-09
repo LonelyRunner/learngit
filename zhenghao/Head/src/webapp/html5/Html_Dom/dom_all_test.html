@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对dom的操作</title>
+</head>
+<body>
+    <p class="changeText" id="p1">
+        hello world
+        <p id="obama">奥巴马</p>
+    </p>
+    <button onclick="document.body.style.backgroundColor='lavender'" id="button">点击改变body背景颜色</button>
+    <script type="text/javascript">
+        /** 修改dom元素 */
+        document.getElementsByClassName("changeText")[0].innerHTML = "CHANGE TEXT";
+
+        /** 添加dom元素  注意appendChild的用法 */
+        var param = document.createElement("a");
+        //设置属性节点
+        param.setAttribute("href","http://www.baidu.com");
+        param.setAttribute("id","bd");
+        //创建文本节点
+        var nodeText = document.createTextNode("百度");
+        param.appendChild(nodeText);
+
+        var a = document.getElementById("p1");
+        a.appendChild(param);
+
+        /** 修改dom元素的样式 */
+        a.style.color = "red";
+
+        /** 现在dom中存在的所有元素 */
+        var now_all_in_dom = document.body;
+        for(var i=0;i<now_all_in_dom.childNodes.length;i++){
+            console.info(now_all_in_dom.childNodes[i]);
+        }
+
+
+        /** insertBefore(newNode,oldNode)
+         *  在已存在元素之前插入一个元素
+         * */
+        var span_node = document.createElement("span");
+        var span_text_node = document.createTextNode("span  我会插在最后一个元素之前");
+        span_node.appendChild(span_text_node);
+
+        var last_button = document.getElementById("button");
+        document.body.insertBefore(span_node,last_button);
+
+        /** fatherNode.removeChild(childNode)
+         * 删除已经存在的元素 */
+        document.body.removeChild(document.getElementById("button"));
+
+        /** fatherNode.replaceChild(exist_node,new_node)
+         * 替换内容 */
+
+        var new_node_p = document.createElement("p");
+        var new_node_p_text = document.createTextNode("新创建的p元素，将会替代原来存在的");
+        new_node_p.appendChild(new_node_p_text);
+
+        var replace_ele = document.getElementById("obama");
+        document.body.replaceChild(new_node_p,replace_ele);
+
+
+    </script>
+</body>
+</html>

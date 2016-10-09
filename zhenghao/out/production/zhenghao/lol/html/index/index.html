@@ -1,0 +1,11 @@
+<div ng-controller="homeController">
+    <h3 align="center" class="title"><span>英雄联盟人物</span></h3>
+    <div class="container">
+        <a href="" ng-repeat="hero in heros" ui-sref="hero_character({hero_name:hero.hero_name})">
+            <div class="img_group">
+                <img src="{{hero.hero_img}}" alt="{{hero.hero_name}}">
+                <div class="img_name" align="center">{{hero.hero_name}}</div>
+            </div>
+        </a>
+    </div>
+</div>

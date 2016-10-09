@@ -1,0 +1,34 @@
+.title{
+    margin-top: 5px;
+}
+
+.container{
+    width: 1230px;
+    margin-left: 230px;
+}
+
+.img_group,.img_name{
+    width:220px;
+}
+
+.img_group{
+    display: inline-block;
+}
+
+.hero-detail-title{
+    font-family: "楷体";
+}
+.hero-detail-table{
+    width: 620px;
+    height: 173px;
+    margin-left: 455px;
+}
+
+td,th{
+    text-align: center;
+}
+.login_page{
+    width: 500px;
+    height: 500px;
+    margin-left: 570px;
+}

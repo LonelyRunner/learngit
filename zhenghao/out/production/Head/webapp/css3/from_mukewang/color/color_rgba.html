@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>颜色RGBA</title>
+    <style type="text/css">
+        /**
+            RGBA:
+            RGB是一种色彩标准，是由红绿蓝的变化以及相互叠加起来得到的各式各样的颜色。
+            RGBA是在RGB的基础上添加了控制alpha透明度的参数
+            以上R、G、B三个参数，正整数值的取值范围为：0 - 255。百分数值的取值范围为：0.0% - 100.0%。
+            超出范围的数值将被截至其最接近的取值极限。
+            并非所有浏览器都支持使用百分数值。A为透明度参数，取值在0~1之间，不可为负值。
+        */
+        body{
+            background: url(logo_index.png);
+        }
+        p{
+            font-size:42px;
+            text-align:center;
+            font-weight:bold;
+            background:rgba(111,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <p>背景是透明的额？</p>
+</body>
+</html>

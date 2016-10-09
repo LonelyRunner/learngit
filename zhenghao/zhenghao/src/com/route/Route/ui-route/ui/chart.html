@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图表路由</title>
+  <!-- angular js -->
+  <script type="text/javascript" src="../js/angular.js"></script>
+  <!-- jquery.js -->
+  <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+  <!-- ui-router -->
+  <script type="text/javascript" src="../js/angular-ui-router.min.js"></script>
+  <!-- highCharts -->
+  <script type="text/javascript" src="../js/highcharts.js"></script>
+  <!-- EChart -->
+  <script type="text/javascript" src="../js/echarts.min.js"></script>
+  <!-- chart.css -->
+  <link rel="stylesheet" href="../js/chart.css">
+</head>
+<body ng-app="chartUiRouterApp">
+  <div class="header">
+      <h1 class="title">2015年中国汽车产量chart(1-8月份)</h1>
+  </div>
+  <div ui-view></div>
+  <div class="footer" ng-controller="footerController">
+    <ul>
+        <li class="footer-li">
+          <a ui-sref="january">一月份</a>
+        </li>
+        <li class="footer-li">
+          <a ui-sref="february">二月份</a>
+        </li>
+        <li class="footer-li">
+          <a ui-sref="march">三月份</a>
+        </li>
+        <li class="footer-li">
+          <a ui-sref="april">四月份</a>
+        </li>
+        <li class="footer-li">
+          <a ui-sref="may">五月份</a>
+        </li>
+        <li class="footer-li">
+          <a ui-sref="june">六月份</a>
+        </li>
+        <li class="footer-li">
+          <a ui-sref="july">七月份</a>
+        </li>
+        <li class="footer-li">
+          <a ui-sref="august">八月份</a>
+        </li>
+    </ul>
+  </div>
+<script>
+  var chartUiRouterApp = angular.module("chartUiRouterApp",['ui.router']);
+
+  chartUiRouterApp.controller("footerController",["$scope",function($scope){
+
+  }]);
+
+  chartUiRouterApp.config(function($stateProvider,$urlRouterProvider) {
+    $urlRouterProvider.otherwise("/home");
+    $stateProvider
+            .state('home',{
+              url: '/home',
+              templateUrl: 'january.html',
+              controller: 'januaryController'
+            })
+            .state('january', {
+                url: '/january',
+                templateUrl: 'january.html',
+                controller: function(){
+                  var title = {
+                    text: '月平均气温'
+                  };
+                  var subtitle = {
+                    text: 'Source: runoob.com'
+                  };
+                  var xAxis = {
+                    categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                      ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                  };
+                  var yAxis = {
+                    title: {
+                      text: 'Temperature (\xB0C)'
+                    },
+                    plotLines: [{
+                      value: 0,
+                      width: 1,
+                      color: '#808080'
+                    }]
+                  };
+
+                  var tooltip = {
+                    valueSuffix: '\xB0C'
+                  };
+
+                  var legend = {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                  };
+
+                  var series =  [
+                    {
+                      name: 'Tokyo',
+                      data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                        26.5, 23.3, 18.3, 13.9, 9.6],
+                      color: 'red'
+                    },
+                    {
+                      name: 'New York',
+                      data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                        24.1, 20.1, 14.1, 8.6, 2.5],
+                      color: 'green'
+                    },
+                    {
+                      name: 'Berlin',
+                      data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                        17.9, 14.3, 9.0, 3.9, 1.0],
+                      color: 'gray'
+                    },
+                    {
+                      name: 'London',
+                      data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                        16.6, 14.2, 10.3, 6.6, 4.8],
+                      color: 'black'
+                    }
+                  ];
+
+                  var json = {};
+
+                  json.title = title;
+                  json.subtitle = subtitle;
+                  json.xAxis = xAxis;
+                  json.yAxis = yAxis;
+                  json.tooltip = tooltip;
+                  json.legend = legend;
+                  json.series = series;
+
+                  $('#january').highcharts(json);
+                }
+            })
+            .state('february',{
+                url: '/february',
+                templateUrl: 'february.html',
+                controller: function(){
+                var title = {
+                  text: '月平均气温'
+                };
+                var subtitle = {
+                  text: 'Source: runoob.com'
+                };
+                var xAxis = {
+                  categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                    ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                };
+                var yAxis = {
+                  title: {
+                    text: 'Temperature (\xB0C)'
+                  },
+                  plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                  }]
+                };
+
+                var tooltip = {
+                  valueSuffix: '\xB0C'
+                };
+
+                var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+                };
+
+                var series =  [
+                  {
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                      26.5, 23.3, 18.3, 13.9, 9.6],
+                    color: 'red'
+                  },
+                  {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                      24.1, 20.1, 14.1, 8.6, 2.5],
+                    color: 'green'
+                  },
+                  {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                      17.9, 14.3, 9.0, 3.9, 1.0],
+                    color: 'gray'
+                  },
+                  {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                      16.6, 14.2, 10.3, 6.6, 4.8],
+                    color: 'black'
+                  }
+                ];
+
+                var json = {};
+
+                json.title = title;
+                json.subtitle = subtitle;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.tooltip = tooltip;
+                json.legend = legend;
+                json.series = series;
+
+                $('#february').highcharts(json);
+              }
+            })
+            .state('march',{
+              url: '/march',
+              templateUrl: 'march.html',
+              controller: function(){
+                var title = {
+                  text: '月平均气温'
+                };
+                var subtitle = {
+                  text: 'Source: runoob.com'
+                };
+                var xAxis = {
+                  categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                    ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                };
+                var yAxis = {
+                  title: {
+                    text: 'Temperature (\xB0C)'
+                  },
+                  plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                  }]
+                };
+
+                var tooltip = {
+                  valueSuffix: '\xB0C'
+                };
+
+                var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+                };
+
+                var series =  [
+                  {
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                      26.5, 23.3, 18.3, 13.9, 9.6],
+                    color: 'red'
+                  },
+                  {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                      24.1, 20.1, 14.1, 8.6, 2.5],
+                    color: 'green'
+                  },
+                  {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                      17.9, 14.3, 9.0, 3.9, 1.0],
+                    color: 'gray'
+                  },
+                  {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                      16.6, 14.2, 10.3, 6.6, 4.8],
+                    color: 'black'
+                  }
+                ];
+
+                var json = {};
+
+                json.title = title;
+                json.subtitle = subtitle;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.tooltip = tooltip;
+                json.legend = legend;
+                json.series = series;
+
+                $('#march').highcharts(json);
+              }
+            })
+            .state('april',{
+              url: '/april',
+              templateUrl: 'april.html',
+              controller: function(){
+                var title = {
+                  text: '月平均气温'
+                };
+                var subtitle = {
+                  text: 'Source: runoob.com'
+                };
+                var xAxis = {
+                  categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                    ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                };
+                var yAxis = {
+                  title: {
+                    text: 'Temperature (\xB0C)'
+                  },
+                  plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                  }]
+                };
+
+                var tooltip = {
+                  valueSuffix: '\xB0C'
+                };
+
+                var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+                };
+
+                var series =  [
+                  {
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                      26.5, 23.3, 18.3, 13.9, 9.6],
+                    color: 'red'
+                  },
+                  {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                      24.1, 20.1, 14.1, 8.6, 2.5],
+                    color: 'green'
+                  },
+                  {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                      17.9, 14.3, 9.0, 3.9, 1.0],
+                    color: 'gray'
+                  },
+                  {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                      16.6, 14.2, 10.3, 6.6, 4.8],
+                    color: 'black'
+                  }
+                ];
+
+                var json = {};
+
+                json.title = title;
+                json.subtitle = subtitle;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.tooltip = tooltip;
+                json.legend = legend;
+                json.series = series;
+
+                $('#april').highcharts(json);
+              }
+            })
+            .state('may',{
+              url: '/may',
+              templateUrl: 'may.html',
+              controller: function(){
+                var title = {
+                  text: '月平均气温'
+                };
+                var subtitle = {
+                  text: 'Source: runoob.com'
+                };
+                var xAxis = {
+                  categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                    ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                };
+                var yAxis = {
+                  title: {
+                    text: 'Temperature (\xB0C)'
+                  },
+                  plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                  }]
+                };
+
+                var tooltip = {
+                  valueSuffix: '\xB0C'
+                };
+
+                var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+                };
+
+                var series =  [
+                  {
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                      26.5, 23.3, 18.3, 13.9, 9.6],
+                    color: 'red'
+                  },
+                  {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                      24.1, 20.1, 14.1, 8.6, 2.5],
+                    color: 'green'
+                  },
+                  {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                      17.9, 14.3, 9.0, 3.9, 1.0],
+                    color: 'gray'
+                  },
+                  {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                      16.6, 14.2, 10.3, 6.6, 4.8],
+                    color: 'black'
+                  }
+                ];
+
+                var json = {};
+
+                json.title = title;
+                json.subtitle = subtitle;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.tooltip = tooltip;
+                json.legend = legend;
+                json.series = series;
+
+                $('#may').highcharts(json);
+              }
+            })
+            .state('june',{
+              url: '/june',
+              templateUrl: 'june.html',
+              controller: function(){
+                var title = {
+                  text: '月平均气温'
+                };
+                var subtitle = {
+                  text: 'Source: runoob.com'
+                };
+                var xAxis = {
+                  categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                    ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                };
+                var yAxis = {
+                  title: {
+                    text: 'Temperature (\xB0C)'
+                  },
+                  plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                  }]
+                };
+
+                var tooltip = {
+                  valueSuffix: '\xB0C'
+                };
+
+                var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+                };
+
+                var series =  [
+                  {
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                      26.5, 23.3, 18.3, 13.9, 9.6],
+                    color: 'red'
+                  },
+                  {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                      24.1, 20.1, 14.1, 8.6, 2.5],
+                    color: 'green'
+                  },
+                  {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                      17.9, 14.3, 9.0, 3.9, 1.0],
+                    color: 'gray'
+                  },
+                  {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                      16.6, 14.2, 10.3, 6.6, 4.8],
+                    color: 'black'
+                  }
+                ];
+
+                var json = {};
+
+                json.title = title;
+                json.subtitle = subtitle;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.tooltip = tooltip;
+                json.legend = legend;
+                json.series = series;
+
+                $('#june').highcharts(json);
+              }
+            })
+            .state('july',{
+              url: '/july',
+              templateUrl: 'july.html',
+              controller: function(){
+                var title = {
+                  text: '月平均气温'
+                };
+                var subtitle = {
+                  text: 'Source: runoob.com'
+                };
+                var xAxis = {
+                  categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                    ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                };
+                var yAxis = {
+                  title: {
+                    text: 'Temperature (\xB0C)'
+                  },
+                  plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                  }]
+                };
+
+                var tooltip = {
+                  valueSuffix: '\xB0C'
+                };
+
+                var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+                };
+
+                var series =  [
+                  {
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                      26.5, 23.3, 18.3, 13.9, 9.6],
+                    color: 'red'
+                  },
+                  {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                      24.1, 20.1, 14.1, 8.6, 2.5],
+                    color: 'green'
+                  },
+                  {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                      17.9, 14.3, 9.0, 3.9, 1.0],
+                    color: 'gray'
+                  },
+                  {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                      16.6, 14.2, 10.3, 6.6, 4.8],
+                    color: 'black'
+                  }
+                ];
+
+                var json = {};
+
+                json.title = title;
+                json.subtitle = subtitle;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.tooltip = tooltip;
+                json.legend = legend;
+                json.series = series;
+
+                $('#july').highcharts(json);
+              }
+            })
+            .state('august',{
+              url: '/august',
+              templateUrl: 'august.html',
+              controller: function(){
+                var title = {
+                  text: '月平均气温'
+                };
+                var subtitle = {
+                  text: 'Source: runoob.com'
+                };
+                var xAxis = {
+                  categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+                    ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+                };
+                var yAxis = {
+                  title: {
+                    text: 'Temperature (\xB0C)'
+                  },
+                  plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                  }]
+                };
+
+                var tooltip = {
+                  valueSuffix: '\xB0C'
+                };
+
+                var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+                };
+
+                var series =  [
+                  {
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+                      26.5, 23.3, 18.3, 13.9, 9.6],
+                    color: 'red'
+                  },
+                  {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                      24.1, 20.1, 14.1, 8.6, 2.5],
+                    color: 'green'
+                  },
+                  {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+                      17.9, 14.3, 9.0, 3.9, 1.0],
+                    color: 'gray'
+                  },
+                  {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                      16.6, 14.2, 10.3, 6.6, 4.8],
+                    color: 'black'
+                  }
+                ];
+
+                var json = {};
+
+                json.title = title;
+                json.subtitle = subtitle;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.tooltip = tooltip;
+                json.legend = legend;
+                json.series = series;
+
+                $('#august').highcharts(json);
+              }
+            })
+  });
+
+  chartUiRouterApp.controller("januaryController",function(){
+      var title = {
+        text: '月平均气温'
+      };
+      var subtitle = {
+        text: 'Source: runoob.com'
+      };
+      var xAxis = {
+        categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+          ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+      };
+      var yAxis = {
+        title: {
+          text: 'Temperature (\xB0C)'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      };
+
+      var tooltip = {
+        valueSuffix: '\xB0C'
+      };
+
+      var legend = {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+      };
+
+      var series =  [
+        {
+          name: 'Tokyo',
+          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+            26.5, 23.3, 18.3, 13.9, 9.6],
+          color: 'red'
+        },
+        {
+          name: 'New York',
+          data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+            24.1, 20.1, 14.1, 8.6, 2.5],
+          color: 'green'
+        },
+        {
+          name: 'Berlin',
+          data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,
+            17.9, 14.3, 9.0, 3.9, 1.0],
+          color: 'gray'
+        },
+        {
+          name: 'London',
+          data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+            16.6, 14.2, 10.3, 6.6, 4.8],
+          color: 'black'
+        }
+      ];
+
+      var json = {};
+
+      json.title = title;
+      json.subtitle = subtitle;
+      json.xAxis = xAxis;
+      json.yAxis = yAxis;
+      json.tooltip = tooltip;
+      json.legend = legend;
+      json.series = series;
+
+      $('#january').highcharts(json);
+  });
+</script>
+</body>
+</html>

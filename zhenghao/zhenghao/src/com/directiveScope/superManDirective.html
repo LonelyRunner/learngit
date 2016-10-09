@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>super man game</title>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.directive("superman",function(){
+            return {
+                restrict : 'E',
+                scope : {},
+                controller : function($scope){
+                    $scope.ability = [];
+                    this.addSpeed = function(){
+                        $scope.ability.push("speed");
+                    };
+                    this.addPower = function(){
+                        $scope.ability.push("power");
+                    };
+                    this.addStrength = function(){
+                        $scope.ability.push("strength");
+                    };
+                },
+                link : function(scope,ele,attr){
+                    ele.bind("mouseenter",function(){
+                        console.info(scope.ability);
+                    });
+                }
+            };
+        });
+
+        myApp.directive("speed",function(){
+            return {
+              require : '^superman',
+              link : function(scope,element,attr,supermanCtrl){
+                  supermanCtrl.addSpeed();
+              }
+            };
+        });
+
+        myApp.directive("power",function(){
+            return {
+                require : '^superman',
+                link : function(scope,element,attr,supermanCtrl){
+                    supermanCtrl.addPower();
+                }
+            };
+        });
+
+        myApp.directive("strength",function(){
+            return {
+                require : '^superman',
+                link : function(scope,element,attr,supermanCtrl){
+                    supermanCtrl.addStrength();
+                }
+            };
+        });
+    </script>
+</head>
+<body ng-app="myApp">
+    <div>
+        <superman speed>speed super man</superman>
+    </div>
+    <div>
+        <superman speed power>speed and power super man</superman>
+    </div>
+    <div>
+        <superman speed power strength>speed and power and strength super man</superman>
+    </div>
+</body>
+</html>

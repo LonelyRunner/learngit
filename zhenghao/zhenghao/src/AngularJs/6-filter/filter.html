@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body ng-controller="MyController">
+<div>
+    <p>
+        {{name}}
+    </p>
+    <p>
+        {{['Ari','Lerner', 'Likes', 'To', 'Eat', 'Pizza']|filter:'e'}}
+    </p>
+    <p>
+        {{['Ari', 'likes', 'To' , 'travel'] |filter:isCapitalized}}
+    </p>
+    <p>
+        {{['Ari', 'likes', 'To' , 'travel'] |capitalize}}
+    </p>
+    <p>
+        {{[{name:'Jack',age:22},{name:'Lucy',age:18},{name:'Tom',age:20}]|orderBy:'age':true}}
+    </p>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("MyController", ["$scope","$filter",function ($scope,$filter) {
+                $scope.name=$filter('lowercase')('Zhang San');
+                var now= $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
+                console.log(now);
+                $scope.isCapitalized = function (str) {
+                    return str.charAt(0) === str.charAt(0).toUpperCase();
+                };
+            }])
+            .filter('capitalize', function () {
+                return function (input) {
+                    if (input) {
+                        var newArr=[];
+                        input.forEach(function(e){
+                            console.log(e)
+                            e=e[0].toUpperCase()+e.substring(1);
+                            newArr.push(e)
+                        });
+                        return newArr;
+                    }
+                }
+            })
+</script>
+</body>
+</html>

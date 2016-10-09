@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+    <script type="text/javascript" src="../../javascript/common/angular.js"></script>
+    <script type="text/javascript" src="../../javascript/common/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../../javascript/filter/filter.js"></script>
+</head>
+<body>
+    <!-- 直接将currencyFilter过滤器注入到controller中-->
+    <div ng-controller="myController">
+        <input type="text" ng-model="americaMoney"/>
+        <span>{{(num1 | number:2)+(num2 | number:2)}}</span>
+        <span>{{(num1+num2) | number:2}}</span>
+    </div>
+    <!-- 直接将$filter注入到controller中-->
+    <div ng-controller="brotherController">
+        <!--
+            angularJs内置的过滤器有：currency(货币处理),date(日期格式化), filter(字符串匹配),json(格式化json对象)
+                                   limitTo(限制字符串长度或数组长度),lowercase,uppercase(小写 大写)
+                                   number(格式化数字),orderBy(排序)
+        -->
+        <span>{{num}}</span>
+        <span>{{date}}</span>
+    </div>
+    <!-- 自定义过滤器 -->
+    <div ng-controller="customerController">
+        <input type="text" ng-model="num"/>{{num | myFilter}}
+        <br>
+        <span>{{number1 | number:2}}</span><br>
+        <span>{{number2 | number:2}}</span><br>
+        <span>{{(number1 | number:2)  + (number2 | number:2)}}</span>
+
+        <input type="text" placeholder="请输入一个字符串" ng-model="sbyf"/>{{sbyf | reverse:sbyf:true}}
+    </div>
+
+</body>
+</html>

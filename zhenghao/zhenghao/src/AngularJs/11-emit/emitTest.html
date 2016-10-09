@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试angularjs中的通讯</title>
+    <script type="text/javascript" src="../angular-min.js"></script>
+    <script type="text/javascript">
+        var connectApp = angular.module("connectApp",[]);
+        connectApp.controller("rootController",["$scope",function($scope){
+            $scope.userName = "rootUsername";
+            $scope.$watch("userName",function(newValue,oldValue){
+                if(newValue){
+                    $scope.$broadcast("rootUserNameChange");
+                }
+            });
+
+            $scope.$on("sonUserNameChange",function(newValue,oldValue){
+                console.info("rootController中接收到了sonController中的变化");
+            });
+
+        }]);
+
+        connectApp.controller("sonController",["$scope",function($scope){
+            $scope.$watch("userName",function(newValue,oldValue){
+                if(newValue){
+                    $scope.$broadcast("sonUserNameChange");
+                    $scope.$emit("sonUserNameChange");
+                }
+            });
+
+            $scope.$on("rootUserNameChange",function(){
+                console.info("sonController中接收到了rootController中的变化");
+            });
+
+            $scope.$on("childUserNameChange",function(){
+                console.info("sonController中接收到了childController中的变化");
+            });
+        }]);
+
+        connectApp.controller("childController",["$scope",function($scope){
+            $scope.$watch("userName",function(newValue,oldValue){
+                if(newValue){
+                    $scope.$emit("childUserNameChange");
+                }
+            });
+            $scope.$on("sonUserNameChange",function(){
+                console.info("childController中接收到了sonController中的变化");
+            });
+        }]);
+    </script>
+</head>
+<body ng-app="connectApp">
+    <div ng-controller="rootController">
+        root-username:<input type="text" ng-model="userName">{{userName}}
+        <div ng-controller="sonController">
+            son-username:<input type="text" ng-model="userName">{{userName}}
+            <div ng-controller="childController">
+                child-username: <input type="text" ng-model="userName">{{userName}}
+            </div>
+        </div>
+    </div>
+    <!--
+        <div>
+            $on表示接受由$emit和$broadcast()传过来的变化
+            $emit表示向上传递
+            $broadcast表示向下传递
+        </div>
+    -->
+
+</body>
+</html>

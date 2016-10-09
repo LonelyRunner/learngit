@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular指令</title>
+    <script type="text/javascript" src="angular.js"></script>
+    <script>
+//        var directiveApp = angular.module("directiveApp",[]);
+//        directiveApp.controller("myController",["$scope",function($scope){
+//            $scope.to = "";
+//        }]);
+//        directiveApp.directive("scopeExample",function(){
+//            return {
+//                restrict : 'A',
+//                replace : "true",
+//                scope : {
+//                    ngModel : '=',  //双向绑定:通过=可以将本地作用域上的属性同父级作用域上的属性进行双向的数据绑
+//                    onSend : '&',   //父级作用域绑定:通过&符号可以对父级作用域进行绑定，以便在其中运行函数。
+//                    fromName : '@'  // 本地作用域属性:使用@符号将本地作用域同DOM属性的值进行绑定
+//                },
+//                template : '<div ></div>',
+//                controller : function(scope,element,attr){
+//
+//                }
+//            };
+//        });
+        angular.module('myApp', [])
+                .directive('myDirective', function() {
+                    return {
+                        restrict: 'A',
+                        template: 'Inside myDirective, isolate scope: {{ myProperty }}',
+                        scope: {}
+                    };
+                })
+                .directive('myInheritScopeDirective', function() {
+                    return {
+                        restrict: 'A',
+                        template: 'Inside myDirective, isolate scope: {{ myProperty }}',
+                        scope: true
+                    };
+                });
+    </script>
+</head>
+<body ng-app="myApp">
+    <!--<div ng-controller="myController">-->
+        <!--<input type="text" ng-model="to"/>-->
+        <!--&lt;!&ndash; 调用指令 &ndash;&gt;-->
+        <!--<div scope-example ng-model="to" on-send="sendMail(email)" from-name="ari@fullstack.io">-->
+        <!--</div>-->
+    <!--</div>-->
+    <div ng-init="myProperty='wow,thisiscool'">
+        Surrounding scope: {{ myProperty }}
+        <div my-inherit-scope-directive></div>
+        <div my-directive></div>
+    </div>
+
+</body>
+</html>

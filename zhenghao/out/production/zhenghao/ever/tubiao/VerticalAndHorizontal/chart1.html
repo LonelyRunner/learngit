@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="jquery.jqplot.min.css"/>
+    <title>垂直和水平图标</title>
+    <script type="text/javascript" src="../../js/common/jquery.js"></script>
+    <script type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.barRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.pointLabels.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            /** chart1 */
+            var s1 = [200, 600, 700, 1000];
+            var s2 = [460, -210, 690, 820];
+            var s3 = [-260, -440, 320, 200];
+
+            var ticks = ['May','June','July','August'];
+
+            var plot1 = $.jqplot('chart1',[s1,s2,s3],{
+                seriesDefaults:{
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions:{fillToZero:true}
+                },
+                series:[
+                    {label:'Hotel'},
+                    {label:'Event'},
+                    {label:'Airfare'}
+                ],
+                //控制标签的位置
+                legend:{
+                    show:true,
+                    placement:'outsideGrid'
+                },
+                axes:{
+                    xaxis:{
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks:ticks
+                    },
+                    yaxis:{
+                        pad:1.05,
+                        tickOptions:{formatString:'$%d'}
+                    }
+                }
+
+            });
+
+            /** chart2*/
+
+            var s4 = [[2,1],[4,2],[6,3],[3,4]];
+            var s5 = [[5,1],[1,2],[3,3],[4,4]];
+            var s6 = [[4,1],[7,2],[1,3],[2,4]];
+
+            var plot2 = $.jqplot("chart2",[s4,s5,s6],{
+                seriesDefaults:{
+                    renderer: $.jqplot.BarRenderer,
+                    pointLabels:{
+                        show:true,
+                        location:'e',
+                        edgeTolerance:-15
+                    },
+                    shadowAngle:135,
+                    rendererOptions:{
+                        barDirection:'horizontal'
+                    }
+                },
+                axes:{
+                    yaxis:{
+                        renderer: $.jqplot.CategoryAxisRenderer
+                    }
+                }
+            });
+
+            /** chart3*/
+            var s7 = [2,6,7,10];
+            var s8 = [7,5,3,4];
+            var s9 = [14,9,3,8];
+            var plot3 = $.jqplot('chart3',[s7,s8,s9],{
+                stackSeries:true,
+                captureRightClick:true,
+                seriesDefaults:{
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions:{
+                        barMargin:30,
+                        highlightMouseDown:true
+                    },
+                    pointLabels:{show:true}
+                },
+                axes:{
+                    xaxis:{
+                        renderer: $.jqplot.CategoryAxisRenderer
+                    },
+                    yaxis:{
+                        padMin:0
+                    }
+                },
+                legend:{
+                    show:true,
+                    location:'e',
+                    placement:'outside'
+                }
+            });
+            $("#chart3").bind('jqplotDataClick',function(ev,seriesIndex,pointIndex,data){
+                $("#info3").html("series:"+seriesIndex+',point:'+pointIndex+',data:'+data);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="chart1" style="height:300px;width:500px;"></div>
+
+    <div id="chart2" style="height:300px;width:400px;"></div>
+
+    <div id="chart3" style="height:400px;width:500px;"></div>
+    <div id="info3"></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>MyApp</title>
+</head>
+<body ng-controller="MyController">
+<div >
+    <h1>Hello {{ clock.now |date:'yyyy-MM-dd HH:mm:ss'}}</h1>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+//    angular.module('myApp', [])
+//            .controller('MyController',['$scope','$timeout', function ($scope, $timeout) {
+//                $scope.clock={};
+//                var updateClock = function () {
+//                    $scope.clock.now = new Date();
+//                    $timeout(function () {
+//                        updateClock();
+//                    }, 1000);
+//                };
+//                updateClock();
+//            }]);
+
+    angular.module('myApp', [])
+            .controller("MyController", MyController);
+    MyController.$inject = ["$scope", "$timeout"];
+    function MyController($scope, $timeout) {
+        $scope.clock={};
+        updateClock();
+        function updateClock() {
+            $scope.clock.now= new Date();
+            $timeout(function () {
+                updateClock();
+            }, 1000);
+        }
+    }
+</script>
+</body>
+</html>
+

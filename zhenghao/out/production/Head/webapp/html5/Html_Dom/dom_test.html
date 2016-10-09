@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Html Dom教程</title>
+</head>
+<body>
+    <div id="firstBlood">
+        <p>走着走着就散了</p>
+        <img src="sda.jpg" alt="a">
+        <input type="text" value="" placeholder="">
+    </div>
+    <script type="text/javascript">
+        var d = document.getElementById("firstBlood").innerHTML;
+        console.info(d);
+        console.info(d.firstChild.nodeValue);
+        console.info(d.lastChild.nodeName+"================"+ d.lastChild.nodeValue);
+    </script>
+</body>
+</html>

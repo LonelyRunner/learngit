@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>手机列表</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../css/bootstrap-responsive.css"/>
+</head>
+<body ng-app="tableModelApp">
+    <div ng-controller="tableModelController">
+        <table class="table table-striped">
+           <th>
+                <td>编号</td>
+                <td>名称</td>
+                <td>价格</td>
+                <td>添加</td>
+           </th>
+            <tr ng-repeat="phone in phones">
+                <td>{{phone.id}}</td>
+                <td>{{phone.name}}</td>
+                <td>{{phone.price}}</td>
+                <td><button class="btn btn-primary">+</button></td>
+            </tr>
+        </table>
+        <label>BasketStar:</label>
+        <input type="text" placeholder="Leborn James"/>
+        <label>SoccerStar:</label>
+        <input type="text" ng-model="soccer"/>
+        <label>PingPangStar:</label>
+        <input type="text" value="张继科" disabled/>
+        <br>
+        <button class="btn btn-danger">Ri</button>
+        <button class="btn btn-info">BuRi</button>
+        <!--
+            <img class="img-rounded" src="../123.JPG" alt="圆角的"/>
+            <img class="img-circle" src="../123.JPG" alt="圆的"/>
+            <img class='img-polaroid' src="../123.JPG" alt="不知道的"/>
+        -->
+        <i class="glyphicon-music">当爱已成往事---张国荣</i>
+    </div>
+    <script type="text/javascript" src="../../js/common/angular.js"></script>
+    <script type="text/javascript" src="../../js/GuiFan/repeat_table.js"></script>
+</body>
+</html>

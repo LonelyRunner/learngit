@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.imooc.ssh.domain.Employee" table="employee">
+        <id name="eid" column="eid">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="ename" column="ename" length="20"></property>
+        <property name="gender" column="gender" length="20"></property>
+        <property name="birthday" column="birthday"></property>
+        <property name="joinDay" column="joinDay"></property>
+        <property name="username" column="username"></property>
+        <property name="password" column="password"></property>
+
+        <!-- 关联关系映射 -->
+        <many-to-one name="department" class="com.imooc.ssh.domain.Department" column="dno"></many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>边框背景应用背景图片</title>
+    <style type="text/css">
+        /** border-image有六大属性值，分别是：
+            图片地址border-image-source、
+            图片切片border-image-slice、
+            图片宽度border-image-width、
+            图片外凸border-image-outset、
+            图片重复border-image-repeat:stretch round repeat no-repeat...
+        */
+        .border_image{
+            margin: 0 auto;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 30px;
+            width: 450px;
+            border: 15px solid #ccc;
+            border-image: url(dog.png) 15 stretch;
+        }
+    </style>
+</head>
+<body>
+    <div class="border_image">
+        请为我镶上美丽的图片
+    </div>
+</body>
+</html>

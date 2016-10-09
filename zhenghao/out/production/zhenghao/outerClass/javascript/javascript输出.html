@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>---javascript---</title>
+    <script type="text/javascript">
+        /** document.getElementById("demo") 是使用 id 属性来查找 HTML 元素的 JavaScript 代码 */
+        function change() {
+            document.getElementById("demo").innerHTML = "我变了。。。";
+            document.getElementById("time").innerHTML = getCurrentDateAndTime();
+        }
+
+        /**  写到HTML文档中
+             请使用 document.write() 仅仅向文档输出写内容。
+             --如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖--
+         */
+        function getCurrentDateAndTime(){
+            return document.write(Date());
+        }
+        /** 写到控制台中 */
+        function add(){
+            var a = document.getElementById("addOne").value;
+            var b = document.getElementById("addTwo").value;
+            if(a && b){
+                document.getElementById("common").value = a*1+b*1;
+            }else{
+                alert("fuck "+Date());
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="demo">我是一个段落</div>
+    <button onclick="change()">改变上面div的内容</button>
+    <p id="time"></p>
+    <input type="text" id="addOne"/>
+    <span>+</span>
+    <input type="text" id="addTwo"/>
+    <button id="equal" onclick="add()">=</button>
+    <input type="text" id="common"/>
+</body>
+</html>

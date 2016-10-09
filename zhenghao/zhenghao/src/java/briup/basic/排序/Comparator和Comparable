@@ -1,0 +1,64 @@
+当需要排序的集合或数组不是单纯的数字类型时，通常可以使用
+Comparator或者Comparable，以简单的方式实现对象排序或自
+定义排序。
+
+1.Comparator
+强行对某个对象collection进行整体排序的比较函数，可以将Comparator传递给
+Collections.sort 或Arrays.sort.
+
+接口方法：int compare(Object o1 , Object o2);
+return -1;  o1 < o2
+return 0 ;  o1 = o2
+return 1 ;  o1 > o2
+
+
+2.Comparable
+强行对实现它的每个类的对象进行真题排序，实现此接口的对象列表
+(或数组)可以通过Collections.sort或Arrays.sort进行自动排序。
+
+接口方法：int CompareTo(Object o)
+return -1;  指定对象小于o
+return 0 ;  指定对象等于o
+return 1 ;  指定对象大于o
+
+
+/**************************************start---Comparable和Comparator的比较---start*************************************/
+
+    *  一个类实现了Comparable接口则表明这个类的对象之间是可以相互比较的，这个类对象组成的集合就可以直接使用sort方法排序
+    *  Comparator可以看成是一种算法的实现，将算法和数据分离
+    *
+    *  关于引用数据类型的排序（自然排序和客户化排序）：
+    *  1.对象本身实现Comparable接口,那么该类的实例就是可以排序的（实现其comparTo()方法）.
+    *      只要实现了Comparable接口,就可以调用Collections的sort方法对集合中的元素排序.
+    *  2.实现Comparator接口的一个实例也可以实现排序功能.
+    *  看一下Comparator的全部内容:
+    *  public interface Comparator {
+    *       int compare(Object o1, Object o2);
+     *      boolean equals(Object obj);
+    *  }
+    *  定义了两个方法,我们一般都只需要实现compare方法。 为什么呢？  因为所有自定义类默认extends Object,而Object中已经将equals()实现
+    *  Comparator一般都作为一个匿名类出现,对于没有实现Comparable的对象的集合,排序的时候 需要指定一个Comparator.
+    *  这里举例说明  对于实现了Comparable的类（自然排序）我们就用最简单的Integer
+    *  List list=new ArrayList();
+    *  list.add(new Integer(3));
+    *  list.add(new Integer(53));
+    *  list.add(new Integer(34)); 
+    *  Collections.sort(list); 
+    *  对于没有实现Comparable的,我们就用Object,按照hashCode大小来排序. 
+    *  List list= new ArrayList(); 
+    *  list.add(new Object()); 
+    *  list.add(new Object()); 
+    *  list.add(new Object()); 
+    *  Collections.sort(list,new Comparator(){ 
+    *      public int compare(Object o1, Object o2){ 
+    *                      return (o1.hashCode()-o2.hashCode());                 
+    *  }) 
+    *  这里定义了一个排序规则，以匿名类的形式出现，当然你也可以定义一个自定义的类实现Comparator， 这样这个“排序规则”就能得以保存。 
+    *  那Comparable 和 Comparator 接口有什么区别呢？ 
+    *  “白话文”的解释：用自定义类实现Comparable接口，那么这个类就具有排序功能，Comparable和具体你要进行排序的类的实例邦定。
+    *  而Comparator比较灵活，它没有和任何类绑定，实现它的自定义类仅仅定义了一种排序方式或排序规则。
+    *  不言而喻，这种方式比较灵活。我们的要排序的类可以分别和多个实现Comparator接口的类绑定，从而达到可以按自己的意愿实现按多种方式排序的目的。
+    *  Comparable——“静态绑定排序”,
+    *  Comparator——“动态绑定排序”
+
+/****************************************end---Comparable和Comparator的比较---end***************************************/

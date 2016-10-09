@@ -1,0 +1,4 @@
+常见的分页实现方式：
+    1.使用List接口中subList(int startIndex,int endIndex) 实现分页
+    2.直接使用数据库SQL语句实现分页
+    3.使用Hibernate框架结构实现跨数据库的分页

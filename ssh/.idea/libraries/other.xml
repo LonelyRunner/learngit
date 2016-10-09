@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="other">
+    <CLASSES>
+      <root url="jar://F:/SSHjar包/SSH项目所需要的全部jar包/jta-1.1.jar!/" />
+      <root url="jar://F:/SSHjar包/SSH项目所需要的全部jar包/commons.collections_3.2.0.jar!/" />
+      <root url="jar://F:/SSHjar包/SSH项目所需要的全部jar包/slf4j-log4j12-1.7.5.jar!/" />
+      <root url="jar://F:/SSHjar包/SSH项目所需要的全部jar包/slf4j-api-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于treeTable</title>
+    <link rel="stylesheet" href="jquery.treeTable.css">
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="jquery.treeTable.js"></script>
+    <script type="text/javascript">
+        $("#example-basic-static").treetable({ expandable: true });
+    </script>
+</head>
+<body>
+    <table id="example-basic-static">
+        <tr data-tt-id="1">
+            <td>Parent</td>
+        </tr>
+        <tr data-tt-id="1-1" data-tt-parent-id="1">
+            <td>Child</td>
+        </tr>
+        <tr data-tt-id="2">
+            <td>Parent</td>
+        </tr>
+        <tr data-tt-id="2-1" data-tt-parent-id="2">
+            <td>Child</td>
+        </tr>
+    </table>
+</body>
+</html>

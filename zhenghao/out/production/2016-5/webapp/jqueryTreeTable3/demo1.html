@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jquery tree table demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <link href="css/jquery.treeTable1.css" rel="stylesheet" type="text/css"/>
+    <script src="javascripts/jquery.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.treeTable1.js" type="text/javascript"></script>
+    <style>
+        td,th{border:1px solid;}
+    </style>
+    <script>
+        //treeColumn：0表示表格第二列显示树形结构。但是会影响此表单之后的树形表单显示
+        $(function(){
+            $("#tree_table").treeTable(
+                    {
+                        expandable:true,
+                        clickableNodeNames:true,
+                        childPrefix:'child-of-',
+                        treeColumn:1
+                    }
+            );
+        });
+    </script>
+</head>
+<body>
+<table id="tree_table" width="300px">
+    <tbody>
+        <tr id="node-a">
+            <td>第一级1</td>
+            <td>&nbsp;&nbsp;操作</td>
+            <td>&nbsp;&nbsp;操作</td>
+        </tr>
+        <tr id="node-b" class="child-of-node-a">
+            <td>第二级</td>
+            <td>&nbsp;&nbsp;操作</td>
+            <td>&nbsp;&nbsp;操作</td>
+        </tr>
+        <tr id="node-c" class="child-of-node-b">
+            <td>第三级</td>
+            <td>&nbsp;&nbsp;操作</td>
+            <td>&nbsp;&nbsp;操作</td>
+        </tr>
+        <tr id="node-d" class="child-of-node-c">
+            <td>第四级</td>
+            <td>&nbsp;&nbsp;操作</td>
+            <td>&nbsp;&nbsp;操作</td>
+        </tr>
+        <tr id="node-e" class="child-of-node-d">
+            <td>第五级</td>
+            <td>&nbsp;&nbsp;操作</td>
+            <td>&nbsp;&nbsp;操作</td>
+        </tr>
+        <tr id="node-f">
+            <td>第一级2</td>
+            <td>&nbsp;&nbsp;操作</td>
+            <td>&nbsp;&nbsp;操作</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+</body>
+</html>

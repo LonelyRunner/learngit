@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>js中的获取值和设置值</title>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var innerHtml1 = $(".s1").html();
+            var innerHtml2 = $(".s1").text();
+            console.info(innerHtml1);
+            console.info(innerHtml2);
+            $("#div1").html(innerHtml1);
+            $("#div2").text(innerHtml2);
+            /** html会过滤掉html标签  text不会过滤 */
+            /**在jQuery中通过val()方法实现获取元素 
+             * 如果不带参数val，是获取某元素的值；反之，则是将参数val 的值赋给某元素，即设
+             * 置元素的值。该方法常用于表单中获取或设置对象的值。
+             * 另外，通过val() 方法还可以获取select 标记中的多个选项值，其语法格式如下所示：
+             * val().join(",")
+             * */
+//            $("#selectOne").change(function(){
+//                var a = $("#selectOne").val().join(",");
+//                $("p").html(a);
+//            });
+            /** val()中的参数还可以是数组形式 将value为radio1 radio2的单选按钮选中 */
+            $("input[type='radio']").val(["radio1","radio2"]);
+         });
+    </script>
+</head>
+<body>
+    <span class="s1" align="center"><font size="14" face="楷体">Write your dream!</font></span>
+    <div id="div1"></div>
+    <div id="div2"></div>
+
+    <select name="" id="selectOne">
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="南京">南京</option>
+        <option value="太原">太原</option>
+    </select>
+    <p></p>
+    <input type="radio" value="radio1">
+    <input type="radio" value="radio2">
+    <input type="radio" value="radio3">
+
+<!-- /**
+    函数$(html) 只完成DOM 元素创建，加入到页面还需要通过元素节点的插入或追加操
+    作；同时，在创建DOM 元素时，要注意字符标记是否完全闭合，否则达不到预期效果。
+*/ -->
+</body>
+</html>

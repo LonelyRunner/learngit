@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>随机显示图片</title>
+    <style type="text/css">
+        body{font-size:12px}
+        .clsSpn{float:left;padding-top:10px;padding-left:10px}
+        .clsImg{border:solid 1px #ccc;padding:3px;float:left}
+    </style>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        /** 运用attr属性的function() 方法实现图片的随机展示 */
+        $(function(){
+           $("img").attr("src",function(){
+               return Math.floor(Math.random()*2+1)+".jpg";
+           });
+            $("img").attr("title","这是一道风景画");
+            $("img").addClass("clsImg");
+        });
+    </script>
+</head>
+<body>
+    <img src="1.jpg" alt="这是一张风景画"/>
+</body>
+</html>

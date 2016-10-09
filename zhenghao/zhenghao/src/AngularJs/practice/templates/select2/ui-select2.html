@@ -1,0 +1,14 @@
+<div ng-controller="Select2Controller">
+    <div>
+        <span>{{orderDrugInfo.drugName}}</span>
+        <span>
+            <select id="frequency" ng-model="orderDrugInfo.frequency"  ui-select2="{allowClear:true}" class="input-medium">
+                <option value=""></option>
+                <option value="{{ frequencyDict.codeName }}" ng-repeat="frequencyDict in frequencyDictList">{{ frequencyDict.codeName }}
+                </option>
+            </select>
+        </span>
+        <span><input ui-select2="drugDecoctionOpts"  ng-model="orderDrugInfo.administration"/></span>
+    </div>
+    <div>{{orderDrugInfo}}</div>
+</div>

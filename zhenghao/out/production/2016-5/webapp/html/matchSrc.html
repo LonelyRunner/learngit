@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>匹配所有图片的src</title>
+</head>
+<body>
+    <div id="div1">
+        <img src="1.jpg">
+        <img src="2.jpg">
+        <img src="3.jpg">
+    </div>
+    <script type="text/javascript">
+        var str = '<img src="1.jpg"><img src="2.jpg"><img src="3.jpg">';
+        var reg = /src="(\w+\.\w+)"/g;
+        var arr = reg.exec(str);
+        console.info(arr);
+    </script>
+</body>
+</html>

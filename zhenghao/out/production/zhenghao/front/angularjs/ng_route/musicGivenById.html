@@ -1,0 +1,23 @@
+<div ng-controller="MusicGivenByIdController" class="page1">
+    <div class="third-one" style="margin-left:50px;width:500px">
+        <table>
+            <tr ng-repeat="lyric in lyrics1 track by $index">
+                <td>{{lyric}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="third-two" style="position: relative;height:360px;margin-left:550px;margin-top: -360px;width:500px;">
+        <table>
+            <tr ng-repeat="lyric in lyrics2 track by $index">
+                <td>{{lyric}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="third-three" style="position: relative;height:360px;margin-left:1050px;margin-top: -360px;width:500px;">
+        <table>
+            <tr ng-repeat="lyric in lyrics3 track by $index">
+                <td>{{lyric}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

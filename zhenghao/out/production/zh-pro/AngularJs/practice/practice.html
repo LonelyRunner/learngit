@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice</title>
+</head>
+<body>
+    <div class="practice-index">
+        <div class="template-group">
+            <h1 ng-click="showTemplateType('modal')">modal</h1>
+            <div ng-show="getTemplateShow('modal')" ng-include src="'templates/modal/modal.html'"></div>
+        </div>
+        <div class="template-group">
+            <h1 ng-click="showTemplateType('uiSelect2')">ui-select2</h1>
+            <div  ng-show="getTemplateShow('uiSelect2')" ng-include src="'templates/select2/ui-select2.html'"></div>
+        </div>
+        <div class="template-group">
+            <h1 ng-click="showTemplateType('table')">table</h1>
+            <div ng-show="getTemplateShow('table')" ng-include src="'templates/table/table.html'"></div>
+        </div>
+        <div class="template-group">
+            <h1 ng-click="showTemplateType('ngGrid')">ng-grid</h1>
+            <div ng-if="getTemplateShow('ngGrid')" ng-include src="'templates/grid/ng-grid.html'"></div>
+        </div>
+        <div class="template-group">
+            <h1 ng-click="showTemplateType('shortcuts')">shortcuts</h1>
+            <div ng-show="getTemplateShow('shortcuts')" ng-include src="'templates/shortcuts/shortcuts.html'"></div>
+        </div>
+        <div class="template-group">
+            <h1 ng-click="showTemplateType('enterloop')">enterloop</h1>
+            <div ng-show="getTemplateShow('enterloop')" ng-include src="'templates/enterloop/enter-loop.html'"></div>
+        </div>
+    </div>
+</body>
+</html>

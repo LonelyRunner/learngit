@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery UI 拖动（Draggable） - 默认功能</title>
+    <link rel="stylesheet" href="../../css/jquery-ui-1.10.4.custom.min.css"/>
+    <style type="text/css">
+        #draggable { width: 150px; height: 150px; padding: 0.5em; }
+    </style>
+    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#draggable").draggable();
+            $("#datePicker").datepicker();
+        });
+    </script>
+</head>
+<body>
+    <!-- 在任意的DOM元素上启用draggable功能。通过鼠标点击并在视区中拖动来移动draggable对象-->
+    <div id="draggable" class="ui-widget-content">
+        <p>请拖动我</p>
+    </div>
+    <p>日期: <input type="text" id="datePicker"/></p>
+</body>
+</html>

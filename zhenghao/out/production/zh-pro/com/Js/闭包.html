@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>js闭包</title>
+    <script type="text/javascript">
+        function outerFunc(){
+            var a = 0;
+            alert(a);
+        }
+        var a = 4;
+        outerFunc();
+        alert(a);
+
+        /** ------------========...没有var声明的是全局变量...========--------------- */
+        function outerFunc1(){
+            b = 0;
+            alert(b);
+            console.info("outerFunc1: "+b);
+        }
+        var b = 4;
+        outerFunc1();
+        alert(b);
+        console.info("外部: alert(b) = "+b);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

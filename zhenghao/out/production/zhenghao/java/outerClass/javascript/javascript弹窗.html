@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>---javascript---</title>
+    <script type="text/javascript">
+        /** 可以在 JavaScript 中创建三种消息框：警告框、确认框、提示框。*/
+        function func1(){
+            alert("It's same as sb!");
+        }
+
+        function func2(){
+            var r = confirm("Press a button");
+            if(r == true){
+                confirm("are you continuing?")
+            }else{
+                confirm("Yeah! a lonely Runner!");
+            }
+        }
+
+        function func3(){
+            var person = prompt("What's your name?","------");
+            if(person == "sb"){
+                var x = "Yeah ! you are just a son of bitch!";
+                console.info(x);
+            }else{
+               var  y = "No ! you ever are a sb!";
+                console.info(y);
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="func1()">弹出框</button>
+    <button onclick="func2()">确认框</button>
+    <button onclick="func3()">警告框</button>
+</body>
+</html>

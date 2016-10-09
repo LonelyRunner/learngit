@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js截取前两个字符</title>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("myController",["$scope",function($scope){
+            $scope.str = "";
+            $scope.str1 = "";
+            $scope.$watch("str",function(newValue,oldValue){
+                if(newValue){
+                    if($scope.str.length && $scope.str.length>6){
+                        $scope.str1 = $scope.str.substr(0,6);
+                    }
+                }
+            });
+
+        }]);
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <input type="text" ng-model="str" placeholder="please enter a string">
+        <input type="text" ng-model="str1" placeholder="show string six!">
+    </div>
+</body>
+</html>

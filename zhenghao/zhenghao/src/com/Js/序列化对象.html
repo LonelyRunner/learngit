@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用JSON来序列化对象</title>
+    <script type="text/javascript">
+        var o = {
+            age: 12,
+            hobbies: {
+                run: 'long',
+                ball: 'basketball'
+            },
+            gender: 'male'
+        };
+        /** 将对象转换为字符串 */
+        var s = JSON.stringify(o);
+        console.log(s);
+        /** 将字符串还原为对象 */
+        var p = JSON.parse(s);
+        console.info(p);
+
+        /** javaScript中的数组 join() 方法 */
+        var a = [1,2,3];
+        console.info(a.join());
+        console.info(a.join(" "));
+        console.log(a.join(" - "));
+        /** concat()方法 */
+        var b = [1,2,3];
+        var c = [4, 5];
+        console.info(b.concat(c));
+        /** slice 和 splice的区别
+         * slice  返回指定数组的一个片段或子数组
+         * splice 删除或者插入元素 */
+
+
+        /** 用递归方法求x的阶乘 */
+        function factorial(x){
+            if(x<=1){ return 1;}
+            return x*factorial(x-1);
+        }
+        console.info("递归调用的方法:"+factorial(0));
+    </script>
+</head>
+<body>
+    <span id="wait">我为什么  还在等待</span>
+</body>
+</html>

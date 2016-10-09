@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>隔离作用域</title>
+    <script type="text/javascript" src="../angular.js"></script>
+    <script type="text/javascript" src="detailOfDirective.js"></script>
+</head>
+<body ng-app="myApp">
+    <!------------------------------------Example1------------------------------------>
+    <!-- 具有隔离作用域的指令最主要的使用场景是创建可复用的组件，组件可以在未知上下文中使
+         用，并且可以避免污染所处的外部作用域或不经意地污染内部作用域。
+         创建具有隔离作用域的指令需要将scope属性设置为一个空对象{}
+         -->
+    <!--<div ng-controller="MainController">-->
+        <!--OutSide myDirective:{{myProperty}}-->
+        <!--<div my-directive>-->
+            <!--Inside myDirective:{{myProperty}}-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!------------------------------------Example2------------------------------------>
+    <!-- 上述代码与将scope设置为true是相同的 -->
+    <!--<div ng-init="myProperty='wow,this is cool'">-->
+        <!--Surrounding scope: {{ myProperty }}-->
+        <!--<div my-inherit-scope-directive></div>-->
+        <!--<div my-directive></div>-->
+    <!--</div>-->
+
+
+    <!-- 绑定策略 Example3 -->
+    <div ng-controller="studentController">
+        outerScope: {{student}}
+        <my-directive student></my-directive>
+    </div>
+</body>
+</html>

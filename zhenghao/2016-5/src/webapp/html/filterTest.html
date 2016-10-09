@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试filter</title>
+    <script type="text/javascript" src="../js/angular-min.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("myController",function($scope){
+            $scope.beans = [
+                {
+                    'name': 'Ari',
+                    'City': 'San Francisco',
+                    'favorite food': 'Pizza'
+                },
+                {
+                    'name': 'Nate',
+                    'City': 'San Francisco',
+                    'favorite food': 'indian food'
+                }
+            ];
+        });
+
+        myApp.filter("myFilter",function(){
+            return function(array){
+                var arry = [];
+                array.forEach(function(item){
+                    for(var i in item){
+                        if(item[i] === 'Pizza'){
+                            arry.push(item);
+                        }
+                    }
+                });
+                return arry;
+            }
+        });
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        {{beans | myFilter}}
+    </div>
+</body>
+</html>

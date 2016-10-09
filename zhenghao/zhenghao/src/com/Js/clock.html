@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular.http</title>
+    <style type="text/css">
+        .gridStyle{
+            margin-left : 50px;
+            width : 1500px;
+            height : 300px;
+        }
+    </style>
+    <link rel="stylesheet" href="ng-grid.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript" src="ng-grid.js"></script>
+    <script type="text/javascript">
+        angular.module("myApp",['ngGrid'])
+                .controller("myController",myController);
+        myController.$inject=["$scope","$http"];
+        function myController($scope,$http){
+            /** variable */
+            var operatorTemplate =
+                    '<div align="center"><input type="button" class="btn btn-primary" value="添加" ng-show="showOrHidden(row.rowIndex)" ng-click="addOneNewObj()">' +
+                    '<input type="button" class="btn btn-primary" value="删除" ng-click="deleteThisObj(row.rowIndex)"></div>';
+            $scope.dataList = [];
+            $scope.selectCountries = [];
+            $scope.gridOptions = {
+                i18n: 'zh-cn',
+                data: 'dataList',
+                enableColumnResize: true,
+                enableRowEditOnSelected: true,
+                enableRowSelection: true,
+                columnDefs: 'columnDefs'
+            };
+            $scope.columnDefs = [
+                {field:'Name',displayName:'名字'},
+                {field:'City',displayName:'城市'},
+                {field:'Country',displayName:'国家'},
+                {field:'',displayName:'操作',cellTemplate:operatorTemplate}
+            ];
+
+            /** method */
+            $scope.showOrHidden = showOrHidden;
+            $scope.showData = showData;
+            $scope.addOneNewObj = addOneNewObj;
+            $scope.deleteThisObj = deleteThisObj;
+            $scope.hiddenData = hiddenData;
+            $scope.selectByCountry = selectByCountry;
+
+            /** 显示数据  */
+            function showData(){
+                $("#selectCountry").removeAttr("disabled");
+                $http.get("index.json").then(function(response){
+                    $scope.dataList = angular.copy(response.data.records);
+                    $scope.dataList.forEach(function(item){
+                        $scope.selectCountries.push(item.Country);
+                    });
+                    $scope.selectCountries = unique1($scope.selectCountries);
+                });
+            }
+            /** 隐藏数据  */
+            function hiddenData(){
+                if($scope.dataList.length>0){
+                    $scope.dataList = [];
+                }else{
+                    alert("此时没有数据,该功能已失效!!!");
+                }
+            }
+            /** 控制添加按钮的显示或隐藏  */
+            function showOrHidden(index){
+                if(index===$scope.dataList.length-1){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            /** 添加按钮  新增一条对象  */
+            function addOneNewObj(){
+                $scope.dataList.push(new People());
+            }
+            /** 删除按钮  删除指定对象  */
+            function deleteThisObj(index){
+                $scope.dataList.splice(index,1);
+            }
+            /** People.class  */
+            function People(){
+                this.Name = "";
+                this.City = "";
+                this.Country = "";
+            }
+            /** 删除select框中的重复元素  */
+            function unique1(array){
+                var n = [];
+                for(var i = 0; i < array.length; i++){
+                    if (n.indexOf(array[i]) == -1) n.push(array[i]);
+                }
+                return n;
+            }
+            /** select框中元素变化  dataList中数据发生变化  筛选功能*/
+            function selectByCountry(country){
+                if(country){
+                    var resultList = [];
+                    $scope.dataList.forEach(function(item){
+                        if(item.Country===country){
+                            resultList.push(item);
+                        }
+                    });
+                    $scope.dataList = resultList;
+                    $("#selectCountry").attr("disabled","disabled");
+                }
+            }
+        }
+    </script>
+</head>
+<body ng-app="myApp">
+    <div class="page-header" align="center">
+        <h1>Example page header <small>Subtext for header</small></h1>
+    </div>
+    <div ng-controller="myController">
+        <div align="center">
+            <input type="button" class="btn btn-primary" id="showBtn" ng-click="showData()" value="点击显示数据">
+            <input type="button" class="btn btn-warning" id="hiddenBtn" ng-click="hiddenData()" value="点击隐藏数据">
+            <select id="selectCountry" class="form-search" ng-model="country" ng-change="selectByCountry(country)">
+                <option value=""></option>
+                <option value="{{country}}" ng-repeat="country in selectCountries track by $index">{{country}}</option>
+            </select>
+        </div>
+        <div class="gridStyle" ng-grid="gridOptions"></div>
+        <div class="alert alert-success" role="alert">Well done!</div>
+        <div class="alert alert-info" role="alert">Heads Up!</div>
+        <div class="alert alert-warning" role="alert">Warning!</div>
+        <div class="alert alert-danger" role="alert">Oh,Snap!</div>
+    </div>
+</body>
+</html>

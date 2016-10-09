@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="jquery.jqplot.min.css"/>
+    <title>显示坐标点</title>
+    <script type="text/javascript" src="../../js/common/jquery.js"></script>
+    <script type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.canvasOverlay.min.js"></script>
+    <script type="text/javascript" src="jqplot/plugins/jqplot.highlighter.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var plot1 = $.jqplot('chart1',[makeContinuousData(100,55)],{})
+        });
+    </script>
+</head>
+<body>
+    <div id="chart1"></div>
+</body>
+</html>

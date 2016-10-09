@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>time</title>
+</head>
+<body>
+
+    <button onclick="showTime()">开始计时</button>
+    <input type="text" id="currentTime">
+    <button onclick="stopShowTime()">停止计时</button>
+    <hr>
+    <button onclick="heatTime()">热火时刻</button>
+    <input type="text" id="heatTime">
+    <button onclick="stopHeatTime()">停止热火时刻</button>
+
+    <script type="text/javascript">
+        /** setTimeout */
+        var timeout;
+        function showTime(){
+            var date = new Date();
+            document.getElementById("currentTime").value = date;
+            timeout = setTimeout("showTime()",1000);
+        }
+
+        function stopShowTime(){
+            clearTimeout(timeout);
+        }
+
+        /** setInterval */
+        var interval;
+        function heatTime(){
+            var date = new Date();
+            document.getElementById("heatTime").value = date;
+            interval = setInterval(heatTime,1000);
+        }
+
+        function stopHeatTime(){
+            clearInterval(interval);
+        }
+    </script>
+</body>
+</html>

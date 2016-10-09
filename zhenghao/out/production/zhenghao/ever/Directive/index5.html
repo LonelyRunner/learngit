@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>chat表</title>
+    <script type="text/javascript" src="javascript/jquery.js"></script>
+    <script type="text/javascript" src="javascript/jquery.jqplot.min.js"></script>
+    <!--<script type="text/javascript" src="javascript/chart.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var l2 = [11, 9, 5, 12, 14];
+            var l3 = [4, 8, 5, 3, 6];
+            var l4 = [12, 6, 13, 11, 2];
+            var plot1b = $.jqplot('chart1b',[l2, l3, l4],{
+                //如果置为true并且有多个分类（如果是折线图，就必须多于一条折线）， 那么每个分类（折线）
+                //在纵轴上的值为其前所有分类纵轴值总和与其纵轴值相加值
+                stackSeries: true,
+                //设置当前图的标题
+                title:{
+                    text:"jqplot_first",      //标题名称
+                    show:true                  //标题是否显示
+                },
+                showMarker: false,
+                //如果有多个分类，可以通过该配置属性设置各个分类的公共属性
+                seriesDefaults: {
+                    fill: true,
+                    label:'red',
+                    label:'orange',
+                    label:'yellow'
+                },
+                axes: {
+                    xaxis: {
+                        //设置横纵轴上数据加载的渲染器
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        //社会横纵轴坐标的刻度上的值
+                        ticks: ["Mon", "Tue", "Wed", "Thr", "Fri"]
+                    }
+                }
+            });
+            $('#chart1b').bind('jqplotDataHighlight',
+                    function (ev, seriesIndex, pointIndex, data) {
+                        $('#info1b').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+                    });
+            $('#chart1b').bind('jqplotDataUnhighlight',
+                    function (ev) {
+                        $('#info1b').html('Nothing');
+                    });
+        });
+    </script>
+</head>
+<body>
+<!--
+    <div id="chartdiv" style="height:300px;width:300px; "></div>
+-->
+    <div id="chart1b" style="height:300px;width:300px;">
+        <div id="info1b"></div>
+    </div>
+</body>
+</html>

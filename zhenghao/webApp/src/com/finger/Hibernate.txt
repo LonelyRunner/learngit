@@ -1,0 +1,10 @@
+操作hibernate的关键语句
+
+Configuration config = new Configuration();
+config.configure();
+SessionFactory sf = config.buildSessionFactory();
+Session session = sf.openSession();
+Transaction trans - session.beginTransaction();
+session.save();
+trans.commit();
+session.close();

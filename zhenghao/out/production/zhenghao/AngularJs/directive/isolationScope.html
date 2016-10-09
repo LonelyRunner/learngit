@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>isolationScope</title>
+</head>
+<body>
+
+<div ng-controller="myController">
+    <div>
+        <h1>myDirective1</h1>
+        <my-directive1></my-directive1>
+        <div my-directive1></div>
+        <div class="my-directive1"></div>
+    </div>
+    <div>
+        <h1>myDirective2</h1>
+        <my-directive2></my-directive2>
+        <div my-directive2></div>
+        <div class="my-directive2"></div>
+    </div>
+</div>
+<script src="../angular-min.js"></script>
+<script type="text/javascript">
+    var myAppModule = angular.module("myApp", []);
+    myAppModule
+            .controller('myController', function ($scope) {
+
+            })
+            .directive("myDirective1", function () {
+                return {
+                    restrict: 'AE',
+                    template: '<div><input type="text" ng-model="username"/>{{username}}</div><br>'
+                };
+            })
+            .directive("myDirective2", function () {
+                return {
+                    restrict: 'AE',
+                    scope:{},
+                    template: '<div><input type="text" ng-model="username"/>{{username}}</div><br>'
+                };
+            });
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript for...in 循环</title>
+    <script type="text/javascript">
+        /**
+         for (variablename in object){
+             statement or block to execute
+         }
+        从对象每次迭代一个属性分配给变量名(variablename)，这个循环持续到该对象的所有属性都用尽。
+         * */
+        var aNavigator;
+        for(aNavigator in navigator){
+            document.write(aNavigator);
+            document.write("<br>");
+        }
+
+        var people = {
+            name: '123',
+            age: 123,
+            gender: 'male'
+        };
+        for(var a in people){
+            console.info(people[a]);
+        }
+        var terrible = (function(a){return a*a;}(10));
+        console.info("直接给变量赋值函数表达式  并直接获取结果="+terrible);
+    </script>
+</head>
+<body>
+    <input type="text" id="name" value="">
+    <button onclick="violate()">验证</button>
+
+    <script type="text/javascript">
+        var name = document.getElementById("name").value();
+        console.info(name);
+        function violate(){
+            if(name.length>10){
+                alert("输入长度大于10");
+            }
+        }
+    </script>
+</body>
+</html>

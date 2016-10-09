@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+    <!-- setter 方法注入 -->
+    <!--<bean id="injectionServiceImpl" class="com.zh.service.InjectionServiceImpl">-->
+        <!--<property name="injectionDao" ref="injectionDaoImpl"></property>-->
+    <!--</bean>-->
+
+    <!-- constructor 方法注入 -->
+    <bean id="injectionService" class="com.zh.service.InjectionServiceImpl">
+        <constructor-arg name="injectionDao" ref="injectionDaoImpl"></constructor-arg>
+    </bean>
+
+    <bean id="injectionDaoImpl" class="com.zh.dao.InjectionDaoImpl"></bean>
+</beans>

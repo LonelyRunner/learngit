@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Angular</title>
+</head>
+
+<body>
+<div ng-controller="ParentController">
+    <p>
+        计数:{{parentCount}}
+    </p>
+    <div ng-controller="MyController">
+        <p>
+            计数:{{myCount}}
+            <a ng-click="broadcast(1)">broadcast(1)</a>
+            <a ng-click="emit(1)">emit(1)</a>
+            <a ng-click="broadcast(2)">broadcast(2)</a>
+            <a ng-click="emit(2)">emit(2)</a>
+            <a ng-click="testFun()">testFun</a>
+        </p>
+        <div ng-controller="ChildController"  id="ChildController">
+            <p id="grandSon">
+                计数:{{childCount}}
+            </p>
+        </div>
+    </div>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("ParentController",["$scope",function ($scope) {
+                $scope.parentCount = 0;
+                $scope.$on("addCount",function(event,data){
+                    $scope.parentCount+=data;
+                });
+            }])
+            .controller("MyController",["$scope", function ($scope) {
+                $scope.myCount = 0;
+                $scope.broadcast=function(num){
+                    $scope.$broadcast("addCount",num);
+                };
+                $scope.testFun=function (){
+                    alert(angular.element(ChildController).scope().childCount);
+                };
+                $scope.emit=function(num){
+                    $scope.$emit("addCount",num);
+                };
+                $scope.$on("addCount",function(event,data){
+                    $scope.myCount+=data;
+                    //event.stopPropagation();
+                    event.preventDefault();
+                })
+            }])
+            .controller("ChildController",["$scope", function ($scope) {
+                $scope.childCount = 0;
+                $scope.$on("addCount",function(event,data){
+                    if(event.defaultPrevented){
+                        return
+                    }
+                    $scope.childCount+=data;
+                })
+            }])
+</script>
+</body>
+</html>

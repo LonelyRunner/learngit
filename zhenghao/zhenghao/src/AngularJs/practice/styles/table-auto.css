@@ -1,0 +1,30 @@
+/*-----------------------table自动对齐 start 张丽敏20160327------------------------------*/
+table{
+    width:100%;
+    max-width: 100%;
+
+}
+.hr-table-header-div{
+    position: relative;
+}
+.hr-div-th{
+    overflow-y:scroll;
+}
+.hr-span-th{
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    right: 0;
+    top: 0;
+    border-left: 0;
+    position:absolute;
+}
+.hr-table-content-div {
+    /*height:202px;*/
+    overflow-y: scroll;
+    background-color: #FFF;
+    border-top: none;
+    margin-top: -1px;
+}
+
+/*-----------------------table自动对齐 end张丽敏20160327------------------------------*/

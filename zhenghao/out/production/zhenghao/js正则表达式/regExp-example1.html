@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式实例1</title>
+    <script type="text/javascript">
+        /** 创建一个正则表达式  匹配一切以s结尾的字符串*/
+        var pattern = /s$/;
+        /** 以创建对象的方式创建一个正则表达式 */
+        var pattern1 = new RegExp("s$");
+
+        /** 匹配字符类-----start-------------*/
+        //将直接量字符放进方括号内就组成了字符类
+        //1.0  匹配a-z,A-Z,0-9之间的所有字符
+        var pattern_char = /[a-zA-Z0-9]/;
+        /** 匹配字符类------end--------------*/
+
+        /** 重复----------start-------------*/
+        //{n,m}匹配前一项至少出现n次 最多出现m次
+        //? 0-1   + 1-多  * 0-多
+        //2.0  匹配至少2个 最多5个数字
+        var pattern_repeat = /\d{2,5}/;
+        /** 重复------------end-------------*/
+        /** 用于模式匹配的String方法 */
+        //method 1 String.search(RegExp);  返回第一个与之匹配的子串的起始位置  如果找不到   则返回-1
+        var i = "JavaScript".search(/script/i);
+        console.info(i);
+        //method 3 String.match(RegExp)  返回的是一个由匹配结果组成的数组
+        var str1 = "157 plus 2 equals 3!";
+        var arr = str1.match(/\d+/g);
+        console.info("---------array------------");
+        console.info(arr);
+        console.info("---------array------------");
+
+        //method 4 String.split()   将String拆分成一个子串组成的数组
+        var str2 = "1, 2, 3, 4, 5, 6";
+        var arr1 = str2.split(/\s*,\s*/);
+        console.info("---------array------------");
+        console.info(arr1);
+        console.info("---------array------------");
+    </script>
+</head>
+<body>
+    <div>
+        <span id="tt">JavaScript is JAVASCRIPT knowledge !It's very  useful!</span>
+    </div>
+    <script type="text/javascript">
+        //method 2 replace()   用于执行检索与替换操作
+        var text = document.getElementById("tt").innerHTML;
+        console.info(text);
+        //将所有不区分大小写的javascript替换成大小写正确的JavaScript
+        var text1 = text.replace(/javascript/gi,"JavaScript");
+        console.info(text1);
+    </script>
+</body>
+</html>

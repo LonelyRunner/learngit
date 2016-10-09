@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下班倒计时</title>
+</head>
+<body>
+    <span>下班倒计时</span> <br>
+    <span id="surplusTime"></span>
+
+    <script type="text/javascript">
+        addTime();
+        function addTime(){
+            var nowTime = new Date();
+            var month = nowTime.getMonth()+1;
+            var date = nowTime.getDate();
+            var str = '2016-'+month+'-'+date+' 17:30:00';
+            console.info(str);
+            var fiveDianBan = new Date(str);
+            var cha = fiveDianBan - nowTime;
+            var hours = parseInt(cha/3600000);
+            var minutes = parseInt((cha-hours*3600000)/60000);
+            var seconds = parseInt((cha-hours*3600000-minutes*60000)/1000);
+            document.getElementById("surplusTime").innerHTML = hours+"小时"+minutes+"分"+seconds+"秒";
+//
+            setTimeout(addTime,1000);
+        }
+
+    </script>
+</body>
+</html>

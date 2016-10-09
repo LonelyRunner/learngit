@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 中的Stringify 方法</title>
+    <script type="text/javascript">
+        var person = {
+            name: '牛萌狗',
+            age: 12
+        };
+
+        console.info(JSON.stringify(person));
+
+        var Cow = function(){
+            return {
+                name: '牛',
+                name1: 'zhu',
+                name2: 'sb'
+            }
+        };
+
+        var cow1 = new Cow();
+        var cow2 = new Cow();
+        console.info(cow1);
+        console.info(cow2);
+        if(cow1===cow2){
+            console.info("两牛===");
+        }else{
+            console.info("两牛不===");
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

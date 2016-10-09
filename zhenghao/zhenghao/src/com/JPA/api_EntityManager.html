@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <!-- JPA 操作 -->
+    JavaEE 5.0中所定义的JPA接口个数并不多，它们位于javax.persistence和javax.persistence.spi两个包中。 javax.persistence包中大部分API都是注解类，除此之外还包括EntityManager、Query等持久化操作接口。而 javax.persistence.spi包中的4个API，是JPA的服务层接口。下面，我们就来认识一下这些重要的接口。 EntityManager的类型实体对象由实体管理器进行管理，JPA使用javax.persistence.EntityManager代表实体管理器。实体管理器和持久化上下文关联，持久化上下文是一系列实体的管理环境，我们通过EntityManager和持久化上下文进行交互。
+    有两种类型的实体管理器： 容器型：容器型的实体管理器由容器负责实体管理器之间的协作，在一个JTA事务中，一个实体管理器的持久化上下文的状态会自动广播到所有使用EntityManager的应用程序组件中。Java EE应用服务器提供的就是管理型的实体管理器； 应用程序型：实体管理器的生命周期由应用程序控制，应用程序通过javax.persistence.EntityManagerFactory的createEntityManager创建EntityManager实例。
+    EntityManager的创建过程
+    javax.persistence.spi.PersistenceProvider接口由JPA的实现者提供，该接口由启动者调用，以便创建一个EntityManagerFactory实例。它定义了创建一个EntityManagerFactory实例的方法：
+    EntityManagerFactorycreateContainerEntityManagerFactory(PersistenceUnitInfo info, Map map)
+    javax.persistence.spi.PersistenceUnitInfo入参提供了创建实体管理器所需要的所有信息，这些信息根据JPA的规范，必须放置在META-INF/persistence.xml文件中。
+    PersistenceUnitInfo接口拥有了一个void addTransformer(ClassTransformer transformer)方法，通过该方式可以添加一个javax.persistence.spi.ClassTransformer，并通过 PersistenceProvider开放给容器，以便容器在实体类文件加载到JVM之前进行代码的增强，使元数据生效。JPA厂商负责提供 ClassTransformer接口的实现。
+    实体的状态
+    实体对象拥有以下4个状态，这些状态通过调用EntityManager接口方法发生迁移：
+    新建态：新创建的实体对象，尚未拥有持久化主键，没有和一个持久化上下文关联起来。受控态：已经拥有持久化主键并和持久化上下文建立了联系； 游离态：拥有持久化主键，但尚未和持久化上下文建立联系； 删除态：拥有持久化主键，已经和持久化上下文建立联系，但已经被安排从数据库中删除。
+    EntityManager 的API
+    下面是EntityManager的一些主要的接口方法：
+    void persist(Object entity)
+    通过调用EntityManager的persist()方法，新实体实例将转换为受控状态。这意谓着当persist ()方法所在的事务提交时，实体的数据将保存到数据库中。如果实体已经被持久化，那么调用persist()操作不会发生任何事情。如果对一个已经删除的实体调用persist()操作，删除态的实体又转变为受控态。如果对游离状的实体执行persist()操作，将抛出 IllegalArgumentException。
+    在一个实体上调用persist()操作，将广播到和实体关联的实体上，执行相应的级联持久化操作；
+    void remove(Object entity)
+    通过调用remove()方法删除一个受控的实体。如果实体声明为级联删除(cascade=REMOVE 或者cascade=ALL )，被关联的实体也会被删除。在一个新建状态的实体上调用remove()操作，将被忽略。如果在游离实体上调用remove()操作，将抛出 IllegalArgumentException，相关的事务将回滚。如果在已经删除的实体上执行remove()操作，也会被忽略；
+    void flush()
+    将受控态的实体数据同步到数据库中；
+    T merge(T entity)
+    将一个游离态的实体持久化到数据库中，并转换为受控态的实体；
+    T find(Class entityClass, Object primaryKey)
+    以主键查询实体对象，entityClass是实体的类，primaryKey是主键值，如以下的代码查询Topic实体：
+    Topic t = em.find(Topic.class,1);
+    Query createQuery(String qlString)
+    根据JPA的查询语句创建一个查询对象Query，如下面的代码：
+    Query q= em.createQuery(""SELECT t FROM Topic t
+    WHERE t.topicTitle LIKE :topicTitle")");
+    Query createNativeQuery(String sqlString)
+    使用本地数据库的SQL语句创建一个Query对象，Query通过getResultList()方法执行查询后，返回一个List结果集，每一行数据对应一个Vector。
+    Query
+    JPA使用javax.persistence.Query接口代表一个查询实例，Query实例由EntityManager通过指定查询语句构建。该接口拥有众多执行数据查询的接口方法：
+    ◆Object getSingleResult()：执行SELECT查询语句，并返回一个结果； ◆List getResultList() ：执行SELECT查询语句，并返回多个结果； ◆Query setParameter(int position, Object value)：通过参数位置号绑定查询语句中的参数，如果查询语句使用了命令参数，则可以使用Query setParameter(String name, Object value)方法绑定命名参数； ◆Query setMaxResults(int maxResult)：设置返回的最大结果数； ◆int executeUpdate()：如果查询语句是新增、删除或更改的语句，通过该方法执行更新操作；
+</body>
+</html>

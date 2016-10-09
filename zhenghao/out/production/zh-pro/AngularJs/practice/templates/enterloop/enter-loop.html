@@ -1,0 +1,24 @@
+<div ng-controller="EnterLoopController" class="enter-loop-index">
+    <div class="span">
+        <input type="text" id="input1" enter-loop="1" enterindex="1" select2-open="true"
+               placeholder="请输入ID查询" ng-model="search" autoselect/>
+    </div>
+    <div class="span">
+        <input type="text" enter-loop="1" enterindex="2" class="input-time" placeholder="执行时间" ng-model="startDateTime"
+               hr-date-time="dateOptions1"/>
+
+    </div>
+    <div class="span">
+        <input type="text" id="input3" enter-loop="1" enterindex="3" ng-model="input2" enter-option="focusInput5(input2)"/>
+    </div>
+    <div class="span">
+        <select ui-select2 style="width: 200px" id="input4" enter-loop="1" enterindex="4">
+            <option value="{{ item.id }}" ng-repeat="item in select2Options">{{ item.text }}</option>
+        </select>
+    </div>
+    <div class="span">
+        <select ui-select2 style="width: 200px" id="input5">
+            <option value="{{ item.id }}" ng-repeat="item in select2Options">{{ item.text }}</option>
+        </select>
+    </div>
+</div>

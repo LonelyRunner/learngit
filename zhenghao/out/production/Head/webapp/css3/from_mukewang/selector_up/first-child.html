@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后代选择器</title>
+    <style type="text/css">
+        a{
+            text-decoration: none;
+        }
+        ul>li:first-child{
+            background: orange;
+        }
+        ul>li:last-child{
+            background: darkseagreen;
+        }
+        ul>li:nth-child(3){
+            background: darkcyan;
+        }
+        /** 最后三个 */
+        ul>li:nth-last-child(3){
+            font-size: 18px;
+        }
+        /** 匹配父元素下的第一个li类型 指定了元素的类型,其主要用来定位一个父元素下的某个类型的第一个子元素*/
+        ul>li:first-of-type{
+            font: 20px bold;
+        }
+        .aa{
+            width: 300px;
+            height: 30px;
+        }
+
+        ul>li:nth-of-type(odd),
+        ul>div:nth-of-type(even){
+            font-style: oblique;
+        }
+
+        ul>li:last-of-type,ul>div:last-of-type{
+            border: 1px solid red;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        /** nth-last-of-type:选择器是一样的，选择父元素中指定的某种子元素类型，但它的起始方向是从最后一个子元素开始
+            :nth-last-of-type(3) 选择器将容器"div.wrapper"中的倒数第三个span border设置成圆角
+        */
+        ul>span:nth-last-of-type(3){
+            border: 1px solid orange;
+            border-radius: 10px;
+        }
+
+        /** only-child : 来控制仅有一个子元素的背景样式 */
+        form input:only-child{
+            border: 2px solid orange;
+            box-shadow: 2px 2px 2px red;
+        }
+
+        /** only-of-type 是表示一个元素他有很多个子元素，而其中只有一种类型的子元素是唯一的，
+                         使用":only-of-type"选择器就可以选中这个元素中的唯一一个类型子元素。*/
+        form > input:only-of-type{
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="">firstBlood</a></li>
+        <li><a href="">doubleKill</a></li>
+        <li><a href="">tribleKill</a></li>
+        <li><a href="">quardrawKill</a></li>
+        <li><a href="">pentaKill</a></li>
+        <div class="aa">1233232</div>
+        <div class="aa">1233232</div>
+        <div class="aa">1233232</div>
+        <div class="aa">1233232</div>
+        <div class="aa">1233232</div>
+        <span>a</span>
+        <span>b</span>
+        <span>c</span>
+        <span>d</span>
+    </ul>
+
+    <form action="">
+        <input type="text" class="bb">
+        <a href="">hello</a>
+        <a href="">hello</a>
+    </form>
+    <br>
+    <form action="">
+        <input type="text" class="bb">
+        <input type="text" class="bb">
+        <input type="text" class="bb">
+    </form>
+</body>
+</html>

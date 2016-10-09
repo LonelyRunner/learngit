@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="directiveApp">
+<head>
+    <meta charset="UTF-8">
+    <title>关于指令 about directive</title>
+    <script type="text/javascript" src="../js/angular-min.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+</head>
+<body>
+    <div ng-controller="directiveController">
+        <input type="text" ng-model="color">
+        <input type="text" ng-model="webSite">
+        <input type="text" ng-model="books">
+        <my-directive color="{{color}}" link="webSite" books="books">
+
+        </my-directive>
+    </div>
+</body>
+</html>

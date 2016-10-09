@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>发件人</th>
+        <th>主要内容</th>
+        <th>发送日期</th>
+        <th>是否已读</th>
+        <th>是否删除</th>
+    </tr>
+    <tr ng-repeat="email in emailList">
+        <td>{{email.sender}}</td>
+        <td>{{email.content}}</td>
+        <td>{{email.rDate}}</td>
+        <td><input type="checkbox"/></td>
+        <td><button type="button" ng-click="deleteEmail($index)" class="glyphicon glyphicon-trash"></button></td>
+    </tr>
+</table>

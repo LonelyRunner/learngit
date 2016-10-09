@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="expanderModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>指令练习</title>
+    <link rel="stylesheet" href="css/index3.css"/>
+</head>
+<body ng-controller="someController">
+    <accordion>
+        <expander class="expander" ng-repeat="expander in expanders" expander-title="expander">
+            {{expander.text}}
+        </expander>
+    </accordion>
+
+    <script type="text/javascript" src="javascript/angular.js"></script>
+    <script type="text/javascript" src="javascript/index3.js"></script>
+</body>
+</html>

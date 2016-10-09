@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>treeTable1</title>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="jquery.treeTable.js"></script>
+    <link rel="stylesheet" href="jquery.treeTable.css">
+    <script type="text/javascript">;
+        var options = {};
+        $("#id").treeTable(options);
+    </script>
+</head>
+<body>
+    <span style="font-size: small;">
+        <table id="id">
+            <tr id="1"><td>1</td></tr>
+            <tr id="2" pId="1"><td>2</td></tr>
+            <tr id="3" pId="1"><td>3</td></tr>
+            <tr id="4" pId="3"><td>4</td></tr>
+        </table>
+    </span>
+</body>
+</html>

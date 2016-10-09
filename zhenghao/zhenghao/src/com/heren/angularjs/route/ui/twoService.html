@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TwoControllerApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../javascript/common/angular.js"></script>
+    <script type="text/javascript" src="../javascript/twoController.js"></script>
+</head>
+<body>
+    <div ng-controller="AController">
+        <span ng-bind="twoService"></span>
+        <button ng-click="addNewData()">添加</button>
+    </div>
+    <div ng-controller="BController">
+        <span ng-bind="b"></span>
+    </div>
+
+</body>
+</html>

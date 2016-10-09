@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+    <style type="text/css">
+        a{
+            text-decoration: none;
+        }
+        /** 以g结尾的类 */
+        a[class$='g']{
+            background-color: #33CC00;
+        }
+        a[class^='a']{
+            font-size:20px;
+        }
+        a[class*='g']{
+            font-family: 楷体;
+        }
+        /** :root等同于html */
+        :root{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <a href="" class="wang">我的颜色是绿色</a>
+    <a href="" class="ang">我的颜色是蓝色</a>
+    <a href="" class="ng">我的颜色是红色</a>
+    <a href="" class="wang">我的颜色是绿色</a>
+    <a href="" class="ang">我的颜色是蓝色</a>
+    <a href="" class="ng">我的颜色是红色</a>
+</body>
+</html>

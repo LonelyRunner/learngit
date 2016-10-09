@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>郑豪个性主页</title>
+    <script type="text/javascript" src="../common/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../common/angular.js"></script>
+    <script type="text/javascript" src="../common/angular-route.min.js"></script>
+    <script type="text/javascript" src="../common/ng-grid.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="../common/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/ng-grid.css">
+    <style type="text/css">
+        .introduceSelf {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: #7ab5d3;
+            line-height:24px
+        }
+        .music{
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: #bd362f;
+            line-height:24px
+        }
+        .page1{
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: #bd362f;
+            line-height:24px
+        }
+        .content{
+            height : 525px;
+        }
+        .td1 {
+            width: 150px;
+            text-align: center;
+        }
+        .footer{
+            height : 50px;
+            background-color: #CAE1FF;
+        }
+        .footer_span{
+            position : relative;
+            width : 300px;
+            margin-left : 600px;
+            top : 10px
+        }
+
+    </style>
+</head>
+<body ng-app="ZHIndexApp">
+    <div class="header">
+        <img src="2.jpg" alt="图片未加载,请刷新网页">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/introduceSelf" style="margin-left: 160px">自我简介</a>
+                    <a class="navbar-brand" href="#/imagesShow" style="margin-left: 160px">精选图片</a>
+                    <a class="navbar-brand" href="#/writeByHeart" style="margin-left: 160px">心灵随笔</a>
+                    <a class="navbar-brand" href="#/musicGiven" style="margin-left: 160px">音乐分享</a>
+                    <a class="navbar-brand" href="#/messageLeaven" style="margin-left: 160px">随手留言</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div ng-view></div>
+    </div>
+    <div class="footer">
+        <span class="footer_span">
+            Copyright © create in 2016.9.7 by ZH. All Rights Reserved
+        </span>
+    </div>
+</body>
+</html>

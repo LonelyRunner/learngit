@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Boring !</title>
+    <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        /* pow(x,y) x的y次幂 */
+        var n = 2;
+        console.log("Math.pow(2) is "+Math.pow(n,3));
+
+        /* round(x) x的取整 */
+        var TMD = 12.321;
+        console.info("Math.round(12.321) is "+Math.round(TMD));
+
+        /* 四舍五入保留两位小数 */
+        var a = 12.213;
+        function SW(x,y){
+            var x10 = Math.pow(10,y);
+            var result = Math.round(x*x10)/x10;
+            return result;
+        }
+        console.info("After NMB function,the result is "+SW(a,2));
+
+        $(function(){
+            $("span").each(function(index){
+                if($(this).html() == "苹果"){
+                    console.info("苹果对应的index is"+index);
+                    $(this).css('color','red');
+                }
+            });
+
+            /** $("p").html("<h1>日了狗了</h1>"); */
+            console.info($(".sb").position();
+        });
+
+    </script>
+    <style type="text/css">
+        .sb{
+            width:100px;
+            height:100px;
+            margin-left:100px;
+            margin-top:100px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <p class="center">Terrible Day! Fuck u!</p>
+    <span>苹果</span>
+    <span>橘子</span>
+    <span>香蕉</span>
+    <span>酥梨</span>
+    <span>黄瓜</span>
+    <div class="sb">
+
+    </div>
+</body>
+</html>

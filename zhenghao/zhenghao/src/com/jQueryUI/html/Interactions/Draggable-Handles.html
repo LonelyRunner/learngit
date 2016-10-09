@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery UI 拖动（Draggable） - Handles</title>
+    <link rel="stylesheet" href="../../css/jquery-ui-1.10.4.custom.min.css"/>
+    <style type="text/css">
+        #draggable, #draggable2 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+        #draggable p { cursor: move; }
+    </style>
+    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript">
+        /** 只有光标在draggable的指定部分上才允许拖拽。使用handle选项来指定用于拖拽对象的元素的jquery选择器*/
+        $(function(){
+            $("#draggable").draggable({handle:'p'});
+            $("#draggable2").draggable({cancel:'p.ui-widget-header'});
+            $("div,p").disableSelection();
+        });
+    </script>
+</head>
+<body>
+    <div id="draggable" class="ui-widget-content">
+        <p class="ui-widget-header">你只可以在这个范围内拖拽我</p>
+    </div>
+
+    <div id="draggable2" class="ui-widget-content">
+        <p>你可以把我向四周拖拽</p>
+        <!-- &hellip; 表示省略号 -->
+        <p class="ui-widget-header">&hellip;但是你不可以在这个范围内拖拽我！</p>
+    </div>
+</body>
+</html>

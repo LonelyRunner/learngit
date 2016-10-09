@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速入门</title>
+    <script>
+        var stu = {
+            name : '小明',
+            age : 15,
+            school : 'Middle_No.1 school',
+            score : '不及格'
+        };
+        //访问属性是通过.操作符完成的，但这要求属性名必须是一个有效的变量名。如果属性名包含特殊字符，就必须用''括起来：
+        stu['math-teacher'] = 'Teacher Qi';
+
+        console.info(stu);
+
+        //javaScript对象时动态类型  你可以自由的给一个对象添加或者删除属性
+        //添加一个身份属性
+        stu.identity = 'student';
+        //删除score属性
+        delete stu.score;
+        console.info(stu);
+
+        //检测某对象是否拥有某一属性  可以用in来判断
+        console.info('grade' in stu);
+        console.info('name' in stu);
+        //不过要小心，如果in判断一个属性存在，这个属性不一定是该对象的，它可能是继承得到的：
+        console.info('toString' in stu);
+
+        //要判断一个属性是否是对象自身拥有的，而不是继承得到的，可以用hasOwnProperty()方法：
+        console.log("stu.hasOwnProperty('toString') : "+stu.hasOwnProperty('toString'));
+        console.log("stu.hasOwnProperty('name') : "+stu.hasOwnProperty('name'));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

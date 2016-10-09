@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速入门</title>
+    <script>
+        //数组
+        var array = [1,2];
+        //indexOf()
+        console.info(array.indexOf(1));
+
+        //push和pop
+        array.push('a','b','c');
+        console.info(array);
+        array.pop();
+        console.info(array);
+
+        //slice
+        var result = array.slice(0,1);  //不包括索引1
+        console.info(result);
+        //通过slice实现数组的复制
+        var aCopy = array.slice();
+        console.info(aCopy);
+
+        //unshift 和 shift  unshift向数组的首部添加若干元素  shift则把数组的第一个元素删掉
+        array.unshift('one','two');
+        console.info(array);
+        array.shift();
+        console.info(array);
+
+        //sort() 对当前Array进行排序
+        array.sort();
+        console.info(array.sort());
+
+        //reverse() 对当前数组进行反转
+        array.reverse();
+        console.info(array);
+
+        //splice()  修改数组的万能方法 它可以从指定的索引开始删除若干元素，然后再从该位置添加若干元素
+        var arr = ['Java','C','C#','C++','.NET'];
+        var spliceArr = arr.splice(2,2,'JavaScript','HTML');  //从下标为2的元素起，一直删除2个，然后添加两个元素 返回被删除的元素(数组)
+        console.info(arr);
+        console.info(spliceArr);
+        // 只删除,不添加:
+        arr.splice(2, 2);
+        console.info(arr);
+        // 只添加,不删除:
+        arr.splice(2, 0, 'Google', 'Facebook'); // 返回[],因为没有删除任何元素
+        console.info(arr);
+
+        //concat()把当前的Array和指定的Array结合起来  并返回一个新的数组(并没有改变当前数组的结构)
+        var array1 = ['I','am','from'];
+        var array2 = ['山','西','中','国'];
+        var res = array1.concat(array2)
+        console.info();
+
+        //join()方法  将Array以指定的形式连接在一起,如果Array中的元素不是字符串  将自动转换为字符串后再连接
+        console.info(res.join('-'));
+
+        //多维数组
+        var manyArray = [[100,200,300],['where','here','there','this','that','those','these'],'郑豪'];
+        console.info(manyArray[1][1]);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

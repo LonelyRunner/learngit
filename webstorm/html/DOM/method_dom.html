@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom操作中的方法</title>
+    <style type="text/css">
+        .fon{
+            font-size: 13px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <h1 id="h1">我是第一个h1元素</h1>
+        <span class="span">我是类为"span"的span</span>
+        <span class="span" id="span2">我是类为"span"的span</span>
+        <span class="span1">我是类为"span1"的span</span>
+    </div>
+
+    <h1>我是第二个h1元素</h1>
+    <span class="span">我是类为"span"的span</span>
+
+    <script type="text/javascript">
+        var idElement = document.getElementById("div1");
+        console.info(idElement);
+
+        var tagElements = document.getElementsByTagName("h1");
+        for(var i=0;i<tagElements.length;i++){
+            console.info(tagElements[i]);
+        }
+
+        var classElements = document.getElementsByClassName("span");
+        for(var j=0;j<classElements.length;j++){
+            console.log(classElements[j]);
+        }
+
+        //创建一个Element
+        var node = document.createElement("span");
+        //创建文本节点
+        var text = document.createTextNode("我是新增的span");
+        node.appendChild(text);
+        document.getElementById("div1").appendChild(node);
+
+        //移除指定元素
+        document.getElementById("div1").removeChild(node);
+
+        //替换指定元素
+        var parent = document.getElementById("div1");
+        var child = document.getElementById("span2");
+        parent.replaceChild(node,child);
+
+        //在某个指定元素前插入元素
+        var newElement = document.createElement("p");
+        var newNode = document.createTextNode("我是新增的段落");
+        newElement.appendChild(newNode);
+
+        var classAttr = document.createAttribute("class");
+        classAttr.value = "fon";
+        newElement.setAttributeNode(classAttr);
+
+        var h1 = document.getElementById("h1");
+        parent.insertBefore(newElement,h1);
+    </script>
+</body>
+</html>

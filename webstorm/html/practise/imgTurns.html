@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮播</title>
+    <style type="text/css">
+        .contains{
+            width : 970px;
+            height : 647px;
+            border : 1px red solid;
+        }
+
+        ul li{
+            float: left;
+            display: inline;
+            padding : 20px 50px 20px 50px;
+            border : 1px black solid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contains">
+        <img id='content' src="" alt="" onmouseover="removeSetTimeout()" onmouseout="addSetTimeout()">
+    </div>
+
+    <div class="menu">
+        <ul>
+            <li id="li1" onclick="showImage1()"> 1 </li>
+            <li id="li2" onclick="showImage2()"> 2 </li>
+            <li id="li3" onclick="showImage3()"> 3 </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var imagesSrcs = ['../../images/image1.jpg','../../images/image2.jpg','../../images/image3.jpg'];
+        var imagesAlts = ['渔夫','栈道','曙光'];
+        var img = document.getElementById("content");
+
+        var i = 0;
+        var stReturn;
+
+        //每隔两秒更换一张图片  循环播放三张图片
+        turns();
+        /** 注意setTimeout和setInterval的区别 */
+        function turns(){
+            if(i>=3){
+                i = 0;
+            }
+
+            img.src = imagesSrcs[i];
+            img.alt = imagesAlts[i];
+
+            i += 1;
+            stReturn = setTimeout(turns,2000);
+        }
+
+        //setInterval(turns,2000);
+
+        //当鼠标停留在图片上时 应当将setTimeout函数失效
+        function removeSetTimeout(){
+            console.info("----------鼠标移到此图片-----------");
+            clearTimeout(stReturn);
+            console.info("----------setTimeout函数失效-----------");
+        }
+
+        //当鼠标离开图片时  恢复setTimeout函数
+        function addSetTimeout(){
+            console.info("----------鼠标移出此图片-----------");
+            turns();
+            console.info("----------setTimeout再次激活-----------");
+        }
+
+        //显示图片1
+        function showImage1(){
+
+            document.getElementById("content").src = imagesSrcs[0];
+
+        }
+
+        //显示图片2
+        function showImage2(){
+
+            document.getElementById("content").src = imagesSrcs[1];
+
+        }
+        //显示图片3
+        function showImage3(){
+
+            document.getElementById("content").src = imagesSrcs[2];
+
+        }
+    </script>
+</body>
+</html>

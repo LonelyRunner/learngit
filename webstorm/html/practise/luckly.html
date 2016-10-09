@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中奖</title>
+    <script type="text/javascript" src="../../common/js/jquery-2.1.1.min.js"></script>
+    <style type="text/css">
+        .content{
+            position:relative;
+        }
+        .left{
+            width : 500px;
+            height : 500px;
+            margin-left : 100px;
+            float : left;
+            border : 1px #0e0e0e solid;
+        }
+
+        .right{
+            width : 500px;
+            height : 500px;
+            float : left;
+            margin-left : 300px;
+            border : 1px #0e0e0e solid;
+        }
+
+        ul li{
+            float: left;
+            display: inline;
+            padding:5px 5px 5px 5px;
+            border : 1px #953b39 solid;
+        }
+
+        span{
+            width : 30px;
+            border : 1px black solid;
+            padding : 5px 5px 5px 5px;
+        }
+        #selectedNumber{
+            margin-top : 50px;
+            margin-left : 50px;
+            height:250px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="left">
+        <h1>请输入您选的号码:</h1>
+        <br>
+        <ul id="basicNumber">
+            <li onclick="selectThisNumber('00')">00</li>
+            <li onclick="selectThisNumber('01')">01</li>
+            <li onclick="selectThisNumber('02')">02</li>
+            <li onclick="selectThisNumber('03')">03</li>
+            <li onclick="selectThisNumber('04')">04</li>
+            <li onclick="selectThisNumber('05')">05</li>
+            <li onclick="selectThisNumber('06')">06</li>
+            <li onclick="selectThisNumber('07')">07</li>
+            <li onclick="selectThisNumber('08')">08</li>
+            <li onclick="selectThisNumber('09')">09</li>
+        </ul>
+        <br>
+        <br>
+        <div id="selectedNumber">
+
+        </div>
+        <input type="button" id="start" value="开始选号" onclick="startSelect()">
+        <input type="button" id="reset" value="重新选号" onclick="resetSelect()">
+        <input type="button" id="complete" value="选号完成" onclick="completeSelect()">
+        <input type="button" id="again" value="再选一组" onclick="againSelect()">
+    </div>
+    <div class="right">
+        <input type="button" value="点击开奖" onclick="showData()">
+        <div class="number">
+            <h1>新一期开奖号码为:</h1>
+            <span id="number_ok"></span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    /** 选号页面 */
+    var line = 0;
+    var selectStr = "";
+    document.getElementById("basicNumber").style.display = "none";
+
+    //点击li标签的元素   选择心仪的数字作为彩票号码
+    function selectThisNumber(str){
+        selectStr += str+",";
+        if(selectStr.split(",").length<=8){
+            createNewSpan(str);
+        }else{
+            alert("已选取一注彩票,是否再购买一注?");
+            againSelect();
+            selectStr = "";
+        }
+
+    }
+
+    //每点击一次 创建一个span元素用来存放选中的号码
+    function createNewSpan(str){
+        var span = document.createElement("span");
+        var node = document.createTextNode(str);
+        span.appendChild(node);
+        document.getElementById("selectedNumber").appendChild(span);
+    }
+
+    //开始选号
+    function startSelect(){
+        againSelect();
+        document.getElementById("basicNumber").style.display = "block";
+        document.getElementById("start").style.disabled = true;
+    }
+
+    //重新选号
+    function resetSelect(){
+
+    }
+
+    //选号完成
+    function completeSelect(){
+
+    }
+
+    //再选一组
+    function againSelect(){
+        var h5 = document.createElement("h5");
+        var node = document.createTextNode("第"+(++line)+"注彩票:")
+        h5.appendChild(node);
+        document.getElementById("selectedNumber").appendChild(h5);
+    }
+
+    /** 开奖页面  */
+    document.getElementsByClassName("number")[0].style.display = "none";
+    var fromData = ['00','01','02','03','04','05','06','07','08','09'];
+    //随机选取7个数字 [00,01,02,03,04,05,06,07,08,09]
+    function showData(){
+        document.getElementsByClassName("number")[0].style.display = "block";
+    }
+</script>
+</body>
+</html>

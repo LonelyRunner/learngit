@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>廖雪峰教程</title>
+    <script type="text/javascript">
+        function pow(x){
+            return x*x*x;
+        }
+
+        var array = [1,2,3,4,5,6,7,8,9];
+        var newArr = array.map(pow);
+        console.info(newArr);
+
+
+        //iterable
+        //遍历Array可以采用下标循环，遍历Map和Set就无法使用下标。为了统一集合类型，ES6标准引入了新的iterable类型，Array、Map和Set都属于iterable类型。
+        //具有iterable类型的集合可以通过新的for ... of循环来遍历。
+        var a = [1,2,3];
+        for(var i of a){
+            console.info(i);
+        }
+
+        document.write("-------------------------测试for ...of 和 for ...in 的区别-------------------------<br>");
+        var arr = ['A','B','C'];
+        arr.name = "郑豪";
+        for(var i in arr){
+            document.write(i+"<br>");
+        }
+
+        for(var i of arr){
+            document.write(i+"<br>");
+        }
+        document.write("-------------------------测试for ...of 和 for ...in 的区别-------------------------");
+
+    </script>
+</head>
+<body>
+</body>
+</html>

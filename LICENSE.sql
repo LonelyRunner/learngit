@@ -1,1 +1,0 @@
-select * from zh_table;

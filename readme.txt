@@ -1,7 +1,1 @@
-Creating a new branch is quick.
-Git is a distributed version control system.
-Git is a free software.
-Git has a mutable index called stage.
-Git tracks changes.
-Love is over!
-Test commit conflict AND error.
+git 和 github的学习  

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This关键字解析</title>
+    <script>
+        /** 1.0 this */
+        //this是一个特殊变量，它始终指向当前对象
+        var stu1 = {
+            name : '小明',
+            birth : 1990,
+            age : function(){
+                var y = new Date().getFullYear();
+                return y-this.birth;
+            }
+        };
+
+        console.info(stu1.age);            //function stu1.age()
+        console.info(stu1.age());          //26
+
+
+        /** 1.1 this   保证this指向正确，必须用obj.xxx()的形式调用 */
+        function getAge(){
+            return new Date().getFullYear()-this.birth;
+        }
+
+        var stu2 = {
+            name : '小明',
+            birth : 1990,
+            age : getAge
+        };
+
+        console.info(stu2.age());       //此时this指向的是stu2对象
+        console.info(getAge());         //此时this指向的是全局变量  ---》window
+
+        var fn = stu2.age;  //获取到stu2的age对应的函数  即返回的是 function getAge()
+        console.info(fn);
+        fn();
+        console.info(fn());         //返回的NaN
+
+
+        /** 1.2 在strict模式下  this关键字指向的是undefined*/
+        'use strict';
+        var stu3 = {
+            name : '小明',
+            birth : 1990,
+            age : function(){
+                var y = new Date().getFullYear();
+                return y-this.birth;
+            }
+        };
+        var fn1 = stu3.age;
+        fn1();
+        console.info(fn1());
+
+
+        //apply() 和  call()
+        function getAge1(){
+            return new Date().getFullYear()-this.birth;
+        }
+
+        var stu4 = {
+            name : 'stu4',
+            birth : 1993,
+            age : getAge1
+        };
+
+        console.info("---------------apply()测试--------------");
+        console.info(stu4.age());
+        console.info(getAge1.apply(stu4,[]));
+        console.info("---------------apply()测试--------------");
+
+        console.info("---------------call()测试--------------");
+        console.info(getAge1.call(stu4,[]));
+        console.info("---------------call()测试--------------");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

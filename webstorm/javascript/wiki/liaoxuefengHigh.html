@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>高阶函数</title>
+    <script>
+        /** Array --> map() */
+        function pow(x){
+            return x*x*x;
+        }
+
+        var array1 = [1,2,3,4,5,6];
+        var result = array1.map(pow);
+        console.info(result);
+
+
+        /** Array --> reduce() */
+        /** reduce1.0 Array的reduce()把一个函数作用在这个Array的[x1, x2, x3...]上，
+         * 这个函数必须接收两个参数，reduce()把结果继续和序列的下一个元素做累积计算*/
+        function fn(x,y){
+            return x*y;
+        }
+
+        var testArr = [2,3,4,5,6];
+        console.info(fn);
+        var testRes = testArr.reduce(fn);
+        console.info(testRes);
+
+        /** reduce2.0 累减算法 */
+        function red(x,y){
+            return x-y;
+        }
+
+        var test1_arr = [10,5,4,1];
+        console.info(test1_arr.reduce(red));
+
+
+        var a = ['adam', 'LISA', 'barT'];
+        //以首字母大写 后面所有字母小写的形式输出
+        function normalize(arr) {
+
+            function change1(x){
+                var a = '';
+                for(var i=0;i< x.length;i++){
+                    if(i===0){
+                        a += x[i].toUpperCase();
+                    }else{
+                        a+= x[i].toLowerCase();
+                    }
+                }
+                return a;
+            }
+
+            return arr.map(change1);
+        }
+
+        // 测试:
+        if (normalize(['adam', 'LISA', 'barT']).toString() === ['Adam', 'Lisa', 'Bart'].toString()) {
+            alert('测试通过!');
+        }
+        else {
+            alert('测试失败!');
+        }
+
+        var ax = ['1','2','3'];
+        var r = ax.map(Number);  //不要使用扩展方法parseInt
+        console.info(r);
+
+        var ax1 = [11,22,33];
+        var r1 = ax.map(String);
+        console.info(r1);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

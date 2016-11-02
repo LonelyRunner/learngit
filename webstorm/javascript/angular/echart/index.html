@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建一个过滤器</title>
+    <script>
+        console.info(getLatestTwelveMonths().reverse());
+        //获取本月前11月
+        function getLatestTwelveMonths(){
+            var array = [];
+            var date = new Date("2015-01-01");
+            for(var i=0;i<12;i++){
+                var month = (date.getMonth()+1)-i>0 ? (date.getMonth()+1)-i : (date.getMonth()+1)-i+12;
+                var year = (date.getMonth()+1)-i>0 ? date.getFullYear() : date.getFullYear()-1;
+                array.push(getString(year,month));
+            }
+            return array;
+        }
+
+        function getString(year,month){
+            return year+"年"+month+"月";
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

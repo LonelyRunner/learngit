@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>通过指令改变颜色</title>
 </head>
-<body>
+<body ng-app="ChangeColorApp">
+    <div>
+        <change-color color="red"></change-color>
+    </div>
+    <script src="../../../common/js/jquery-2.1.1.min.js"></script>
+    <script src="../../../common/js/angular.js"></script>
+    <script>
+        angular.module('ChangeColorApp',[]);
+        angular.module('ChangeColorApp').controller('myController',['$scope',function(){
 
+        }]);
+
+        angular.module('ChangeColorApp').directive('color',function(){
+            return {
+                restrict : 'ECMA',
+                template : '<div style="width:10px;height:10px;background-color: {{color}}">123</div>',
+                scope : {
+                    color : '='
+                },
+                replace : true,
+                link : function(scope,elem,attrs){
+                    scope.color = attrs.color;
+                    console.info(elem.height());
+
+                }
+            }
+        });
+    </script>
 </body>
 </html>

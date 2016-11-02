@@ -2,7 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>angular.extend()</title>
+    <script src="../../../common/js/angular.js"></script>
+    <script>
+        var obj1 = {
+            name : 'sb1',
+            age : 12
+        };
+        var obj2 = {
+            hobby : 'play basketball',
+            age : 14
+        };
+
+        var obj = angular.extend({},obj1,obj2);
+        console.info(obj);
+
+
+        var url = "baidu.com";
+        console.info(encodeURI(url));
+        console.info(window.document.location.pathname.substr(0));
+    </script>
 </head>
 <body>
 

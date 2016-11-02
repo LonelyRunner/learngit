@@ -2,7 +2,288 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>统计数组中重复元素的个数</title>
+    <script>
+        var array = [1,2,3,1,1,3,1,2,2,4,4,3,5,2,0,7,8];
+
+        for(var i=0;i<array.length-1;i++){
+            for(var j=i+1;j<array.length;j++){
+                if(array[j]===array[i]){
+                    array.splice(j,1);
+                    j=j-1;
+                }
+            }
+
+        }
+        console.info(array);
+
+
+        var initData = [
+            {
+                mainDiagName : '主诊1组',
+                mainDiagDoctor : '张三',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊1组',
+                mainDiagDoctor : '李四',
+                dischargeMap : {
+                    sum1 : 40,
+                    priorPat : 20,
+                    soldierPat : 16,
+                    medicalPat : 4,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 1002123,
+                    medicineCost : 212.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.9
+            },
+            {
+                mainDiagName : '主诊1组',
+                mainDiagDoctor : '王五',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊2组',
+                mainDiagDoctor : '郭襄',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊3组',
+                mainDiagDoctor : '洛林',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊3组',
+                mainDiagDoctor : '雅典娜',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            }
+        ];
+
+        var differData = [
+            {
+                mainDiagName : '主诊1组',
+                mainDiagDoctor : '张三',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊1组',
+                mainDiagDoctor : '李四',
+                dischargeMap : {
+                    sum1 : 40,
+                    priorPat : 20,
+                    soldierPat : 16,
+                    medicalPat : 4,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 1002123,
+                    medicineCost : 212.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.9
+            },
+            {
+                mainDiagName : '主诊1组',
+                mainDiagDoctor : '王五',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊2组',
+                mainDiagDoctor : '郭襄',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊3组',
+                mainDiagDoctor : '洛林',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            },
+            {
+                mainDiagName : '主诊3组',
+                mainDiagDoctor : '雅典娜',
+                dischargeMap : {
+                    sum1 : 30,
+                    priorPat : 10,
+                    soldierPat : 17,
+                    medicalPat : 3,
+                    medicalRadio : '10%'
+                },
+                inChargeMap : {
+                    sum2 : 100210,
+                    medicineCost : 210.1,
+                    medicineRadio : '30%',
+                    avgPeopleCost : 310.24,
+                    avgDayCost : 270.67
+                },
+                avgInHosDays : 7.8
+            }
+        ];
+        for(var i=0;i<differData.length-1;i++){
+            for(var j=i+1;j<differData.length;j++){
+                if(differData[j].mainDiagName === differData[i].mainDiagName){
+                    differData.splice(j,1);
+                    j=j-1;
+                }
+            }
+        }
+        console.info(differData);
+
+        var diffMainDiagName = [];
+        var useDataList = [];
+        differData.forEach(function(item){
+            diffMainDiagName.push(item.mainDiagName);
+            var obj = {};
+            obj.mainDiagName = item.mainDiagName;
+            obj.dataList = [];
+            useDataList.push(obj);
+        });
+
+        console.info(diffMainDiagName);
+        console.info(useDataList);
+
+        for(var i=0;i<useDataList.length;i++){
+            for(var j=0;j<initData.length;j++){
+                if(initData[j].mainDiagName===useDataList[i].mainDiagName){
+                    useDataList[i].dataList.push(initData[j]);
+                }
+            }
+        }
+        console.info(useDataList);
+        console.info(initData);
+    </script>
 </head>
 <body>
 

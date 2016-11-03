@@ -1,0 +1,20 @@
+学习JSP
+
+标签分为：
+1.核心标签
+2.格式化标签
+	SQL标签
+	XML标签
+3.JSTL函数
+
+EL表达式
+使用$定界   如${user.name}或者${user["name"]}
+		以下情况只能使用[]取值
+		1.复合属性 如 ${user["first-name"]}  而${user.first-name}是错误的写法
+		2.动态取值 如 ${user[parameter]}  parameters:name、gender、age...
+		
+JSP内置对象   			EL名称
+page				pageScope
+request				requestScope
+session				sessionScope
+application			applicationScope		

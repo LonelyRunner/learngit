@@ -1,0 +1,44 @@
+[
+  {
+    "gender": "男",
+    "name": "郑豪",
+    "iphone": [
+      "iphone6 plus",
+      "ipad air",
+      "hp-302"
+    ],
+    "age": 23,
+    "has_house": false,
+    "isBoy": null,
+    "dar": "abcdefg",
+    "birthday" : "2011-01-01"
+  },
+  {
+    "gender": "男",
+    "name": "123",
+    "iphone": [
+      "iphone6 plusss",
+      "ipad air",
+      "hp-302"
+    ],
+    "age": 23,
+    "has_house": false,
+    "isBoy": null,
+    "dar": "abcdefg",
+    "birthday" : "2011-01-01"
+  },
+  {
+    "gender": "男",
+    "name": "郑豪312",
+    "iphone": [
+      "iphone6 plus",
+      "ipad air",
+      "hp-302"
+    ],
+    "age": 23,
+    "has_house": false,
+    "isBoy": null,
+    "dar": "abcdefg",
+    "birthday" : "2011-01-01"
+  }
+]

@@ -19,5 +19,8 @@
 		request.setAttribute("userName", userName);
 	%>
 	<c:out value="${empty requestScope.userName}"></c:out>
+	
+	<c:out value="${param.username }"></c:out>
+	<c:out value="${param.password }"></c:out>
 </body>
 </html>

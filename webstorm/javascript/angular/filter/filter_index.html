@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter-index</title>
+    <script src="../../../common/js/jquery-2.1.1.min.js"></script>
+    <script src="../../../common/js/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myController',['$scope',"$filter",function($scope,$filter){
+            $scope.timeStamp = 140320328322;
+
+            $scope.resultTime = $filter("date")(1476858738721,'yyyy-MM-dd HH:mm:ss');
+
+            $scope.students = ['张三','张三','张三','李四','王五','赵六'];
+
+        }]);
+
+        myApp.filter('singleArray',function(){
+
+            /** 不带参数
+             * return function(array){
+             *      var result = [];
+             *      array.forEach(function(item,index){
+             *          if(index%2 === 1){
+             *              result.push(item);
+             *          }
+             *      });
+             *
+             *      return result;
+             * }
+             */
+            /** 带一个参数  */
+            return function(array,i){
+                var j = 0;
+                array.forEach(function(item){
+                    if(i===item){
+                        j++;
+                    }
+                });
+                return j;
+            }
+        });
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <!-- date过滤器的用法 -->
+        <input type="text" ng-model="timeStamp">
+        <span>{{ timeStamp | date:'yyyy-MM-dd'}}</span>
+        <br>
+        <span>{{resultTime}}</span>
+
+        <br>
+
+        <span>{{students | singleArray:'张三'}}</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>text-overflow</title>
+    <style>
+        .test{
+            /** 不换行 */
+            white-space: nowrap;
+            width:100px;
+            border:1px solid ;
+            overflow: hidden;
+        }
+
+        /** word-break不兼容欧朋浏览器 */
+        #testOne{
+            border: 1px solid black;
+            width:100px;
+            /** 换行  保持单词的完整性 */
+            word-break: keep-all;
+        }
+
+        #testTwo{
+            border: 1px solid black;
+            width:100px;
+            /** 换行时不一定保证单词的完整性 */
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="test" style="text-overflow: ellipsis">浙江和仁科技股份有限公司北京分公司 省略号</div>
+    <div class="test" style="text-overflow: clip">浙江和仁科技股份有限公司北京分公司 直接切掉</div>
+    <div class="test" style="text-overflow: '>>'">浙江和仁科技股份有限公司北京分公司 自定义 只在firefox中生效</div>
+
+    <div id="testOne">zhe jiang he ren ke ji gu fen you xian89218 gong si</div>
+    <div id="testTwo">zhe jiang he ren ke ji gu fen you xiansadasda gong si</div>
+</body>
+</html>

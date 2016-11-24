@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按钮动画</title>
+    <style>
+        .btn{
+            position:relative;
+            width:200px;
+            height:100px;
+            border: none;
+            background: orangered;
+            border-radius: 5px;
+            color: white;
+            font-size: 30px;
+            overflow: hidden;
+            cursor: pointer;
+            transition-duration: 0.8s;
+        }
+
+        .btn:after{
+            content: "";
+            background: #90EE90;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px!important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .btn:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">
+        Click Me
+    </button>
+</body>
+</html>

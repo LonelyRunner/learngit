@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渐变</title>
+    <style>
+        .div1{
+            width:100px;
+            height: 100px;
+            background:linear-gradient(red,green,yellow);
+            /*background: -moz-liner-gradient(red,green);*/
+        }
+        .div2{
+             width:100px;
+             height: 100px;
+             background:linear-gradient(to right,red,green,yellow);
+             /*background: -moz-liner-gradient(red,green);*/
+         }
+        .div3{
+             width:100px;
+             height: 100px;
+             background:linear-gradient(to left top,red,green,yellow);
+             /*background: -moz-liner-gradient(red,green);*/
+         }
+        .div4{
+            width:100px;
+            height: 100px;
+            background:linear-gradient(30deg,red,green,yellow);
+            /*background: -moz-liner-gradient(red,green);*/
+        }
+        .div5{
+            width:100px;
+            height: 100px;
+            background:repeating-linear-gradient(red,green 10%,yellow 10%);
+            /*background: -moz-liner-gradient(red,green);*/
+        }
+        .div6{
+            width:100px;
+            height: 100px;
+            background:radial-gradient(red,green,yellow);
+            /*background: -moz-liner-gradient(red,green);*/
+        }
+
+        .div7{
+            width:100px;
+            height: 100px;
+            background:radial-gradient(circle,red,green,yellow);
+            /*background: -moz-liner-gradient(red,green);*/
+        }
+        .div8{
+            width:100px;
+            height: 100px;
+            background: radial-gradient(farthest-side,blue,green,yellow,black);
+            /** closest-side farthest-side closest-corner farthest-corner*/
+            /*background: -moz-liner-gradient(red,green);*/
+        }
+        .div9{
+            width:100px;
+            height: 100px;
+            background: repeating-radial-gradient(red, yellow 10%, green 15%);
+            /** closest-side farthest-side closest-corner farthest-corner*/
+            /*background: -moz-liner-gradient(red,green);*/
+        }
+    </style>
+</head>
+<body>
+    <p>线性渐变</p>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    <div class="div5"></div>
+    <br>
+    <p>径向渐变</p>
+    <div class="div6"></div>
+    <div class="div7"></div>
+    <div class="div8"></div>
+    <div class="div9"></div>
+</body>
+</html>

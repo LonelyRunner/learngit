@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>background-clip</title>
+    <style>
+        #div1{
+            border:10px dotted black;
+            background-color: yellow;
+            padding:35px;
+            /*background-clip: border-box;*/
+        }
+        #div2{
+            border:10px dotted black;
+            background-color: yellow;
+            padding:35px;
+            background-clip: padding-box;
+        }
+
+        #div3{
+            border:10px dotted black;
+            background-color: yellow;
+            padding:35px;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="div" id="div1">
+        <h1>没有背景剪裁(border-box没有定义)</h1>
+        <p>哈哈哈</p>
+    </div>
+    <br>
+    <div class="div" id="div2">
+        <h1>背景剪裁(padding-box)</h1>
+        <p>呵呵呵</p>
+    </div>
+    <br>
+    <div class="div" id="div3">
+        <h1>背景剪裁(content-box)</h1>
+        <p>何止幼稚 简直幼稚 智商正数 情商复数</p>
+    </div>
+</body>
+</html>

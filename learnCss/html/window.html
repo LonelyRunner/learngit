@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css创建窗口</title>
+    <style>
+        .window{
+            position:absolute;
+            width:300px;
+            height:200px;
+            border: 1px outset black;
+        }
+
+        .titlebar{
+            position: absolute;
+            top:0;
+            width: 294px;
+            height: 14px;
+            padding: 3px;
+            border-bottom: groove 2px gray;
+            background-color: #aaa;
+            /*text-align: center;*/
+            font: bold 11px sans-serif;
+        }
+
+        .content{
+            position: absolute;
+            top:21px;
+            height: 171px;
+            width: 290px;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: #ffffff;
+            overflow: auto;
+        }
+
+        .translucent{
+            opacity: .75;
+            filter: alpha(opacity=75);
+        }
+    </style>
+</head>
+<body>
+    <div class="window" style="left:10px;top:10px;z-index:10;">
+        <div class="titlebar">Test Window</div>
+        <div class="content">
+            one<br>two<br>three<br>four<br>five<br>six<br>seven<br>eight<br>nine<br>ten<br>
+            one<br>two<br>three<br>four<br>five<br>six<br>seven<br>eight<br>nine<br>ten<br>
+        </div>
+    </div>
+
+    <div class="window" style="left:75px;top:70px;z-index:20;">
+        <div class="titlebar">Another window</div>
+        <div class="content translucent">
+            人生最无奈的就是在错误的时间,遇上对的人.<br>
+            如果有一天你穿上婚纱成为别人的新娘,我闭口不提曾经的疯狂！<br>
+            如果有一天我穿上西装成为别人的新郎,你依旧是我最初的梦想！<br>
+            不等了，就当风没吹过，你没来过，我没爱过。此后，是平庸是惊世是绚丽是落寞是风是雨，祝福你！
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transform-2D</title>
+    <style>
+        .test{
+            width:100px;
+            height: 100px;
+            background-color: yellow;
+        }
+        #test1{
+            /** 顺时针旋转的角度 */
+            transform: rotate(30deg);
+        }
+
+        #test2{
+            /** x轴y轴分别移动的距离*/
+            transform: translate(30px,30px);
+        }
+
+        #test3{
+            /** 放大或缩小的倍数 x轴  y轴*/
+            transform: scale(0.3,0.2);
+        }
+
+        #test4{
+            /** 该元素会根据横向（X轴）和垂直（Y轴）线参数给定角度 */
+            -ms-transform: skew(30deg,20deg);
+            -moz-transform: skew(30deg,20deg);
+            -webkit-transform: skew(30deg,20deg);
+            transform: skew(30deg,20deg);
+        }
+        #test5{
+            /** matrix 方法有六个参数，包含旋转，缩放，移动（平移）和倾斜功能*/
+            transform: matrix(0.866,0.5,-0.5,0.866,0,0);
+        }
+    </style>
+</head>
+<body>
+    <div id="test1" class="test"></div>
+    <div id="test2" class="test"></div>
+    <div id="test3" class="test"></div>
+    <div id="test4" class="test"></div>
+    <div id="test5" class="test"></div>
+</body>
+</html>

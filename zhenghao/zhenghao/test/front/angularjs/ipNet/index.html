@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ipApp">
+<head>
+    <meta charset="UTF-8">
+    <title>网络相关知识</title>
+    <script src="../common/jquery-2.1.1.min.js"></script>
+    <script src="../common/angular.js"></script>
+    <script src="index.js"></script>
+    <style>
+        .input-data{
+            width:30px;
+        }
+    </style>
+</head>
+<body ng-controller="CalculatorRelativeCtrl">
+    <table>
+        <tr>
+            <td>ip地址:</td>
+            <td><input type="text" ng-model="ipData.data1" class="input-data"><span>.</span></td>
+            <td><input type="text" ng-model="ipData.data2" class="input-data"><span>.</span></td>
+            <td><input type="text" ng-model="ipData.data3" class="input-data"><span>.</span></td>
+            <td><input type="text" ng-model="ipData.data4" class="input-data"></td>
+        </tr>
+        <tr>
+            <td>子网掩码:</td>
+            <td><input type="text" ng-model="subNetMaskData.data1" class="input-data"><span>.</span></td>
+            <td><input type="text" ng-model="subNetMaskData.data2" class="input-data"><span>.</span></td>
+            <td><input type="text" ng-model="subNetMaskData.data3" class="input-data"><span>.</span></td>
+            <td><input type="text" ng-model="subNetMaskData.data4" class="input-data"></td>
+        </tr>
+        <tr>
+            <td>网络地址:</td>
+            <td><input type="text" ng-model="netAddress.data1" class="input-data" readonly><span>.</span></td>
+            <td><input type="text" ng-model="netAddress.data2" class="input-data" readonly><span>.</span></td>
+            <td><input type="text" ng-model="netAddress.data3" class="input-data" readonly><span>.</span></td>
+            <td><input type="text" ng-model="netAddress.data4" class="input-data" readonly></td>
+        </tr>
+        <tr>
+            <td>广播地址:</td>
+            <td><input type="text" ng-model="broadcastAddress.data1" class="input-data" readonly><span>.</span></td>
+            <td><input type="text" ng-model="broadcastAddress.data2" class="input-data" readonly><span>.</span></td>
+            <td><input type="text" ng-model="broadcastAddress.data3" class="input-data" readonly><span>.</span></td>
+            <td><input type="text" ng-model="broadcastAddress.data4" class="input-data" readonly></td>
+        </tr>
+    </table>
+    <input type="button" value="计算" ng-click="calculator()">
+</body>
+</html>

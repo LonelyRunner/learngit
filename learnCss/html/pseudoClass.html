@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css伪类</title>
+    <style type="text/css">
+        a{
+            color: black;
+        }
+        /** :link伪类注释:设置a对象在未被访问前的样式 */
+        a:link{
+            font-size: 14pt;
+            text-decoration: none;
+        }
+
+        /** :hover伪类注释:设置对象在鼠标悬停时的样式 */
+        a:hover{
+            color: red;
+            text-decoration: underline;
+        }
+
+        /** :active伪类注释:设置对象在被用户激活(鼠标点击与释放之间发生的事件)时的样式 */
+        a:active{
+            color: blue;
+            text-decoration: none;
+        }
+
+        /** :visited伪类注释:设置 a 对象在其链接地址已被访问过时的样式 */
+        a:visited{
+           text-decoration: underline;
+        }
+
+        /** :first-child伪类注释: 设置Element的第一个子对象的样式 */
+        p a:first-child{
+            font-size: x-large;
+        }
+
+        /** :left和:right伪类注释:设置页面容器位于装订线左边的所有页面使用的样式.仅用于 @page 规则.*/
+        @page:left{
+            margin: 30px;
+        }
+
+        /** :first-letter伪类注释:设置对象内第一个字符的样式 */
+        .paragraph:first-letter{
+            font-size: 20px;
+            color: green;
+        }
+
+        /** :first-line伪类注释:设置对象内第一行的样式 */
+        .paragraph:first-line{
+            text-decoration: underline;
+        }
+
+        /** :after伪类注释:用来和content属性一起使用，设置在对象后(依据对象树的逻辑结构)发生的内容 */
+        .one:after{
+            content: 'TABLE IS END';
+            color: yellow;
+            background-color: #c4e3f3;
+            text-decoration: underline;
+        }
+
+        /** :before伪类注释:用来和content属性一起使用，设置在对象前(依据对象树的逻辑结构)发生的内容 */
+        .one:before{
+            content: 'TABLE IS START';
+        }
+    </style>
+</head>
+<body>
+<p>
+    <a href="#">百度</a>
+    <a href="#">谷歌</a>
+    <a href="#">搜狗</a>
+</p>
+
+<p class="paragraph">
+    设置对象内的第一个字符的样式。 此伪对象仅作用于块对象。
+    内联要素要使用该属性，必须先设定对象的 height 或 width 属性，<br>
+    或者设定 position 属性为 absolute ，或者设定 display 属性为 block 。
+</p>
+
+<table class="one" border="1">
+    <tr>
+        <th>name</th>
+        <th>gender</th>
+        <th>age</th>
+    </tr>
+    <tr>
+        <td>张三</td>
+        <td>男</td>
+        <td>12</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>img-border</title>
+    <style>
+        #img3,#img4{
+            padding:5px;
+            border:1px solid;
+        }
+
+        #img4{
+            /* 过渡 */
+            transition: box-shadow 1s;
+        }
+
+        #img4:hover{
+            box-shadow: 1px 1px 1px 1px rgba(255,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- 边角为圆角 -->
+    <img src="a.jpg" alt="so good!" width="435" height="559" style="border-radius:10px">
+    <!-- 椭圆 -->
+    <img src="a.jpg" alt="so good!" width="435" height="559" style="border-radius: 50%">
+    <!-- 缩略图 -->
+    <img id="img3" src="a.jpg" alt="so good!" width="435" height="559" style="border-radius: 50%">
+    <!-- 边框变色 -->
+    <img id="img4" src="a.jpg" alt="so good!" width="435" height="559" style="border-radius: 50%">
+</body>
+</html>

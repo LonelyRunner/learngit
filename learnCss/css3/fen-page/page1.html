@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            display: inline-block;
+        }
+        li{
+            display: inline;
+            /*float: left;*/
+        }
+
+        a{
+            text-decoration: none;
+            background-color: white;
+            font-size: 30px;
+            font-style: italic;
+            padding: 5px;
+            color: orangered;
+            float: left;
+            /*border-radius: 5px;*/
+            transition: background-color 1s;
+            border:1px solid black;
+            /* 利用margin为每个标签添加间隔 */
+            margin: 0 4px;
+            /* 页码居中 */
+            text-align: center;
+        }
+
+        .active{
+            background-color: #4cae4c;
+            color:white;
+        }
+
+        /* 鼠标放上去class不为active的颜色如下*/
+        a:hover:not(.active){
+            background-color: #1b6d85;
+        }
+
+        ul li:first-child a {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        ul li:last-child a {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href=""><<</a></li>
+        <li><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="" class="active">4</a></li>
+        <li><a href="">5</a></li>
+        <li><a href="">6</a></li>
+        <li><a href="">7</a></li>
+        <li><a href="">8</a></li>
+        <li><a href="">>></a></li>
+    </ul>
+</body>
+</html>

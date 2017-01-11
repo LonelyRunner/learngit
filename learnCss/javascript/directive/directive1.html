@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="directiveApp">
+<head>
+    <meta charset="UTF-8">
+    <title>指令1</title>
+    <script src="../angular.js"></script>
+    <script src="../jquery.js"></script>
+    <script>
+        var directiveApp = angular.module('directiveApp',[]);
+        directiveApp.controller("myCtrl",["$scope",function($scope){
+            $scope.doThis = "写一首歌";
+            $scope.doWhat = "fuck";
+        }]);
+        directiveApp.directive("unKnow",function(){
+            return {
+                restrict : 'ECMA',
+                replace : true,
+                template : '<div><button id="what">{{doThis}}</button>' +
+                '           <input type="text" id="inp" ng-model="doWhat">' +
+                '           {{whatDo}}' +
+                '           </div>',
+                scope: {
+                    doThis : '@',
+                    doWhat : '='
+                },
+                controller: function($scope){
+                    $scope.whatDo = "what a fuck!";
+                },
+                link : function(scope,elem,attr){
+                    var dom = $(elem);
+                    dom.css({"background-color":"green","color":"red"});
+                    $("#what").on("click",function(){
+                        dom.css("background-color","yellow");
+                    });
+                }
+            };
+        });
+    </script>
+</head>
+<body ng-controller="myCtrl">
+    原controller:<input type="text" ng-model="doWhat">
+    <br>
+    指令:<un-know do-what="doWhat" do-this="{{doThis}}"></un-know>
+</body>
+</html>

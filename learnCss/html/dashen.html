@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大神</title>
+    <script>
+        var a = 'ftp://{username}:{password}@{url}:{port}/{dir}';
+        var b = 'ftp://{username}:{password}@{url}:{port}';
+        var c = "ftp://asdsa:meddoc@192.168.1.63:2121/test";
+        var d = "ftp://asdsa:meddoc@眭善文:2121/test";
+        var e = "ftp://卡戴珊:meddoc@眭善文.ka:2121/test";
+
+        var reg = /([\w]+\.?)|(([\u4e00-\u9fa5])+|([\ufe30-\uffa0])+)/g;
+        var array = [];
+        var result;
+        while ((result = reg.exec(c)) != null) {
+            array.push(result[0]);
+        }
+        console.info(array);
+
+        var array1 = [];
+        var result1;
+        while ((result1 = reg.exec(d)) != null) {
+            array1.push(result1[0]);
+        }
+        console.info(array1);
+
+        var array2 = [];
+        var result2;
+        while ((result2 = reg.exec(e)) != null) {
+            array2.push(result2[0]);
+        }
+        console.info(array2);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Angular</title>
+</head>
+
+<body>
+<div ng-controller="FirstController">
+    <p>Text from FirstController</p>
+</div>
+<div ng-controller="SecondController">
+    <p>Text from SecondController</p>
+    Hello {{person.name}}
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("FirstController", ["$scope","$rootScope",function ($scope,$rootScope) {
+                $rootScope.person={name:'xiaoming'}
+            }])
+            .controller("SecondController",["$scope", function ($scope) {
+
+            }])
+
+</script>
+</body>
+</html>

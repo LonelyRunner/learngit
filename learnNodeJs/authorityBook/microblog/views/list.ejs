@@ -1,0 +1,5 @@
+<!-- 原先的partial('listitem',items)已经被摒弃 使用forEach和include替代 -->
+<ul><% items.forEach(function(listitem){%>
+        <% include listitem%>
+    <%})%>
+</ul>

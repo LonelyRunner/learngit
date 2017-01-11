@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../ng-grid.css">
+    <link rel="stylesheet" href="../jquery-ui.css">
+    <script src="../jquery.js"></script>
+    <script src="../angular-min.js"></script>
+    <script src="../ng-grid.js"></script>
+    <script>
+        var myApp = angular.module("myApp",["ngGrid"]);
+        myApp.controller("myController",["$scope",function($scope){
+            $scope.selectedItems = [];
+            $scope.dataList = [
+                {
+                    name:'张三',
+                    gender:'男',
+                    age:21,
+                    hobby:'打篮球'
+                },
+                {
+                    name:'lisa',
+                    gender:'男',
+                    age:21,
+                    hobby:'打篮球'
+                },
+                {
+                    name:'mata',
+                    gender:'男',
+                    age:21,
+                    hobby:'打篮球'
+                }
+            ];
+            $scope.gridOpts = {
+                data:'dataList',
+                columnDefs:'colDefs',
+                selectedItems : $scope.selectedItems,
+                multiSelect: true
+            };
+
+            $scope.colDefs = [
+                {field:'name',displayName:'姓名'},
+                {field:'gender',displayName:'性别'},
+                {field:'age',displayName:'年龄'},
+                {field:'hobby',displayName:'爱好'}
+            ];
+
+            $scope.$watch("selectedItems",function(newValue,oldValue){
+                if(newValue){
+                    console.info($scope.selectedItems);
+                }
+            },true);
+        }]);
+    </script>
+</head>
+<body ng-controller="myController">
+    <div class="gridStyle" ng-grid="gridOpts" style="height:300px"></div>
+</body>
+</html>

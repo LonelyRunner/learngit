@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body>
+<div ng-controller="MyController">
+    <select ng-model="selection" ng-options="item for item in items">
+    </select>
+    <p>selection={{selection}}</p>
+    <hr/>
+    <div class="animate-switch-container"
+         ng-switch on="selection">
+        <div class="animate-switch" ng-switch-when="settings">Settings Div</div>
+        <div class="animate-switch" ng-switch-when="home">Home Span</div>
+        <div class="animate-switch" ng-switch-default>default</div>
+    </div>
+</div>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("MyController",["$scope", function ($scope) {
+                $scope.items = ['settings', 'home', 'other'];
+                $scope.selection = $scope.items[0];
+            }])
+
+</script>
+</body>
+</html>

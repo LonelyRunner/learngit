@@ -1,0 +1,65 @@
+#options{
+    display:none;
+}
+
+.select-options{
+    width: 171px;
+    height: 100px;
+    /*background-color: #00A6DD;*/
+    border:1px solid coral;
+    overflow-y: scroll;
+}
+
+ul{
+    /*border: 1px solid black;*/
+    padding-left: 10px;
+    padding-top:2px;
+}
+
+ul li{
+    display: block;
+
+}
+
+ul li:hover{
+    background-color: #00A6DD;
+    cursor: pointer;
+}
+
+.operation-dict{
+    border:1px solid #cccccc;
+    position:absolute;
+    max-height:226px;
+    z-index:2000;
+    box-shadow:1px 1px 5px rgba(0,0,0,0.2);
+}
+.operation-dict-search{
+    background-color:#ffffff;
+    max-height:200px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    z-index:1060;
+}
+.operation-dict-search ul{
+    background-color:#ffffff;
+    text-align:left;
+    padding:3px;
+    margin-left:0;
+    margin-bottom:0;
+}
+.operation-dict-search ul li{
+    list-style-type:none;
+    white-space:nowrap;
+    padding-right:18px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.operation-dict .more-items{
+    height:20px;
+    padding:3px;
+    display:block;
+    position:relative;
+    margin-bottom:0;
+    background-color:#eee;
+    border-top:1px solid #ccc;
+}

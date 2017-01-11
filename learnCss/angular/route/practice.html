@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice</title>
+</head>
+<body>
+    <div class="practice-index">
+        <article>
+            <ul>
+                <li ng-class="showTabNavClass('accordion')"><a ng-click="showTemplateType('accordion')">accordion</a></li>
+                <li ng-class="showTabNavClass('modal')"><a ng-click="showTemplateType('modal')">modal</a></li>
+                <li ng-class="showTabNavClass('uiSelect2')"><a ng-click="showTemplateType('uiSelect2')">uiSelect2</a></li>
+                <li ng-class="showTabNavClass('table')"><a ng-click="showTemplateType('table')">table</a></li>
+                <li ng-class="showTabNavClass('ngGrid')"><a ng-click="showTemplateType('ngGrid')">ngGrid</a></li>
+                <li ng-class="showTabNavClass('shortcuts')"><a ng-click="showTemplateType('shortcuts')">shortcuts</a></li>
+                <li ng-class="showTabNavClass('enterloop')"><a ng-click="showTemplateType('enterloop')">enterloop</a></li>
+            </ul>
+        </article>
+        <div class="tab-content bordered">
+            <section class="template-group" ng-show="getTemplateShow('accordion')" ng-include src="'templates/accordion/accordion.html'">
+            </section>
+            <section class="template-group" ng-show="getTemplateShow('modal')" ng-include src="'templates/modal/modal.html'">
+            </section>
+            <section class="template-group"  ng-show="getTemplateShow('uiSelect2')" ng-include src="'templates/select2/ui-select2.html'">
+            </section>
+            <section class="template-group table" ng-show="getTemplateShow('table')" ng-include src="'templates/table/table.html'">
+            </section>
+            <section class="template-group ng-grid" ng-show="getTemplateShow('ngGrid')" ng-include src="'templates/grid/ng-grid.html'">
+            </section>
+            <section class="template-group" ng-show="getTemplateShow('shortcuts')" ng-include src="'templates/shortcuts/shortcuts.html'">
+            </section>
+            <section class="template-group" ng-show="getTemplateShow('enterloop')" ng-include src="'templates/enterloop/enter-loop.html'">
+            </section>
+        </div>
+        <div class="tab-content-sourcecode main-content">
+            <div class="html-code">
+                <textarea ng-model="htmlCode"/>
+            </div>
+            <div class="javascript-code">
+                <textarea ng-model="javascriptCode"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

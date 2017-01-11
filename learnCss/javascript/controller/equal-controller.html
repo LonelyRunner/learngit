@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同级controller之间通信</title>
+</head>
+<body>
+    <div ng-controller="broController">
+        <input type="text" ng-model="fDate">
+    </div>
+    <div ng-controller="sisController">
+        <input type="text" ng-model="">
+    </div>
+    <script>
+        angular.module("myApp",[])
+                .controller('broController',['$scope','$filter',function($scope,$filter){
+                    $scope.bDate = $filter('date')(new Date(),'yyyy-mm');
+                }])
+                .controller('sisController',['$scope',function($scope){
+                    $scope.sDate = $filter('date')(new Date(),'yyyy-mm');
+                }]);
+    </script>
+    <script src="../angular.js"></script>
+    <script src="../jquery.js"></script>
+</body>
+</html>

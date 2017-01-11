@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="input2SelectApp">
+<head>
+    <meta charset="UTF-8">
+    <title>输入框-->下拉框</title>
+    <script src="../jquery.js"></script>
+    <script src="../angular-min.js"></script>
+    <script src="input2select.js"></script>
+    <link rel="stylesheet" href="input2select.css">
+</head>
+<body ng-controller="drugNameController">
+    <div>
+        <input id="input-select" type="text" ng-model="inputValue" placeholder="请输入药品名称" value="">
+        <div id="options" class="select-options">
+            <ul>
+                <li id="li{{$index}}" ng-click="output($index)" ng-repeat="drug in dataList track by $index">{{drug}}</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="operation-dict"  click-outside="closeOperationDictSearch()" inside-id="" ng-show="operationDictSearchShow">
+        <div class="operation-dict-search">
+            <ul class="li-striped">
+                <li ng-repeat="operationDict in operationDictVO.operationDictList"
+                    ng-click="activateOperationDict(operationDict)"
+                    ng-dblclick="selectOperationDict(operationDict)"
+                    ng-class="{'bg-selected-color': operationDict === activeOperationsDict}"
+                    title="{{operationDict.id.operationName}}">
+                    {{operationDict.id.operationName}}
+                </li>
+            </ul>
+        </div>
+        <small class="more-items">还剩{{operationDictVO.count - operationDictVO.operationDictList.length}}条</small>
+</body>
+</html>

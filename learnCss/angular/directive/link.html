@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>&directive</title>
+    <head>
+        <style type="text/css">
+            p{
+                display: inline-block;
+                cursor: pointer;
+            }
+            p:nth-child(odd){
+                background: darkgray;
+            }
+            p:nth-child(even){
+                background: aliceblue;
+            }
+        </style>
+    </head>
+<body>
+<div>
+    <p>
+        <player intelligence>
+            Text inside player
+        </player>
+    </p>
+    <p>
+        <player intelligence force>
+            Text inside player
+        </player>
+    </p>
+    <p>
+        <player intelligence force speed>
+            Text inside player
+        </player>
+    </p>
+
+
+
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .directive("player", function () {
+                return {
+                    restrict: 'EAC',
+                    scope:{},
+                    controller:function ($scope){
+                        $scope.abilities=[];
+                        this.addIntelligence=function (){
+                            $scope.abilities.push("intelligence");
+                        };
+                        this.addForce=function (){
+                            $scope.abilities.push("force");
+                        };
+                        this.addSpeed=function (){
+                            $scope.abilities.push("speed");
+                        };
+                    },
+                    link:function (scope,element,attrs) {
+                        element.bind("mouseenter",function (){
+                            console.log(scope.abilities);
+                        })
+                    },
+                    transclude:true,
+                    template:'<div>\n    <div ng-transclude></div>\n    <div>Template of Directive</div>\n    <div>{{abilities}}</div>\n</div>'
+                };
+            })
+            .directive("intelligence", function () {
+                return {
+                    require:'^player',
+                    restrict: 'A',
+                    link:function (scope,element,attrs,playerCtrl) {
+                        playerCtrl.addIntelligence();
+                    }
+                };
+            })
+            .directive("force", function () {
+                return {
+                    require:'^player',
+                    restrict: 'A',
+                    link:function (scope,element,attrs,playerCtrl) {
+                        playerCtrl.addForce();
+                    }
+                };
+            })
+            .directive("speed", function () {
+                return {
+                    require:'^player',
+                    restrict: 'A',
+                    link:function (scope,element,attrs,playerCtrl) {
+                        playerCtrl.addSpeed();
+                    }
+                };
+            })
+</script>
+</body>
+</html>
+

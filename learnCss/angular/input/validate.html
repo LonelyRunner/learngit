@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hisApp">
+<head>
+    <meta charset="UTF-8">
+    <title>校验</title>
+    <script src="../jquery.js"></script>
+    <script src="../angular-min.js"></script>
+    <script src="../ng-grid.js"></script>
+    <link rel="stylesheet" href="../ng-grid.css">
+    <script>
+        var hisApp = angular.module("hisApp",['ngGrid']);
+
+        var HisController = ["$scope","$http",function($scope,$http){
+            $scope.user = {
+                userName: '',
+                hobby: '',
+                luckyNumber: ""
+            };
+
+            $scope.changeBGK = changeBGK;
+
+            function changeBGK(){
+                if(validateUser()){
+                    $(".header").css("background-color","grey");
+                }
+            }
+
+            function validateUser(){
+                if($scope.user.userName == ""){
+//                    $("#userName").focus(function(){
+//                        $("#userName").css("background-color","#FFFFCC");
+//                    });
+                    alert("姓名且不能为空");
+                    return false;
+                }
+
+                if($scope.user.hobby == ""){
+                    alert("爱好且不能为空");
+//                    $("#hobby").focus(function(){
+//                        $("#hobby").css("background-color","#FFFFCC");
+//                    });
+                    return false;
+                }
+
+                if($scope.user.luckyNumber == "" || (typeof ($scope.user.luckyNumber*1) !== 'number')){
+                    return false;
+                }
+
+                return true;
+            }
+
+            basicDataType();
+            complexDataType();
+
+            function basicDataType(){
+                var a = 123.21;
+                var b = "Miss you!";
+                var c;
+//                var d = new A();
+                var e = false;
+                console.info("typeof"+ a +" = "+(typeof a));
+                console.info("typeof"+ b +" = "+(typeof b));
+                console.info("typeof"+ c +" = "+(typeof c));
+//                console.info("typeof"+ d +" = "+(typeof d));   null
+                console.info("typeof"+ e +" = "+(typeof e));
+            }
+
+            function complexDataType(){
+                var array = [1,2,3,4,5];
+                var obj1 = getItem();
+                console.info("typeof"+ array +"="+(typeof array));
+                console.info("typeof"+ obj1 +"="+(typeof obj1));
+            }
+
+            function getItem(){
+                var item = {
+                    name : '',
+                    age : 0,
+                    hobby : ''
+                };
+                return item;
+            }
+
+            //grid 分页显示测试
+            $scope.dataList = [];
+            $scope.oneGridData = [];
+
+            $scope.pagingOptions = {
+                pageSizes : [3,5,8],
+                pageSize : 3,
+                totalServerItems : '0',
+                currentPage : 1
+            };
+
+            $scope.colDefs = [
+                {field:'name',displayName:'姓名'},
+                {field:'age',displayName:'年龄'},
+                {field:'gender',displayName:'性别'},
+                {field:'hobby',displayName:'爱好'},
+                {field:'joinDate',displayName:'加入时间'}
+            ];
+
+            $scope.gridOpts = {
+                data : 'oneGridData',
+                columnDefs : $scope.colDefs,
+                enablePaging : true,
+                showFooter : true,
+                i18n : 'zh-cn',
+                pagingOptions : $scope.pagingOptions
+            };
+
+            getDataList();
+
+            function getDataList(){
+                $http.get("dataList.json")
+                        .success(function(data){
+//                            console.info(data);
+                            $scope.dataList = data;
+                            $scope.pagingOptions.currentPage = 1;
+                        })
+                        .error(function(err){
+                            console.info(err);
+                        });
+            }
+
+            $scope.$watch("pagingOptions",function(newValue,oldValue){
+                if(newValue.currentPage != oldValue.currentPage || newValue.pageSize != oldValue.pageSize){
+                    console.info(newValue);
+                    var page = newValue.currentPage;
+                    var pageSize = newValue.pageSize;
+                    $scope.oneGridData = $scope.dataList.slice((page - 1) * pageSize, page * pageSize);
+                    $scope.pagingOptions.totalServerItems = $scope.dataList.length + "";
+                }
+            },true);
+
+            $scope.currentDate = new Date();
+
+            setInterval(function(){
+                $scope.$apply(function(){
+                    $scope.currentDate = new Date();
+                });
+            });
+
+            console.info("----------------------------");
+            console.info($scope);
+            console.info("----------------------------");
+        }];
+
+        hisApp.controller("HisController",HisController);
+
+    </script>
+</head>
+<body ng-controller="HisController">
+    <div class="header">
+        userName:<input type="text" id="userName" placeholder="请输入姓名" ng-model="user.userName">
+        hobby: <input type="text" id="hobby" placeholder="爱好" ng-model="user.hobby">
+        lucky-number: <input type="text" id="luckyNumber" placeholder="请输入幸运数字" value="{{user.luckyNumber}}" ng-model="user.luckyNumber">
+        <input type="button" value="点我试试" ng-click="changeBGK()">
+    </div>
+
+    <div class="gridStyle" ng-grid="gridOpts" style="height:300px">
+
+    </div>
+
+    <div>
+        currentDate : <input type="text" ng-model="currentDate">{{currentDate | date:'yyyy-MM-dd HH:mm:ss'}}
+    </div>
+</body>
+</html>

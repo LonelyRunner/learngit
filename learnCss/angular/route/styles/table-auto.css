@@ -1,0 +1,52 @@
+/*-----------------------table自动对齐 start 张丽敏20160327------------------------------*/
+.hr-table-header-div table,
+.hr-table-content-div table
+{
+    width:100%;
+    max-width: 100%;
+
+}
+.hr-table-header-div .table thead{
+    background-color: #eaeaea;
+
+}
+.hr-table-header-div .table th{
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color: #eaeaea;
+    background-image: none;
+    border: 1px solid #d4d4d4;
+}
+.hr-table-content-div .table td{
+    padding-top:5px;
+    padding-bottom:5px;
+    border: 1px solid #d4d4d4;
+
+}
+.hr-table-header-div{
+    position: relative;
+}
+.hr-div-th{
+    overflow-y:scroll;
+}
+.hr-span-th{
+    display: inline-block;
+    vertical-align: middle;
+    width:9px;
+    height:30px;
+    border: 1px solid #ddd;
+    background-color:#eaeaea;
+    right: 0;
+    top: 0;
+    border-left: 0;
+    position:absolute;
+}
+.hr-table-content-div {
+    /*height:202px;*/
+    overflow-y: scroll;
+    background-color: #FFF;
+    border-top: none;
+    margin-top: -1px;
+}
+
+/*-----------------------table自动对齐 end张丽敏20160327------------------------------*/

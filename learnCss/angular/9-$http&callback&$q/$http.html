@@ -1,0 +1,53 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>$watch</title>
+</head>
+<body>
+<div ng-controller="MyController">
+    <input type="text" ng-model="inputCode"/>
+    <div>
+        <p>drugNameList</p>
+        <p>{{drugNameList}}</p>
+    </div>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module('myApp', [])
+            .controller("MyController", ["$scope", "$http",function ($scope, $http) {
+        var url = "http://192.168.1.76/heren/api/drug-info-list/drug-name";
+//      使用此API需要跨域，请禁用chrome安全模式 --args --disable-web-security
+        var param = {
+            "inputCode": ""
+            , "prescAttr": "普通"
+            , "prescType": 0
+            , "searchType": "M"
+        };
+        $scope.inputCode = "";
+        $scope.drugNameList=[];
+        $scope.getDrugNameList = function () {
+            $http.post(url, param).success(function (data) {
+                $scope.drugNameList=data;
+                console.log(data);
+            }).error(function (error) {
+                console.log(error);
+            })
+        };
+        $scope.$watch("inputCode",function(newval,oldval){
+            if(newval){
+                param.inputCode=newval;
+                $scope.getDrugNameList();
+            }
+        });
+
+//        function getFirstResult(drugNameList){
+//            console.log(drugNameList[0])
+//        }
+    }]);
+</script>
+</body>
+</html>
+
+
+

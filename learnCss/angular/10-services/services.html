@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body>
+<!--某页面1-->
+<div ng-controller="FirstController">
+    <h1>FirstController</h1>
+    <input type="text" ng-model="inputCode"/>
+    <p>{{drugNameList}}</p>
+</div>
+<!--某页面2-->
+<div ng-controller="SecondController">
+    <h1>SecondController</h1>
+    <input type="text" ng-model="inputCode"/>
+    <p>{{drugNameList}}</p>
+</div>
+<div>
+    <h1>OtherDiv</h1>
+    <p>{{param}}</p>
+</div>
+<script src="../angular-min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .run(["$rootScope","param",function ($rootScope,param) {
+                $rootScope.param = param;
+            }])
+            .value("param", {
+                "inputCode": ""
+                , "prescAttr": "普通"
+                , "prescType": 0
+                , "searchType": "M"
+            })
+            .constant("api", {
+                "drugSearch": "/heren/api/drug-info-list/drug-name"
+            })
+            .service("MyService", function () {
+                this.server = "http://192.168.1.76:8051";
+            })
+            .factory("httpPostService", ["$q", "$http", function ($q, $http) {
+                return {
+                    call: _call
+                };
+                function _call(url, object, query) {
+                    var deferred = $q.defer();
+                    if (query) {
+                        url += "?" + query
+                    }
+                    $http.post(url, object)
+                            .success(function (data, status, header, config) {
+                                deferred.resolve(data);
+                            }).error(function (data, status, header, config) {
+                        deferred.reject();
+                    });
+                    return deferred.promise;
+                }
+            }])
+            .controller("FirstController", ["$scope", "MyService", "httpPostService", "api", "param", function ($scope, MyService, httpPostService, api, param) {
+                $scope.drugNameList = [];
+                $scope.$watch("inputCode", function (newval, oldval) {
+                    if (newval) {
+                        param.inputCode = newval;
+                        httpPostService.call(MyService.server + api.drugSearch, param, "").then(function (data) {
+                            $scope.drugNameList = data;
+                            console.log(data);
+                        }, function () {
+                            alert("服务器异常");
+                        })
+                    }
+                });
+            }])
+            .controller("SecondController", ["$scope", "MyService", "httpPostService", "api", "param", function ($scope, MyService, httpPostService, api, param) {
+                $scope.drugNameList = [];
+                $scope.$watch("inputCode", function (newval, oldval) {
+                    if (newval) {
+                        param.inputCode = newval;
+                        httpPostService.call(MyService.server + api.drugSearch, param, "").then(function (data) {
+                            $scope.drugNameList = data;
+                            console.log(data);
+                        }, function () {
+                            alert("服务器异常");
+                        })
+                    }
+                });
+            }])
+</script>
+</body>
+</html>

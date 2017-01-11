@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pane</title>
+    <style type="text/css">
+        .bac{
+            height:30px;
+            /*border:1px solid black;*/
+            background-color: #2894ff;
+        }
+
+        .contains{
+            height:25px;
+            /*border:1px solid black;*/
+            position: relative;
+            background-color: white;
+        }
+
+        ul{
+            display: block;
+            height: 25px;
+            margin-left:-30px;
+
+        }
+
+        li{
+            display: inline;
+            margin-left:-10px;
+        }
+
+        button {
+            width: 150px;
+            height: 25px;
+            color:#2894ff;
+            padding:1px;
+            /*border:1px solid red;*/
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .blueClass{
+            background-color: #2894ff;
+            color:white;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="bac">
+        <div class="contains">
+            <ul>
+                <li><button id="btn1" onclick="changeBack(1)" ondblclick="removeChange(1)">tab-pane1</button></li>
+                <li><button id="btn2" onclick="changeBack(2)" ondblclick="removeChange(2)">tab-pane2</button></li>
+                <li><button id="btn3" onclick="changeBack(3)" ondblclick="removeChange(3)">tab-pane3</button></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        document.getElementById('btn1').setAttribute('class','blueClass');
+
+        function changeBack(i){
+            document.getElementById('btn'+i).setAttribute('class','blueClass');
+        }
+
+        function removeChange(i){
+            document.getElementById('btn'+i).removeAttribute('class');
+        }
+    </script>
+</body>
+</html>

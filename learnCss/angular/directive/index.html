@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>directive</title>
+</head>
+<body ng-app="myApp">
+    <player passion>passion</player>
+    <br>
+    <player passion strength>passion+strength</player>
+    <br>
+    <player passion strength force>passion+strength+force</player>
+    <script src="../../javascript/angular.js"></script>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        myApp.directive("player",function(){
+            return {
+                restrict:'ECMA',
+                replace:true,
+                /** 使用transclude必须有root元素 即外层的div必须存在 */
+                transclude:true,
+                template:'<div><div ng-transclude></div>' +
+                        '       <div>Template of Directive</div>' +
+                        '       <div>{{abilities}}</div></div>',
+                scope:{},
+                controller:function($scope){
+                    $scope.abilitity = [];
+                    this.addPassion = function(){
+                        console.info("player with passion");
+                        $scope.abilitity.push("passion");
+                    };
+
+                    this.addStrength = function(){
+                        $scope.abilitity.push("strength");
+                    };
+
+                    this.addForce = function(){
+                        $scope.abilitity.push("force");
+                    };
+                },
+                link:function(scope,ele,attr){
+                    console.info(ele);
+                    ele.css({"border":"1px solid red","border-radius":"5px","width":"200px","padding":"5px"});
+                    ele.bind("mouseenter",function(){
+                        console.info(scope.abilitity);
+                    });
+                }
+            }
+        });
+        myApp.directive("passion",function(){
+            return {
+                require:'^player',
+                restrict:'A',
+                link:function(scope,ele,attr,pCtrl){
+                    pCtrl.addPassion();
+                }
+            }
+        });
+        myApp.directive("strength",function(){
+            return {
+                require:'^player',
+                restrict:'A',
+                link:function(scope,ele,attr,pCtrl){
+                    pCtrl.addStrength();
+                }
+            }
+        });
+        myApp.directive("force",function(){
+            return {
+                require:'^player',
+                restrict:'A',
+                link:function(scope,ele,attr,pCtrl){
+                    pCtrl.addForce();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

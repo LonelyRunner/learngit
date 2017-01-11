@@ -1,0 +1,44 @@
+<div ng-controller="TableController" class="table-index">
+    <div hr-table widths="orderWidth" class="current-doctor-orders">
+        <div class="hr-table-header-div">
+            <div class="hr-div-th">
+                <table class="table table-bordered ">
+                    <thead>
+                    <tr>
+                        <th class='first-td' width="25%">药品</th>
+                        <th class='second-td' width="25%">数量</th>
+                        <th class='third-td' width="25%">医师</th>
+                        <th class='fourth-td'width="25%">状态</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <span class="hr-span-th"></span>
+        </div>
+        <div class="hr-table-content-div">
+            <table class="table table-striped table-bordered">
+                <tbody>
+                <tr ng-repeat="orderDetail in orderDetailList" ng-click="selectOrderDetail($index)"
+                    ng-class="{'bg-selected-color': selectedOrderDetail==orderDetail}">
+                    <td width="{{orderWidth[0]}}">
+                       {{orderDetail.drugName}}
+                    </td>
+                    <td width="{{orderWidth[1]}}">
+                        <span ng-show="isSelectedOrderDetail(orderDetail)">
+                            <input type="text" ng-model="orderDetail.amount"/>
+                        </span>
+                        <span ng-show="!isSelectedOrderDetail(orderDetail)">
+                            {{orderDetail.amount}}
+                        </span>
+                    </td>
+                    <td width="{{orderWidth[2]}}">
+                        {{orderDetail.doctor}}
+                    </td>
+                    <td width="{{orderWidth[3]}}">
+                        {{orderDetail.status}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

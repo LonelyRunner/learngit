@@ -1,0 +1,10 @@
+<div ng-controller="AccordionsController" class="accordion-index">
+    <accordion close-others="true">
+        <accordion-group ng-repeat="accordion in accordions">
+            <accordion-heading>
+                {{accordion.title}}
+            </accordion-heading>
+            {{accordion.content}}
+        </accordion-group>
+    </accordion>
+</div>

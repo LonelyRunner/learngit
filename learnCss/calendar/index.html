@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>日历</title>
+    <style type="text/css">
+        body{
+            margin: 0 auto;
+        }
+        tr {
+            padding: 0;
+        }
+        td{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            color: red;
+            font-style: italic;
+            font-weight: 900;
+        }
+
+        th{
+            color: #b94a48;
+            height: 40px;
+            font-size: larger;
+            text-align: center;
+        }
+
+        #bac{
+            width:390px;
+            height:390px;
+            margin-left:600px;
+            margin-top:50px;
+            border:1px solid yellow;
+            background-color: #9fbbb4;
+            background-image: url("a.png");
+            padding: 5px;
+        }
+
+        .tab-bottom{
+            background-color: #5bc0de;
+            width: 360px;
+            margin-left: 600px;
+            position: relative;
+            display: block;
+            height: 60px;
+            border: 1px solid yellowgreen;
+            margin-top: -51px;
+            padding: 20px;
+            text-align: center;
+        }
+
+       input[type='button']{
+           width: 50px;
+           color: #0e0e0e;
+           background-color: #00A6DD;
+           border-radius: 5px;
+           border-color: #00A6DD;
+           font-size: larger;
+           font-weight: 400;
+       }
+
+        .top-current{
+            width: 360px;
+            height: 60px;
+            padding-top: 20px;
+            margin-left: 600px;
+            position: absolute;
+            margin-top: -80px;
+        }
+
+        #currentDate{
+            border:1px solid yellow;
+            /*position: relative;*/
+            display: block;
+            width: 400px;
+            height: 60px;
+            color: #a9302a;
+            text-align: center;
+            /* 调节文字的垂直位置 */
+            line-height: 60px;
+            background-color: #00a300;
+        }
+
+        .title-part{
+            width: 400px;
+            float: left;
+        }
+
+        .table-title{
+            width:100px;
+            display: block;
+            text-align: center;
+        }
+
+        .turn-right{
+            margin-left: 300px;
+            margin-top: -33px;
+        }
+        .second-tab-title{
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            margin-left:100px;
+            margin-top: -30px;
+        }
+
+        .dateArrange,.monthArrange,.yearArrange{
+            width: 390px;
+            padding: 15px;
+            height: 320px;
+        }
+    </style>
+</head>
+<body ng-controller="CalendarController" ng-cloak>
+    <div class="top-current"><span ng-model="currentDate" id="currentDate">{{currentDate}}</span></div>
+    <div id="bac">
+        <div class="title-part">
+            <span class="table-title turn-left"><input type="button" value="<" ng-click="lastMonth()"></span>
+            <span class="table-title second-tab-title" ng-model="currentMonth" ng-click="changeShowTab()">{{currentMonth}}</span>
+            <span class="table-title turn-right"><input type="button" value=">" ng-click="nextMonth()"></span>
+        </div>
+        <!-- 日期分布 -->
+        <div ng-show="isShow.showDate">
+            <table class="dateArrange">
+                <tr>
+                    <th>SUN</th>
+                    <th>MON</th>
+                    <th>TUE</th>
+                    <th>WED</th>
+                    <th>THU</th>
+                    <th>FRI</th>
+                    <th>SAT</th>
+                </tr>
+                <tr ng-repeat="week in dataList">
+                    <td>{{week[0]}}</td>
+                    <td>{{week[1]}}</td>
+                    <td>{{week[2]}}</td>
+                    <td>{{week[3]}}</td>
+                    <td>{{week[4]}}</td>
+                    <td>{{week[5]}}</td>
+                    <td>{{week[6]}}</td>
+                </tr>
+            </table>
+        </div>
+        <div ng-show="isShow.showMonth">
+            <table class="monthArrange">
+                <tr ng-repeat="month in dataList">
+                    <td>{{month[0]}}</td>
+                    <td>{{month[1]}}</td>
+                    <td>{{month[2]}}</td>
+                    <td>{{month[3]}}</td>
+                </tr>
+            </table>
+        </div>
+        <div ng-show="isShow.showYear">
+            <table class="yearArrange">
+                <tr ng-repeat="year in dataList">
+                    <td>{{year[0]}}</td>
+                    <td>{{year[1]}}</td>
+                    <td>{{year[2]}}</td>
+                    <td>{{year[3]}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <span class="tab-bottom">Calendar from china!</span>
+    <script src="jquery.js"></script>
+    <script src="angular.js"></script>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("CalendarController",["$scope","$filter",function($scope,$filter){
+            //用来控制显示 循环显示table中的数据
+            var i=0;
+
+            var MONTHS = [
+                ['一月','二月','三月','四月'],
+                ['五月','六月','七月','八月'],
+                ['九月','十月','十一','十二']
+            ];
+
+            $scope.currentDate = $filter('date')(new Date(),'yyyy-MM-dd');
+            $scope.currentMonth = new Date().getFullYear()+"-"+isBiggerTen(new Date().getMonth()+1);
+            $scope.dataList = [];
+            $scope.isShow = {
+                showDate: true,
+                showMonth: false,
+                showYear: false
+            };
+
+            $scope.lastMonth = lastMonth;
+            $scope.nextMonth = nextMonth;
+            $scope.changeShowTab = changeShowTab;
+
+            init();
+
+            function init(){
+                getCurrentMonthArrange(new Date().getFullYear(),new Date().getMonth()+1);
+            }
+
+            //获取上一个月日期分布
+            function lastMonth(){
+                $scope.dataList = [];
+                $scope.currentMonth = getLastMonth($scope.currentMonth);
+                getCurrentMonthArrange($scope.currentMonth.split("-")[0]*1,$scope.currentMonth.split("-")[1]*1);
+            }
+
+            //获取下一个月日期分布
+            function nextMonth(){
+                $scope.dataList = [];
+                //点击下一个月  当前时间需要改变
+                $scope.currentMonth = getNextMonth($scope.currentMonth);
+                getCurrentMonthArrange($scope.currentMonth.split("-")[0]*1,$scope.currentMonth.split("-")[1]*1);
+            }
+
+            //获取本月日期分布
+            function getCurrentMonthArrange(year,month){
+                var firstDay = convertFirstDateToWeek(year,month-1);
+                var dates = getCurrentMonthDates(year,month);
+                //加上前面的空格  一共有多少天
+                var allDates = dates+firstDay;
+                //总共有多少行
+                var allRows = allDates % 7 === 0 ? allDates / 7 : Math.floor(allDates / 7) + 1;
+
+                var allDays = getAllDaysAddSpace(firstDay,dates);
+
+                for(var j=0;j<allRows;j++){
+                    var arr = [];
+                    for(var i=j*7;i<allDays.length;i++) {
+                        if(i<(j+1)*7){
+                            arr.push(allDays[i]);
+                        }
+                    }
+                    $scope.dataList.push(arr);
+                }
+            }
+
+            //获取本月的第一天对应的星期 月份0-11
+            function convertFirstDateToWeek(year,month){
+                return new Date(year,month,"01").getDay();
+            }
+
+            //获取本月有多少天
+            function getCurrentMonthDates(year,month){
+                return new Date(year,month,0).getDate();
+            }
+
+            function getAllDaysAddSpace(firstDay,dates){
+                var allDays = [];
+                for(var i=0;i<firstDay;i++){
+                    allDays.push("");
+                }
+
+                for(var i=0;i<dates;i++){
+                    allDays.push(i+1);
+                }
+                return allDays;
+            }
+
+            function getNextMonth(stringDate){
+                return stringDate.split("-")[1]*1 === 12 ? (stringDate.split("-")[0]*1+1)+"-01" : stringDate.split("-")[0]+"-"+isBiggerTen(stringDate.split("-")[1]*1+1);
+            }
+
+            function getLastMonth(stringDate){
+                return stringDate.split("-")[1]*1 === 1 ? (stringDate.split("-")[0]*1-1)+"-12" : stringDate.split("-")[0]+"-"+isBiggerTen(stringDate.split("-")[1]*1-1);
+            }
+
+            function isBiggerTen(num){
+                return num >= 10 ? num : "0"+num;
+            }
+
+            function changeShowTab(){
+                i = i+1;
+                if(i>2){
+                    i = 0;
+                }
+                console.info(i);
+                switch (i){
+                    case 0 : showTab('showDate'); break;
+                    case 1 : showTab('showMonth'); break;
+                    case 2 : showTab('showYear'); break;
+                    default :  showTab('showDate');
+                }
+            }
+
+            function showTab(tabName){
+                if('showDate' === tabName){
+                    $scope.dataList = [];
+                    showSelected('showDate');
+                    init();
+                }
+
+                if('showMonth' === tabName){
+                    showSelected('showMonth');
+                    $scope.currentMonth = new Date().getFullYear();
+                    $scope.dataList = MONTHS;
+                }
+
+                if('showYear' === tabName){
+                    $scope.dataList = [];
+                    showSelected('showYear');
+                    //获取包括本年最近十年  2017 --> 2009-2019
+                    var currentMonthStr = $scope.currentMonth.toString();
+                    var strArr = [];
+                    for(var i=0;i<currentMonthStr.length;i++){
+                        strArr.push(currentMonthStr[i]);
+                    }
+                    var startYear = $scope.currentMonth-strArr[3]*1 - 1;
+                    var endYear = $scope.currentMonth+10-strArr[3]*1;
+                    var dataList = [];
+                    for(var i=startYear;i<=endYear;i++){
+                          dataList.push(i);
+                    }
+
+                    for(var i=0;i<3;i++){
+                        var rowList = [];
+                        for(var j=4*i;j<4*i+4;j++){
+                            rowList.push(dataList[j]);
+                        }
+                        $scope.dataList.push(rowList);
+                    }
+
+                    console.info($scope.dataList);
+
+                    $scope.currentMonth = (startYear+1)+"-"+(endYear-1);
+                }
+            }
+
+            function showSelected(tabName){
+                for(var prop in $scope.isShow){
+                   $scope.isShow[prop] = false;
+                }
+                $scope.isShow[tabName] = true;
+            }
+
+        }]);
+    </script>
+</body>
+</html>

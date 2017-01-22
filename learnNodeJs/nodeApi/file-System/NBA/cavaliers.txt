@@ -1,0 +1,5 @@
+{ name: '郑豪',
+  age: 23,
+  gender: 'male',
+  graduate: 'Technology University of TaiYuan',
+  method: '软件工程' }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+
+        //计算A公式(排列)
+        function AFormula(m,n){
+            if(m<n){
+                return ;
+            }
+
+            return calculatorForbidden(m)/calculatorForbidden(m-n);
+        }
+
+        function CFormula(m,n){
+            if(m<n){ return ;}
+
+            return AFormula(m,n)/calculatorForbidden(n);
+        }
+
+        //计算某个数字的阶乘
+        function calculatorForbidden(a){
+            if(a<=1){
+                return 1;
+            }else{
+                return a*calculatorForbidden(a-1);
+            }
+        }
+
+//        console.info(calculatorForbidden(5));
+//        console.info(AFormula(5,3));
+//        console.info(CFormula(5,3));
+
+        for(var i=1;i<=10;i++){
+            console.info(i+"!="+calculatorForbidden(i));
+        }
+    </script>
+</body>
+</html>

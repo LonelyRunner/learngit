@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+       function BaseJs(name,age,gender,hobby){
+           this.name = name;
+           this.age = age;
+           this.gender = gender;
+           this.hobby = hobby;
+
+           this._toString = function(){
+               var hobby = "";
+               if(this.hobby){
+                   this.hobby.forEach(function(i){
+                       hobby += i+",";
+                   });
+               }
+               return "This people is [name:"+this.name+",age:"+this.age+",gender:"+this.gender+",hobby:"+hobby+"]";
+           }
+       }
+
+       var baseJs = new BaseJs("张三",18,true,['play basketBall','play volleyBall']);
+
+       BaseJs.prototype.salary = 0;
+
+       baseJs.salary = 20000;
+
+        console.info(baseJs._toString());
+    </script>
+</body>
+</html>

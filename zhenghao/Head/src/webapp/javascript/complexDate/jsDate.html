@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //输出当前日期
+        var nowDate = new Date();
+        console.info(nowDate);
+
+        //日期的构造函数
+        function getSomeDate(year,month,date){
+            var nowDate = new Date(year,month,date);
+            return nowDate;
+        }
+        //new Date(year,month,date)中如果date的值为0-11
+        console.info(getSomeDate(2016,1,15));
+
+        //Date.UTC = function(year,month,date,hours,minutes,seconds,milliseconds) {};
+        //return number--->返回的是时间戳
+        var a = Date.UTC(2017,3,10,10,6,20);
+        console.info(a);
+
+        //Date.parse = function(dateString){}  --->return number 时间戳
+        var b = Date.parse("2017-03-01 10:08:23");
+        console.info(b);
+    </script>
+</body>
+</html>

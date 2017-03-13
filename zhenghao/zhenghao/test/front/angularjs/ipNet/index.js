@@ -63,4 +63,18 @@ ipApp.controller('CalculatorRelativeCtrl',["$scope",function($scope){
         return str;
     }
     console.info(convert10to2(0));
+
+    function validateIndexOf(a,arr){
+            if(arr.indexOf(a)>0){
+                console.info("include");
+            }else{
+                console.info("no include");
+            }
+    }
+
+    validateIndexOf("a",['b','a','c']);
+    
+    var a = [1,2,3,4,5];
+    a.push();
+
 }]);

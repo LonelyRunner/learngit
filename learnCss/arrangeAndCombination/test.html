@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //除以8
+    function printEightArray(){
+        var eightArr = [];
+
+        for(var i=9;i<10000;i=i+10){
+            if(i%8==1){
+                eightArr.push(i);
+            }
+        }
+
+        return eightArr;
+    }
+
+    //除以9
+    function printNineArray(){
+        var eightArr = printEightArray();
+        var nineArr = [];
+        for(var i=0;i<eightArr.length;i++){
+            if(eightArr[i]%9==0){
+                nineArr.push(eightArr[i]);
+            }
+        }
+        return nineArr;
+    }
+
+    //除以7
+    function printSevenArray(){
+        var sevenArr = [];
+        var nineArr = printNineArray();
+        for(var i=0;i<nineArr.length;i++){
+            if(nineArr[i]%7==0){
+                sevenArr.push(nineArr[i]);
+            }
+        }
+        return sevenArr;
+    }
+
+    //除以6
+    function printSixArray(){
+        var sixArr = [];
+        var sevenArr = printSevenArray();
+        for(var i=0;i<sevenArr.length;i++){
+            if(sevenArr[i]%6==3){
+                sixArr.push(sevenArr[i]);
+            }
+        }
+        return sixArr;
+    }
+
+    //除以6
+    function printFourArray(){
+        var fourArr = [];
+        var sixArr = printSixArray();
+        for(var i=0;i<sixArr.length;i++){
+            if(sixArr[i]%4==1){
+                fourArr.push(sixArr[i]);
+            }
+        }
+        return fourArr;
+    }
+
+    console.info(printEightArray());
+    console.info(printNineArray());
+    console.info(printSevenArray());
+    console.info(printSixArray());
+    console.info(printFourArray());
+</script>
+</body>
+</html>

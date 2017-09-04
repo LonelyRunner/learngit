@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+    
+    <!-- 配置Bean -->
+    
+    <!-- setter方法注入 -->
+    <bean id="helloWorld" class="com.zh.bean.beans.HelloWorld">
+        <property name="name" value="Spring"></property>
+    </bean>
+    
+    <!-- 构造器注入 -->
+    <!-- 
+     	区分重载的构造器
+     	index:标明构造器中参数的顺序 
+     	type:标明构造器中参数的类型
+    -->
+    <bean id="car1" class="com.zh.bean.beans.Car">
+        <constructor-arg value="audi" index="0"></constructor-arg>
+        <constructor-arg value="shanghai" index="1"></constructor-arg>
+        <constructor-arg value="300000" type="double"></constructor-arg>
+    </bean>
+    
+    <bean id="car2" class="com.zh.bean.beans.Car">
+        <constructor-arg value="bwm" index="0"></constructor-arg>
+        <!-- 如果字面值包含特殊字符，可以使用<![CDATA[]]> -->
+        <constructor-arg index="1">
+            <value><![CDATA[<^HangZhou^>]]></value>
+        </constructor-arg>
+        <constructor-arg value="240" type="int"></constructor-arg>
+    </bean>
+    
+    <bean id="person" class="com.zh.bean.beans.Person">
+    	<property name="name" value="Mike"></property>
+    	<property name="age">
+    		<value>24</value>
+    	</property>
+    	<property name="car" ref="car1"></property>
+    	
+    	<!-- <property name="car">
+	    		<bean id="car" class="com.zh.bean.beans.Car">
+	    			<constructor-arg value="ford" index="0"></constructor-arg>
+	        		<constructor-arg value="shanghai" index="1"></constructor-arg>
+	        		<constructor-arg value="310000" type="double"></constructor-arg>
+	    		</bean>
+    		</property> 
+    	-->
+    </bean>
+    
+    <!-- 配置list -->
+    <bean id="people" class="com.zh.bean.beans.People">
+    	<property name="name" value="jack"></property>
+    	<property name="age" value="25"></property>
+    	<property name="cars">
+    		<list>
+    			<ref bean="car1"></ref>
+    			<ref bean="car2"></ref>
+    			<bean id="car3" class="com.zh.bean.beans.Car">
+    				 <constructor-arg value="ford" index="0"></constructor-arg>
+        			<constructor-arg value="QingDao" index="1"></constructor-arg>
+        			<constructor-arg value="120000" type="double"></constructor-arg>
+    			</bean>
+    		</list>
+    	</property>
+    </bean>
+    
+    <!-- 配置独立的集合bean 以供多个bean进行引用  需要导入util命名空间 -->
+    <util:list id="cars">
+    	<ref bean="car1"></ref>
+    	<ref bean="car2"></ref>
+    </util:list>
+    
+     <bean id="people2" class="com.zh.bean.beans.People">
+    	<property name="name" value="jack1"></property>
+    	<property name="age" value="26"></property>
+    	<property name="cars" ref="cars"></property>
+    </bean>
+    
+    <!-- 配置Map -->
+ 	<bean id="peopleMap" class="com.zh.bean.beans.PeopleMap">
+ 		<property name="name" value="jack Chang"></property>
+    	<property name="age" value="27"></property>
+    	<property name="cars">
+    		<map>
+    			<entry key="AA" value-ref="car1"></entry>
+    			<entry key="BB" value-ref="car2"></entry>
+    		</map>
+    	</property>
+ 	</bean>
+ 	
+ 	<!-- 配置properties标签  -->
+ 	<bean id="dataSource" class="com.zh.bean.beans.PeopleProperty">
+ 		<property name="properties">
+ 			<props>
+ 				<prop key="userName">master</prop>
+ 				<prop key="password">1234</prop>
+ 				<prop key="urlName">jdbc:odbc:thin:@localhost:1521:orcl</prop>
+ 				<prop key="driverName">odbc.jdbc.driver.OracleDriver</prop>
+ 			</props>
+ 		</property>
+ 	</bean>
+ 	
+ 	<!-- p标签的使用  -->
+ 	<bean id="peoplex" class="com.zh.bean.beans.People" p:name="Mr_Zheng" p:age="24" p:cars-ref="cars"></bean>
+</beans>  

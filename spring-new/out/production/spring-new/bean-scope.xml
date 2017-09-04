@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+ 	
+ 	<!-- bean的作用域默认为singleton 在ctx.getBean("car")之前实例化Bean -->
+ 	<bean id="car" class="com.zh.bean.autowire.Car" scope="singleton">
+ 		<property name="brand" value="audi"></property>
+ 		<property name="price" value="200000"></property>
+ 	</bean>
+ 	
+ 	<!-- bean的作用域默认为prototype 在ctx.getBean("car")时实例化Bean -->
+ 	<bean id="car1" class="com.zh.bean.autowire.Car" scope="prototype">
+ 		<property name="brand" value="Baoma"></property>
+ 		<property name="price" value="200001"></property>
+ 	</bean>
+ 	
+ 	<!-- 导入外部的资源文件 -->
+ 	<context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+ 	
+ 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+ 		<property name="user" value="${jdbc.userName}"></property>
+ 		<property name="password" value="${jdbc.password}"></property>
+ 		<property name="jdbcUrl" value="${jdbc.urlName}"></property>
+ 		<property name="driverClass" value="${jdbc.driverName}"></property>
+ 		
+ 		<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+ 	</bean>
+ </beans>

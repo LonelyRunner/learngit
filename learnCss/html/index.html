@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="myDiv" style="width:100px;height:100px;border:1px solid red;position:relative;" onclick="moveRight500()">
+        点击我右移500px 双击我左移500px
+    </div>
+
+    <script>
+        //1600
+        const SCREENWIDTH = document.body.clientWith;
+
+        //1584
+        const WIDTH = document.body.offsetWidth;
+
+        function moveRight500(){
+            var origin = document.getElementById("myDiv").style.marginLeft.split("px")[0];
+            var originWidth = document.getElementById("myDiv").style.width.split("px")[0];
+            if((origin*1+originWidth*1+500) < WIDTH){
+                setTimeout(function(){
+                    document.getElementById("myDiv").style.marginLeft = (origin*1 + 500)+"px";
+                },500);
+            }else{
+                if((origin*1-500) >= 0){
+                    setTimeout(function(){
+                        document.getElementById("myDiv").style.marginLeft = isZero(origin*1 - 500);
+                    },500);
+                }
+            }
+        }
+
+        function isZero(number){
+            if(eval(number == 0)){
+                return 0;
+            }
+
+            return eval(number)+"px";
+        }
+
+    </script>
+</body>
+</html>

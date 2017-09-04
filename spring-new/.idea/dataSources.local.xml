@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Oracle - @localhosttest" uuid="d4df0ed7-9ecd-4bc5-af15-a48608a0c420">
+      <secret-storage>master_key</secret-storage>
+      <user-name>briup</user-name>
+      <schema-pattern>*.BRIUP *.PUBLIC *.SYS *.SYSTEM</schema-pattern>
+      <default-schemas>*.BRIUP *.PUBLIC</default-schemas>
+    </data-source>
+  </component>
+</project>

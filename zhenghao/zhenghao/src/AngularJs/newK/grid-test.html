@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>grid尝试</title>
+    <link rel="stylesheet" href="../12-grid/ng-grid.css">
+    <link rel="stylesheet" href="../12-grid/jquery-ui.css">
+</head>
+<body ng-controller="myController">
+
+    <table>
+        <thead>
+            <tr>
+                <th>科室</th>
+                <th>主诊组名称</th>
+                <th>主治医师</th>
+                <th>患者姓名</th>
+                <th>手术名称</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in dataList track by $index">
+               <td rowspan="4"
+                    ng-show="{{$index>0 ? (data.deptName == dataList[$index-1].deptName ? false : true) :true}}">
+                   {{data.deptName}}
+               </td>
+               <td rowspan="2"
+                    ng-show="{{$index>0 ? (data.diagGroup == dataList[$index-1].diagGroup ? false : true) :true}}">
+                   {{data.diagGroup}}
+               </td>
+               <td>{{data.doctorName}}</td>
+               <td>{{data.patientName}}</td>
+               <td>{{data.operationName}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="../12-grid/jquery-2.1.1.min.js"></script>
+    <script src="../angular.js"></script>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("myController",["$scope",function($scope){
+            $scope.loopI = 1;
+            $scope.loopJ = 1;
+            $scope.dataList = [
+                    {
+                        deptName : '呼吸1内科病区',
+                        diagGroup : '一组',
+                        doctorName : 'a',
+                        patientName : 'like',
+                        operationName : 'huahua'
+                    },
+                    {
+                        deptName : '呼吸1内科病区',
+                        diagGroup : '一组',
+                        doctorName : 'a',
+                        patientName : 'like',
+                        operationName : 'huahua'
+                    },
+                    {
+                        deptName : '呼吸1内科病区',
+                        diagGroup : 'er组',
+                        doctorName : 'a',
+                        patientName : 'like',
+                        operationName : 'huahua'
+                    },
+                    {
+                        deptName : '呼吸1内科病区',
+                        diagGroup : 'er组',
+                        doctorName : 'a',
+                        patientName : 'like',
+                        operationName : 'huahua'
+                    }
+            ];
+
+        }]);
+    </script>
+</body>
+</html>

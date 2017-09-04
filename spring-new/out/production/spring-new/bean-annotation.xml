@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/util
+                        http://www.springframework.org/schema/util/spring-util-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<!-- 
+		   指定spring IOC容器扫描有注解的类 
+		 resource-pattern用来指定扫描的资源 例如: resource-pattern="service/*.class"
+		 context:include-filter与context:exclude-filter是用来指定扫描的资源
+		 	type属性: annotation-根据注解过滤扫描
+		 			 assignable-过滤接口及以下的实现类
+	-->
+	<context:component-scan base-package="com.zh.bean.annotation" >
+		<!--  配合use-default-filters = 'false'
+			
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/> -->
+		
+		<!--  <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->	
+	</context:component-scan>
+</beans>

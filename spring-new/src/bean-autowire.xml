@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+ 
+ 	<bean id="address" class="com.zh.bean.autowire.Address" p:city="BeiJing" p:street="复兴路"></bean>
+ 	
+ 	<bean id="car" class="com.zh.bean.autowire.Car" p:brand="奔驰" p:price="200000"></bean>
+ 	
+ 	<!-- 手工装配  -->
+ 	<bean id="person1" class="com.zh.bean.autowire.Person" p:name="Mike" p:address-ref="address" p:car-ref="car"></bean>
+ 	
+ 	<!-- 自动装配 -->
+ 	<!-- byName: ref的id必须和setter方法相对应 -->
+ 	<bean id="autowirePersonByName" class="com.zh.bean.autowire.Person" p:name="James" autowire="byName"></bean>
+ 	
+ 	<bean id="autowirePersonByType" class="com.zh.bean.autowire.Person" p:name="Kobe" autowire="byType"></bean>
+ </beans>

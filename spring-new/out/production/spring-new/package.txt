@@ -1,0 +1,5 @@
+jdbc包下面是关于jdbcTemplate操作数据库的基本方法展示
+
+tx包下面是基于spring注解的相关操作
+
+tx-xml包下面是基于spring配置的相关操作

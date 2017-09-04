@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+ 	
+ 	<!-- 基于XML的AOP配置 -->
+ 	
+ 	<!-- 配置需要代理的Bean -->
+ 	<bean id="calculatorImpl" class="com.zh.aop.xml.CalculatorImpl"></bean>
+ 	
+ 	<!-- 配置切面Bean -->
+ 	<bean id="loggingAspect" class="com.zh.aop.xml.LoggingAspect"></bean>
+ 	
+ 	<bean id="validateAspect" class="com.zh.aop.xml.ValidateAspect"></bean>
+ 	
+ 	<!-- AOP配置 -->
+ 	<aop:config>
+ 		<aop:pointcut expression="execution(* com.zh.aop.xml.*.*(..))" id="pointCut"/>
+ 		
+ 		<aop:aspect order="1" ref="validateAspect">
+ 			<aop:before method="beforeLogging1" pointcut-ref="pointCut"/>
+ 		</aop:aspect>
+ 		
+ 		<aop:aspect ref="loggingAspect" order="2">
+ 			<aop:before method="beforeLogging" pointcut-ref="pointCut"/>
+ 			<aop:after method="afterLogging" pointcut-ref="pointCut"/>
+ 			<aop:after-returning method="resultLogging" pointcut-ref="pointCut" returning="result"/>
+ 			<aop:after-throwing method="exceptionLogging" pointcut-ref="pointCut" throwing="exception"/>
+ 			<!-- 
+ 				<aop:around method="" pointcut-ref="pointCut"/> 
+ 			-->
+ 		</aop:aspect>
+ 	</aop:config>
+ </beans>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DirectiveApp">
+<head>
+    <meta charset="UTF-8">
+    <title>指令详解 scope为false</title>
+    <style>
+        .div{
+            width:100px;
+            height:100px;
+            border:1px solid red;
+        }
+
+        .four-img{
+            width : 250px;
+            height : 220px;
+        }
+    </style>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/angular-1.3.0.js"></script>
+    <script>
+        var DirectiveApp = angular.module("DirectiveApp",[]);
+        DirectiveApp.controller("DirectiveController",["$scope",function($scope){
+            console.info($scope);
+            $scope.sayHello = sayHello;
+            $scope.bigger = bigger;
+
+            $scope.sayHelloToQixian = sayHelloToQixian;
+
+            function sayHello(){
+                alert("这是DirectiveController中绑定的方法~~~");
+            }
+
+            //测试scope属性为true时
+            function bigger(){
+                alert("是否会触发这个方法~~~");
+            }
+
+            //测试scope属性为{color:@color}
+            $scope.pink = 'pink';
+
+            //测试scope属性为{youcaihua:'='}
+            $scope.color = 'pink';
+
+            //测试scope属性为{say-hello-qixian : '&'}  绑定方法
+            $scope.name = "祁县";
+            function sayHelloToQixian(value){
+                console.info("***************************");
+                console.info("*********家乡大"+value+"**********");
+                console.info("***************************");
+            }
+
+            //测试指令之间的关系
+            $scope.qx = "祁县";
+        }]);
+        DirectiveApp.directive("hello",function(){
+            return {
+                restrict : 'ECMA',
+                replace : true,
+                template : "<div ng-click='sayHello()'>Hello world!</div>",
+                //此处scope为false时  scope(link中的) === $scope(controller中的)
+                scope : false,
+                //link函数中三个参数的概念
+                //1.0 scope为false时 该指令继承了父controller的scope，可以随意使用父controller的属性
+                //2.0 elements 如果没有jquery插件是 此elements为jQLite对象;当先导入jquery插件时,此时为已封装好的jquery对象
+                //3.0 attributes 包含了该指令所在元素的属性的标准化参数对象
+                link : function(scope,elements,attributes){
+                    console.info(attributes);
+                    elements.on("click",function(){
+                        console.info("BaBa被点击了~~~");
+                    });
+                }
+            };
+        });
+
+        DirectiveApp.directive("helloWorld",function(){
+            return {
+                restrict : 'ECMA',
+                replace : true,
+                template : "<img class='four-img' src='4.jpg' alt='Mr.zh' ng-click='bigger()'>",
+                //当scope为true时,相当于为指令开辟一个新的作用域
+                scope : true,
+                link : function(scope,ele,attr){
+                    scope.bigger = bigger;
+                    function bigger(){
+                        alert("我想被放大...");
+                        ele.css("border","10px solid blue");
+                        ele.css("width",'500px');
+                        ele.css("height",'440px');
+                    }
+                }
+            };
+        });
+
+        DirectiveApp.directive("helloChina",function(){
+            return {
+                restrict : 'ECMA',
+                replace : 'true',
+                template : "<div style='width:100px;height:100px;border:1px solid red'></div>",
+                //@ -> 父$scope向scope传递属性 单向绑定
+                scope : {
+                    color : '@color'
+                },
+                link : function(scope,ele,attr){
+                    ele.on("dblclick",function(){
+                        console.info(scope.color);
+                        ele.css('background-color',scope.color);
+                    });
+                }
+            };
+        });
+
+        DirectiveApp.directive("helloShanXi",function(){
+            return {
+                restrict : 'ECMA',
+                replace : true,
+                //=是双向绑定 即可绑定字符串  也可绑定对象
+                scope : {
+                    youcaihua : '='
+                },
+                template : '<input type="text" ng-model="youcaihua"/>',
+                link : function(scope,ele,attr){
+                    scope.$watch('youcaihua',function(newValue,oldValue){
+                        if(newValue){
+                            ele.css('color',scope.youcaihua);
+                        }
+                    });
+                }
+
+            };
+        });
+
+        DirectiveApp.directive("helloQiXian",function(){
+            return {
+                restrict : 'ECMA',
+                replace : true,
+                //&绑定的是方法
+                scope : {
+                    cityName : '=',
+                    sayHelloQixian : '&'
+                },
+                template : '<div><span>这是指令中的内容:</span><input type="text" ng-model="cityName" ng-click="sayHelloQixian(cityName)"></div>',
+                link : function(scope,ele,attr){
+                    console.info(attr);
+                }
+            };
+        });
+
+        DirectiveApp.directive("helloTransclude",function(){
+            return {
+                replace : true,
+                restrict : 'ECMA',
+                transclude : true,
+                template : '<div ng-transclude></div>',
+                scope : {}
+            };
+        });
+
+        DirectiveApp.directive("jinZhong",function(){
+            return {
+                replace : true,
+                restrict : 'ECMA',
+                scope : {},
+                controller : function($scope){
+                    this.sayGood = function(name){
+                        console.info("good:"+name);
+                    }
+                }
+            };
+        });
+
+        DirectiveApp.directive("qiXian",function(){
+            return {
+                restrict : 'ECMA',
+                replace : true,
+                template : '<div>{{qName}}</div>',
+                require : '^jinZhong',
+                scope : {
+                    qName : '@'
+                },
+                compile : function(elements,attributes){
+                    return function(scope,elements,attributes,fatherCtrl){
+                        console.info(scope.qName);
+                        fatherCtrl.sayGood(scope.qName);
+                    }
+
+                }
+            };
+        });
+    </script>
+</head>
+<body ng-controller="DirectiveController">
+    <hello class="div" align="center"></hello>
+    <hello-world></hello-world>
+
+    <hello-china color="{{pink}}"></hello-china>
+
+    <input type="text" ng-model="color">
+    <hello-shan-xi youcaihua="color"></hello-shan-xi>
+
+    <input type="text" ng-model="name">
+    <hello-qi-xian say-hello-qixian="sayHelloToQixian(name)" city-name="name"></hello-qi-xian>
+
+    <hello-transclude>hello,<span>{{color}}</span></hello-transclude>
+
+    <jin-zhong>
+        <qi-xian q-name="{{qx}}"></qi-xian>
+        <tai-gu></tai-gu>
+        <ping-yao></ping-yao>
+    </jin-zhong>
+</body>
+</html>
